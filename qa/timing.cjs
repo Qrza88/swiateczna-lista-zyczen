@@ -15,7 +15,7 @@ const session={open:false,remaining:60000,startedAt:0,running:false,expired:fals
 const minutes=vm.runInNewContext(script.match(/const DEMO_PROFILE=[\s\S]*?const GRINCH_DELAY_MINUTES=[^;]+;/)[0]+"\nGRINCH_DELAY_MINUTES");
 assert.ok([2,7].includes(minutes));
 const threshold=minutes*60000;
-const context=vm.createContext({$,show,session,GRINCH_DELAY_MINUTES:minutes,performance:{now:()=>now},announce(){},openGrinch(){opens++;show.grinchUsed=true;}});
+const context=vm.createContext({$,show,session,GRINCH_DELAY_MINUTES:minutes,performance:{now:()=>now},writeUiText(el,value){el.textContent=value;},announce(){},openGrinch(){opens++;show.grinchUsed=true;}});
 function $(id){return get(id);}
 vm.runInContext(clocks+'\nthis.timer={tick,toggleShow,elapsed,formatTime};',context);
 const {tick,toggleShow,elapsed,formatTime}=context.timer;
@@ -28,8 +28,10 @@ now+=10000;toggleShow();assert.equal(elapsed(),10000,'Pauza zachowuje upływ');
 now+=70000;assert.equal(elapsed(),10000,'Pauza nie liczy czasu');
 toggleShow();now+=5000;assert.equal(elapsed(),15000,'Wznowienie kontynuuje czas');
 session.open=true;session.remaining=60000;session.startedAt=now;session.running=true;
-now+=10000;tick();assert.equal(get('session-clock').textContent,'00:50','Osobny czas sesji');
-toggleShow();now+=30000;tick();assert.equal(get('session-clock').textContent,'00:50','Pauza pokazu zatrzymuje sesję');
+now+=10000;tick();assert.equal(get('session-clock-digits').textContent,'00:50','Osobny czas sesji');
+assert.equal(get('session-clock-text').textContent,'0 minut, 50 sekund','Czytelna dla czytnika wartość odliczania');
+context.updateClock('show-clock',62000);assert.equal(get('show-clock-digits').textContent,'01:02');assert.equal(get('show-clock-text').textContent,'1 minuta, 2 sekundy','Wartość dostępna odpowiada wizualnej');
+toggleShow();now+=30000;tick();assert.equal(get('session-clock-digits').textContent,'00:50','Pauza pokazu zatrzymuje sesję');
 toggleShow();now+=50001;tick();assert.equal(session.expired,true,'Wygaśnięcie sesji');
 assert.equal(get('extend-session').textContent,'Wznów sesję','Akcja odzyskania sesji');
 assert.equal(get('session-expired').hidden,false,'Jawny komunikat po wygaśnięciu');
@@ -37,6 +39,6 @@ assert.equal(formatTime(420000),'07:00');
 console.log('OK: automatyczny start po otwarciu, próg 2:00, jednorazowość, opóźniona obsługa, pauza/wznawianie, niezależna sesja i wygaśnięcie.');
 
 const publicShow={elapsed:119999,startedAt:0,running:false,started:true,grinchUsed:false};
-const publicContext=vm.createContext({$,show:publicShow,session:{open:false},GRINCH_DELAY_MINUTES:2,performance:{now:()=>0},openGrinch(){publicShow.grinchUsed=true;},announce(){}});
+const publicContext=vm.createContext({$,show:publicShow,session:{open:false},GRINCH_DELAY_MINUTES:2,performance:{now:()=>0},writeUiText(el,value){el.textContent=value;},openGrinch(){publicShow.grinchUsed=true;},announce(){}});
 vm.runInContext(clocks+'\ntick();',publicContext);assert.equal(publicContext.show.grinchUsed,false);publicContext.show.elapsed=120000;publicContext.show.running=true;vm.runInContext('tick();',publicContext);assert.equal(publicContext.show.grinchUsed,true);
 console.log('OK: profil publiczny ma osobny próg 2:00.');

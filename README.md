@@ -2,21 +2,29 @@
 
 Świąteczna satyra dla dorosłych i demonstracja WCAG 2.5.3 oraz 4.1.2 na „Kalendarz Programisty”. Domyślnie zawiera celowe błędy nazw, ról i stanów kontrolek. Przełącznik u góry pokazuje ich poprawione odpowiedniki, zachowując dane. To symulacja: list nie jest rzeczywistym zamówieniem, a czat działa lokalnie, bez modelu AI.
 
+Strona demonstracji: [Polski](https://swiateczna-lista-zyczen.netlify.app/?lang=pl) · [English](https://swiateczna-lista-zyczen.netlify.app/?lang=en).
+
 ## Lokalnie
 
 Otwórz `dist/index.html` w przeglądarce. Wszystkie style, grafiki i skrypty strony są w tym pliku. Bez instalowania zależności i bez internetu. Licznik w tej wersji jest lokalny, co opisuje jego etykieta.
 
-Panel prowadzącej na samej górze kartki, przed nagłówkiem Biura Obsługi Życzeń, pozwala uruchomić, zatrzymać i zresetować pokaz oraz ręcznie wywołać Grincha. Zegar startuje automatycznie po otwarciu strony; W tym publicznym wariancie Grinch pojawia się przy 2:00 odliczania. Pauza zatrzymuje czas, a po pełnym resecie nową próbę uruchamia się ręcznie. Upomnienie Mikołaja otwiera się po osiągnięciu 3 sztuk w worku, raz do resetu. Instrukcja i mapa przykładów są w `WYMAGANIA.md`, poza stroną.
+Panel prowadzącej na samej górze kartki, przed nagłówkiem Biura Obsługi Życzeń, pozwala uruchomić, zatrzymać i zresetować pokaz oraz ręcznie wywołać Grincha. Zegar startuje automatycznie po otwarciu strony; w tym publicznym wariancie Grinch pojawia się przy 2:00 odliczania. Pauza zatrzymuje czas, a po pełnym resecie nową próbę uruchamia się ręcznie. Upomnienie Mikołaja otwiera się po osiągnięciu 3 sztuk w worku, raz do resetu. Instrukcja i mapa przykładów są w `WYMAGANIA.md`, poza stroną.
+
+## Język i wybór ilości
+
+Przełącznik Polski / English tłumaczy formularz, opisy i nazwy dostępne, błędy, czat, okna oraz ekran sukcesu. Aktualizuje `lang` i tytuł dokumentu bez utraty wpisanych danych. Parametr `?lang=en` lub `?lang=pl` wybiera wersję z linku; preferencja jest zapamiętywana jako `pp-language`. Własne wiadomości i imię pozostają bez zmian. Czat rozpoznaje przygotowane tematy w obu językach i odpowiada w języku interfejsu, bez usługi AI.
+
+W „Dla zespołu” ilość można wpisać albo zmienić przyciskami −/+, w zakresie 1–99. Przyciski mają nazwy z nazwą prezentu, stan graniczny i komunikat o zmianie bez utraty fokusu. Licznik wysłanych listów jest dyskretnie umieszczony w prawym dolnym rogu stopki.
 
 ## Dwa czasy Grincha
 
-Ta wersja jest przygotowana do publikacji: `DEMO_PROFILE='public'` oznacza Grincha po 2 minutach. Do nagrania można ustawić tę samą stałą na `'presentation'`, czyli 7 minut. Lokalny plik prezentacyjny przechowujemy osobno. Opis panelu i komunikat startu wynikają z profilu.
+Ta opublikowana wersja używa ustawienia: `DEMO_PROFILE='public'` oznacza Grincha po 2 minutach. Do nagrania można ustawić tę samą stałą na `'presentation'`, czyli 7 minut. Lokalny plik prezentacyjny przechowujemy osobno. Opis panelu i komunikat startu wynikają z profilu.
 
 ## Netlify: wspólny licznik
 
-Projekt jest przygotowany do publikacji z repozytorium GitHub na Netlify. Wskaż katalog główny tego pakietu; Netlify odczyta `netlify.toml`, zainstaluje przypięte `@netlify/blobs` i opublikuje `dist` z funkcją `letter-count`. Nie potrzeba polecenia budowania ani własnych kluczy w HTML. Samo wgranie HTML metodą drag-and-drop nie publikuje funkcji.
+Projekt jest połączony z Netlify. Zmiany w `main` uruchamiają wdrożenie: instalację zależności, `npm test`, publikację katalogu `dist` i funkcji `letter-count`. Ustawienia są w `netlify.toml`. Własny fork można wdrożyć na Netlify, wskazując katalog główny repozytorium; nie trzeba dodawać kluczy do HTML. Samo wgranie HTML metodą drag-and-drop nie publikuje funkcji.
 
-Na prawidłowo wdrożonym Netlify strona używa wspólnego licznika. Na `file:`, `localhost`, `127.0.0.1` i w lokalnym podglądzie działa licznik lokalny. W lokalnym środowisku Netlify Dev można jawnie testować funkcję przez `?counter=server`. Brak połączenia nie blokuje sukcesu formularza, ale pokazuje niedostępność licznika i wyniku. Kod funkcji jest przygotowany i sprawdzony testami z magazynem w pamięci; przed publicznym udostępnieniem trzeba wykonać próbę prawdziwego wdrożenia.
+Na prawidłowo wdrożonym Netlify strona używa wspólnego licznika. Na `file:`, `localhost`, `127.0.0.1` i w lokalnym podglądzie działa licznik lokalny. W lokalnym środowisku Netlify Dev można jawnie testować funkcję przez `?counter=server`. Brak połączenia nie blokuje sukcesu formularza, ale pokazuje niedostępność licznika i wyniku. Po wdrożeniu sprawdzono rzeczywisty zapis, odczyt bez logowania i ponowienie po odświeżeniu bez podwójnego naliczenia. Pierwszy list i udział są testowe. Próby 500 równoległych zgłoszeń dotyczą lokalnego magazynu w pamięci, nie produkcyjnej usługi.
 
 Funkcja zapisuje losowy UUID, numer listu oraz opcjonalny numer udziału w loterii w Netlify Blobs. Wykorzystuje silną spójność i warunkowe, atomowe zapisy jednego stanu, aby nie dublować numerów przy równoczesnych zgłoszeniach. Ponowienie tego samego listu nie zwiększa licznika. Reset rozpoczyna nowy list; nie zeruje licznika. To liczba listów, nie liczba unikalnych osób. Demonstracyjny licznik nie chroni przed celowym generowaniem nowych zgłoszeń; przed użyciem na dużą skalę wymaga oceny pojemności i kosztów usługi.
 
@@ -28,15 +36,16 @@ Opcjonalny checkbox zapisuje wybór udziału. Wynik pojawia się po wysłaniu. C
 
 ## Sprawdzenie
 
-Node.js 22 lub nowszy: `npm test`. Testy sprawdzają logikę czatu i zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami oraz wygranymi co 100 udziałów. Nie wymagają zależności Netlify.
+Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 18 angielskich scenariuszy czatu, tłumaczenia i pierwszeństwo języka z URL, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami oraz wygranymi co 100 udziałów. Nie wymagają zależności Netlify.
 
-Układ sprawdzono w przeglądarce w szerokościach telefonu. Przed nagraniem i publikacją potrzebna jest próba z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie. Testy DOM i logiki nie zastępują tych prób.
+Poprzedni układ sprawdzono w przeglądarce w szerokościach telefonu. Nowe wersje językowe i przyciski ilości sprawdzono w DOM: zachowanie danych i fokusu, walidację, czat oraz sukces. Pomiary układu EN/PL przy 320/390 px, próba z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie pozostają do wykonania. Testy DOM i logiki nie zastępują tych prób.
 
 ## Pliki
 
 - `dist/index.html` — kompletna strona; główny plik do edycji i uruchomienia.
 - `counter-client.js` — źródło testowanej logiki licznika, włączone również w HTML pomiędzy znacznikami `LETTER_COUNTER_START/END`.
 - `elf-engine.js` — źródło logiki odpowiedzi, włączone w HTML między `ELF_REPLY_ENGINE_START/END`.
+- `i18n.js` — teksty i mechanizm wersji językowych, włączone w HTML między `UI_I18N_START/END`.
 - `netlify/` — funkcja i logika wspólnego licznika.
 - `qa/` — testy lokalne.
 - `WYMAGANIA.md` — wymagania, instrukcja pokazu i mapa celowych błędów.

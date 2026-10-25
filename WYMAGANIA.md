@@ -3,7 +3,12 @@
 **Event:** Kalendarz Programisty · **Odbiorcy:** dorośli, szczególnie osoby pracujące w IT  
 **Tytuł strony i formularza:** Świąteczna lista życzeń  
 **Aktualizacja:** 25 października 2026  
-**Status:** druga wersja lokalna; kod i wymagania zebrane według aktualnych ustaleń. Publikacja GitHub/Netlify i próba z docelowym czytnikiem pozostają przed nami.
+**Status:** repozytorium i strona opublikowane. Wdrożenie Netlify oraz wspólny licznik sprawdzone; próby z docelowym czytnikiem i rzeczywistym telefonem pozostają do wykonania.
+
+**Strona publiczna:** https://swiateczna-lista-zyczen.netlify.app/  
+**Kod źródłowy:** https://github.com/Qrza88/swiateczna-lista-zyczen  
+**Profile czasu:** publiczny — 2 minuty; lokalny do nagrania — 7 minut.
+
 
 Dokument opisuje jeden responsywny projekt. „WEB” oznacza poniżej widok desktopowy, a „MOBILE” widok do 760 px. Wymagania wspólne obowiązują oba widoki i oba warianty demonstracji, o ile mapa celowych błędów nie wskazuje konkretnego wyjątku. Ten układ zastępuje wcześniejszą listę kolejnych dopisków do wersji.
 
@@ -108,7 +113,7 @@ Widoczny opis panelu: „Jeden za wszystkich, wszyscy za jednego. Wybierz prezen
 Każdy prezent w tej zakładce ma wybór liczby sztuk:
 - początkowa liczba: 1;
 - zakres: 1–99 sztuk, liczby całkowite;
-- pole pozwala wpisać liczbę bezpośrednio; przyciski zwiększania i zmniejszania są opcjonalnym ułatwieniem;
+- pole pozwala wpisać liczbę bezpośrednio; obok są osobne przyciski „−” i „+”, każdy 44 × 44 px;
 - etykieta oraz nazwa dostępna jednoznacznie wskazują liczbę sztuk i właściwy prezent;
 - kontrolka jest natywnym polem liczbowym, obsługiwanym klawiaturą oraz NVDA; nie wprowadzamy w niej dodatkowego celowego błędu;
 - aktywacja „Dodaj do worka” dodaje wybraną liczbę sztuk danego prezentu;
@@ -179,10 +184,10 @@ Odpowiedzi są lokalne, przygotowane z góry i dopasowane do pytania oraz bież�
 
 | Profil czasu | Zastosowanie | Automatyczny atak |
 | --- | --- | --- |
-| `presentation` — plik do nagrania | Nagranie 15-minutowej prezentacji. | 7:00 od automatycznego startu. |
-| `public` — wybrany w tym repozytorium | Samodzielna zabawa odwiedzających. | 2:00 od automatycznego startu. |
+| `presentation` — aktualnie wybrany | Nagranie 15-minutowej prezentacji. | 7:00 od automatycznego startu. |
+| `public` — do włączenia po nagraniu, przed publikacją | Samodzielna zabawa odwiedzających. | 2:00 od automatycznego startu. |
 
-W `dist/index.html` zmieniamy jedną stałą `DEMO_PROFILE` z `'presentation'` na `'public'`. Próg, opis w panelu i komunikat ręcznego startu korzystają z tego ustawienia. Nie publikujemy jeszcze wariantu publicznego. Reset i pauza działają tak samo w obu profilach.
+W `dist/index.html` zmieniamy jedną stałą `DEMO_PROFILE` z `'presentation'` na `'public'`. Próg, opis w panelu i komunikat ręcznego startu korzystają z tego ustawienia. Profil publiczny działa na Netlify; plik do nagrania zachowuje 7 minut. Reset i pauza działają tak samo w obu profilach.
 
 **Grinch:** automatycznie raz przy 7:00 (420 s) w wersji do nagrania zegara uruchamianego automatycznie po otwarciu strony. Pauza zatrzymuje odliczanie, więc 7:00 oznacza siedem minut aktywnego czasu zegara. Straszy końcem sesji zakupowej i nadzieją, że nie zdążysz wysłać listu. Ma retro pasek tytułu z jednym działającym „X” — bez atrap minimalizacji i maksymalizacji. Błędny wariant pomija rolę i nazwę okna; poprawiony jest nazwanym `alertdialog` z modalnością i opisem. Przyciski wewnętrzne są prawidłowo nazwane w obu wariantach.
 
@@ -211,7 +216,9 @@ Napis „Biegun Północny” ma osobny wiersz nad ilustracją drogi i drogowska
 
 Licznik zwiększa się po prawidłowym wysłaniu, raz na identyfikator listu. Powrót i ponowne wysłanie tego samego listu, także po odświeżeniu w tej samej karcie, nie naliczają go ponownie. Reset oznacza nowy list, bez zerowania statystyki. Nowa karta może oznaczać nowy list; nie identyfikujemy osób.
 
-Samodzielny HTML używa jawnie podpisanego licznika lokalnego. `localStorage` zawiera anonimowe identyfikatory i lokalny licznik, `sessionStorage` bieżący UUID. Imię, wiadomości, prezenty i czat pozostają w pamięci karty.
+Liczba wysłanych listów jest dyskretną statystyką w prawym dolnym rogu stopki, także w widoku sukcesu. Na telefonie pozostaje w normalnym układzie, bez nakładki na formularz. Zachowuje opis, kontrast i rolę `status`. Zegary pokazu i sesji są odrębnymi elementami.
+
+Samodzielny HTML używa jawnie podpisanego licznika lokalnego. `localStorage` zawiera preferowany język (`pp-language`), anonimowe identyfikatory i lokalny licznik, `sessionStorage` bieżący UUID. Imię, wiadomości, prezenty i czat pozostają w pamięci karty.
 
 Na prawidłowo wdrożonym Netlify działa wspólny licznik: funkcja `letter-count`, Netlify Blobs z silną spójnością, warunkowy atomowy zapis liczników i przypisania UUID → numer listu oraz opcjonalny numer udziału. Do funkcji trafiają tylko losowy UUID i logiczna flaga udziału w loterii (`participates`), bez imienia, treści listu, czatu, prezentów oraz pozostałych checkboxów. Ponowienia i równoczesne zgłoszenia nie mogą dublować numerów. Błąd usługi nie blokuje sukcesu, lecz pokazuje niedostępność licznika/wyniku. Mechanizm demonstracyjny nie chroni przed celowym nabijaniem nowych listów i nie jest pomiarem unikalnych uczestników.
 
@@ -376,18 +383,20 @@ Zmiana nazwy dostępnej na inną niż widoczna etykieta, np. „Wyślij list” 
 
 Sprawdzono logikę 22 scenariuszy odpowiedzi elfa, automatyczny start po otwarciu i próg zegara 7:00 oraz przygotowany publiczny próg 2:00, pauzę i niezależny czas sesji, walidację i fokus, stan suwaka, modal po 3 sztukach (również ilość 3 na raz), przełączenie wariantów, landmarki, mobilną kolejność DOM, układ 390/320 i opcjonalny wynik loterii. Testy licznika obejmują deduplikację, odświeżenie, ponowienie po błędzie, spóźnione GET oraz 500 równoległych udziałów z unikalnymi numerami oraz wygranymi 100, 200, 300, 400 i 500; dodatkowo listy bez udziału oraz późniejsze dopisanie udziału do tego samego listu bez powielenia numerów. Magazyn testowy działa w pamięci; nie jest to test obciążenia prawdziwego Netlify.
 
-Pomiary obliczonych kolorów tekstu i kontrolek oraz kontrola wizualna służą weryfikacji kontrastu. Przed publikacją nadal wymagane są: próba NVDA, rzeczywisty telefon z czytnikiem, pełna próba nagrania i rzeczywiste wdrożenie funkcji licznika. Nie deklarujemy wykonania tych testów.
+Na opublikowanej stronie sprawdzono rzeczywisty odczyt i zapis licznika, wynik loterii, ponowienie tego samego listu po odświeżeniu bez podwójnego naliczenia oraz zmianę i przywrócenie tytułu dokumentu. Publiczny endpoint licznika odpowiada HTTP 200 bez logowania, z `Cache-Control: no-store`. Pierwszy list i udział mają charakter testowy.
+
+Pomiary obliczonych kolorów oraz kontrola wizualna służą weryfikacji kontrastu. Pozostają próba NVDA, rzeczywisty telefon z czytnikiem i pełna próba nagrania. Nie wykonano testu obciążenia produkcyjnego licznika.
 
 ## 9. Pliki, uruchomienie i publikacja
 
 - Samodzielny HTML działa lokalnie. Wersja źródłowa zawiera `dist/index.html`, kod funkcji Netlify, logikę pomocniczą, testy, `netlify.toml`, `package.json`, README i te wymagania jako `WYMAGANIA.md`.
 - `npm test` na Node.js 22+ uruchamia testy logiki; nie wymaga połączenia z Netlify.
-- Docelowo publiczny GitHub z kodem i instrukcją oraz Netlify z działającą stroną; dwa linki w opisie nagrania. Nie wpisujemy fikcyjnych adresów.
-- Po zakończeniu nagrania, przed publikacją, ustawiamy profil `public` (Grinch po 2 minutach). Do nagrania zostaje `presentation` (7 minut).
+- Publiczny GitHub zawiera kod i instrukcję, a Netlify działającą stronę. Dwa rzeczywiste adresy z początku dokumentu można umieścić w opisie nagrania.
+- W repozytorium ustawiony jest profil `public` (Grinch po 2 minutach). W lokalnym pliku do nagrania pozostaje `presentation` (7 minut).
 - Publikacja z repozytorium na Netlify musi uwzględnić funkcję `letter-count`. Sam upload pliku HTML nie uruchamia wspólnego licznika. Po wdrożeniu sprawdzamy funkcję i zachowanie równoczesnych wysyłek.
 - Wysłanie pozostaje symulacją, czat nie korzysta z zewnętrznego AI, formularz nie tworzy zamówień. Treści pozostają w pamięci karty; wyjątkiem są anonimowe identyfikatory i flaga udziału dla licznika oraz loterii, opisane wyżej.
 - Plik lokalny, localhost i podgląd roboczy korzystają z licznika lokalnego. W Netlify Dev można jawnie przetestować funkcję parametrem `?counter=server`. W przypadku błędu usługi nie zastępujemy globalnej liczby liczbą lokalną bez informacji.
-- Publiczny hosting i repozytorium nie są jeszcze utworzone. Przygotowany pakiet jest materiałem do przyszłej publikacji.
+- Repozytorium i hosting są publiczne. Netlify wdraża gałąź `main`, uruchamia `npm test`, publikuje `dist` oraz funkcję `letter-count` z katalogu `netlify/functions`. Zmiany w gałęzi głównej uruchamiają kolejne wdrożenie. Pliki `.netlify` i dane uwierzytelnienia nie są przechowywane w repozytorium.
 
 ## 10. Źródła techniczne
 
@@ -410,3 +419,43 @@ Pomiary obliczonych kolorów tekstu i kontrolek oraz kontrola wizualna służą 
 - [WAI-ARIA APG: Slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
 - [WAI-ARIA APG: Landmark Regions](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/)
 - [Netlify Blobs](https://docs.netlify.com/build/data-and-storage/netlify-blobs/)
+
+### Uzupełnienie: język, zegary i odczyt czatu (25.10.2026)
+
+- Główny dokument domyślnie ma `<html lang="pl">`. Przełącznik Polski / English ustawia odpowiednio `pl` albo `en`; formularz i potwierdzenie są widokami tego samego dokumentu. Język jest poprawny w obu wariantach dostępności.
+- Zegar pokazu i odliczanie sesji mają `role="timer"`, stałą nazwę („Czas pokazu” / „Pozostały czas sesji”) oraz `aria-live="off"`. Bieżąca wartość jest treścią zegara: wizualne MM:SS oraz równoważny tekst dla czytnika, np. „1 minuta, 2 sekundy”. Nie stosujemy etykiety ARIA na generycznym elemencie ani nie ogłaszamy każdej sekundy. Wygaśnięcie nadal ma osobny komunikat `status`.
+- Historia czatu jest nazwanym kontenerem `role="log"`, z `aria-live="off"`, `aria-relevant="additions"` i `aria-atomic="false"`. Wewnątrz pozostaje semantyczna lista wiadomości. Nie istnieje atrybut `aria-log`. Gotowa wiadomość zawierająca nadawcę i odpowiedź trafia na koniec historii; fokus pozostaje w polu wpisywania. Osobny, pusty od początku dokumentu `role="status"` z `aria-live="polite"` i `aria-atomic="true"` otrzymuje tylko najnowszą odpowiedź elfa, 100 ms po dodaniu wiadomości (po ustawieniu fokusu). Powtórzenie tej samej odpowiedzi poprzedza opróżnienie regionu. Reset czyści komunikat i anuluje oczekującą aktualizację. Ogłasza tylko jeden region: bez ponownego odczytu własnego pytania i całej historii. To obsługa komunikatów o stanie, związana z 4.1.3; efekty należy zweryfikować w rzeczywistym czytniku.
+- Weryfikacja automatyczna obejmuje logikę czasu i zgodność obu wartości zegara. Faktyczne ogłaszanie nowych odpowiedzi oraz odczyt aktualnego czasu trzeba sprawdzić z NVDA i przeglądarką prowadzącej; nie deklarujemy wykonanego testu czytnikiem.
+- Zapis GitHub przywrócono po zainstalowaniu ChatGPT Codex Connector na koncie właścicielki i ograniczeniu dostępu do tego repozytorium. Aktualizacja obejmuje semantykę zegarów i pojedynczy kanał ogłaszania odpowiedzi elfa.
+
+Źródła: [WAI-ARIA 1.2 — timer](https://www.w3.org/TR/wai-aria-1.2/#timer), [log](https://www.w3.org/TR/wai-aria-1.2/#log), [generic](https://www.w3.org/TR/wai-aria-1.2/#generic).
+
+### Uzupełnienie: rozmiar celów i nagłówki okien (25.10.2026)
+
+- WCAG 2.2, 2.5.8 „Rozmiar celu (minimum)”, poziom AA: zasadniczo co najmniej 24 × 24 piksele CSS; kryterium zawiera wyjątki, w tym odpowiednie odstępy oraz linki w tekście. Rozmiar oceniamy dla aktywnego obszaru, nie dla samej ikony. Nie utożsamiamy tego minimum z 44 × 44.
+- W projekcie przyjmujemy większe obszary sterowania: co najmniej 44 × 44 piksele CSS dla prostokątnych kontrolek. Okrągłe przyciski usuwania mają średnicę 44 px, co zapewnia miejsce na kwadrat 24 × 24 px; nie deklarujemy przez to spełnienia 2.5.5 AAA dla każdego elementu.
+- **WEB:** wspólne minimalne wymiary przycisków, dodawania, zakładek, rozwijania panelu prowadzącej, skrótów do przykładów, pól tekstowych i ilości, suwaka oraz etykiet wyboru. „X” i usuwanie prezentów mają 44 × 44 px. Kolumna na przycisk usuwania jest powiększona, więc nie przykrywa nazwy prezentu.
+- **MOBILE:** ten sam rozmiar docelowy obejmuje także przyciski wyboru kategorii, czatu, sugestii, wysyłania i powrotu, obie modalności oraz wszystkie kontrolki w worku. Zachowujemy jedną kartę prezentu i jedną dostawę w rzędzie. Bez nakładających się niewidocznych nakładek powiększających cele; większy rozmiar wynika z rzeczywistego układu.
+- Checkboxy nadal mają białe tło kontrolki 20 px i zielone zaznaczenie; cała powiązana etykieta jest klikalna i ma wysokość co najmniej 44 px. Własne oświadczenie obsługuje kliknięcie całego wiersza. Radio dostawy jest aktywne na całej karcie. Graficzny uchwyt suwaka może pozostać mniejszy: aktywny jest cały obszar suwaka o wysokości 44 px.
+- Zasady rozmiaru dotyczą **obu wariantów**. Nie dodajemy celowego błędu 2.5.8 do pokazu nazw, ról i wartości.
+- Oba tytuły okien — „Święty widzi, na co masz chrapkę!” i „Grinch przejął sesję” — już mają poziom `h2`, pod głównym `h1` strony. Poprawne okna odwołują się do tych tytułów przez `aria-labelledby`; brak nazwy okna Grincha pozostaje zaplanowanym błędem w wariancie niepoprawnym. `h2` jest wyborem odpowiednim dla hierarchii tego projektu, nie uniwersalnym obowiązkiem dla każdego dialogu.
+- Weryfikacja tej zmiany: przejrzano reguły CSS, powiązania etykiet z kontrolkami, obsługę kliknięcia pełnego wiersza i poziomy nagłówków. Rzeczywiste pomiary celów, brak nakładania i układ po powiększeniu kontrolek przy 320/390 px oraz na telefonie pozostają do sprawdzenia; bieżąca sesja przeglądarki jest niedostępna. Nie deklarujemy nowego testu renderowanego układu.
+- Aktualizacja obejmuje wspólne reguły wymiarów dla WEB i MOBILE. Weryfikacja renderowanego układu po tych zmianach pozostaje osobnym krokiem.
+
+Źródło: [W3C — Understanding 2.5.8 Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
+
+### Uzupełnienie: Polski / English, ilości i statystyka (25.10.2026)
+
+**Język — wspólne:** natywny, prawidłowo opisany wybór Polski / English w nagłówku strony. Pierwsza wizyta domyślnie po polsku. Jawny parametr `?lang=pl` lub `?lang=en` ma pierwszeństwo przed preferencją `pp-language` w localStorage. Zmiana działa bez przeładowania; zachowuje imię i wiadomość, worek, ilości, kategorię, dostawę, zgody, wariant WCAG, rozmowę, ekran sukcesu i czas. Ręczny reset formularza zachowuje wybrany język. Link do wersji angielskiej: https://swiateczna-lista-zyczen.netlify.app/?lang=en .
+
+Tłumaczenie obejmuje widoczną treść, opisy, placeholdery, nazwy ARIA i wartości suwaka, błędy, oba okna, zegary, statusy, wynik loterii, oba tytuły dokumentu, potwierdzenie i stopkę. Tytuły EN: `Christmas wish list` oraz `Letter sent | Christmas wish list`. Wpisane dane i własne wiadomości czatu nie są tłumaczone. Celowe błędy 2.5.3 zachowują angielskie odpowiedniki rozbieżnych nazw; wariant poprawny ma etykietę w nazwie również po angielsku.
+
+Czat pozostaje lokalnym silnikiem przygotowanych odpowiedzi. Rozpoznaje obsługiwane pytania po polsku i angielsku, korzysta z rzeczywistej zawartości worka i brakujących warunków wysyłki. Odpowiedzi pojawiają się w aktualnym języku strony. Nie jest to otwarty model językowy ani automatyczny tłumacz dowolnych pytań. Nieznane pytanie otrzymuje prośbę o doprecyzowanie.
+
+**Ilości dla zespołu — wspólne:** przy każdym polu ilości znajdują się natywne przyciski „−” i „+” z nazwą wskazującą właściwy prezent. Zakres 1–99, początkowo 1; nadal można wpisać wartość ręcznie. `aria-disabled` odzwierciedla osiągniętą granicę; kontrolki zachowują fokus, a obsługa nie zmienia wartości poza zakresem. Próba przekroczenia granicy podaje komunikat o minimum/maksimum. Przyciski nie dodają produktu automatycznie: wybrana ilość trafia do worka po „Dodaj do worka”. Zmiana ilości jest ogłaszana przez status; reset przywraca 1 i odpowiednie stany przycisków.
+
+**WEB:** licznik wysłanych listów w prawym dolnym rogu stopki, z mniejszym wyróżnieniem. Wybór języka w nagłówku. Zakładki mogą zawijać dłuższą angielską etykietę. Pole ilości oraz oba przyciski tworzą czytelną grupę pod etykietą produktu.
+
+**MOBILE:** wybór języka ma wysokość co najmniej 44 px i może przejść do osobnego wiersza nagłówka. Każdy przycisk ilości ma 44 × 44 px, pole ma wysokość minimum 44 px, a etykieta mieści się w osobnym wierszu. Licznik listów w stopce jest częścią układu, bez stałego pływającego elementu; zachowuje kontrast tekstu. Nadal jedna karta prezentu i dostawy w rzędzie oraz rozwijany wybór kategorii.
+
+**Weryfikacja:** 22 polskie i 18 angielskich scenariuszy silnika elfa, testy czasu, 8 testów liczników, sprawdzenie tłumaczeń parametrów i tytułów. Dodatkowa próba DOM obejmuje EN → PL → EN bez utraty danych, +/- i granice, zachowanie fokusu, status czatu, walidację, oba okna, sukces i loterię, ochronę własnej treści przed tłumaczeniem i interpretacją HTML oraz położenie licznika w stopce. Test DOM nie mierzy geometrii ani syntezy mowy. Nowy układ EN/PL przy 320/390 px oraz NVDA i rzeczywisty telefon wymagają osobnej próby.
