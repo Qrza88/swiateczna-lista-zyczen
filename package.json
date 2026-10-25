@@ -1,0 +1,12 @@
+{
+  "name": "swiateczna-lista-zyczen",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Demonstracja WCAG na Kalendarz Programisty",
+  "type": "module",
+  "scripts": {
+    "test": "node --test qa/counter.test.mjs && node qa/elf-replies.cjs && node qa/timing.cjs"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": { "@netlify/blobs": "10.5.0" }
+}
