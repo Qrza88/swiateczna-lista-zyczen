@@ -70,7 +70,7 @@ giftMotionPreference.addEventListener('change',stopGiftFlight);
 document.addEventListener('focusin',()=>{
  queueMiniSync();
  if(!mobileCategories.matches||$('mini-bag').hidden||$('mini-bag').contains(document.activeElement))return;
- requestAnimationFrame(()=>{const el=document.activeElement;if(!el||el===document.body)return;const r=el.getBoundingClientRect(),bar=$('mini-bag').getBoundingClientRect();if(bar.top>0&&r.bottom>bar.top&&r.top<window.innerHeight)el.scrollIntoView({block:'center',behavior:'auto'});});
+ requestAnimationFrame(()=>{const el=document.activeElement;if(!el||el===document.body)return;const r=el.getBoundingClientRect(),bar=$('mini-bag').getBoundingClientRect();if(bar.height>0&&r.bottom>bar.top&&r.top<bar.bottom&&r.right>bar.left&&r.left<bar.right)el.scrollIntoView({block:'center',behavior:'auto'});});
 });
 $('reset-show').addEventListener('click',()=>{stopGiftFlight();syncMiniBag();});
 $('letter-form').addEventListener('submit',()=>{stopGiftFlight();queueMiniSync();});

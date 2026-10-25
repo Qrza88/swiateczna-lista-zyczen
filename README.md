@@ -18,9 +18,15 @@ W „Dla zespołu” ilość można wpisać albo zmienić przyciskami −/+, w z
 
 ## Worek, czytelność i okna
 
-Podczas przeglądania katalogu na telefonie widoczny jest kompaktowy mini worek z sumą sztuk i przejściem do pełnej zawartości. Udane dodanie uruchamia krótki przelot ilustracji i ruch ikony oraz licznika. Ustawienie ograniczenia ruchu pomija animację; tekstowe potwierdzenie i odczyt statusu nadal działają. Szybkie kliknięcia, reset i zmiana widoku anulują poprzedni efekt. Na komputerze potwierdzenie jest przy bocznym worku. W obu układach karty prezentów nie dostają dodatkowych komunikatów pod produktem.
+Podczas przeglądania katalogu na telefonie mini worek znajduje się u góry widoku, w prawym rogu, z sumą sztuk i przejściem do pełnej zawartości. Udane dodanie uruchamia krótki przelot ilustracji i ruch ikony oraz licznika. Ustawienie ograniczenia ruchu pomija animację; tekstowe potwierdzenie i odczyt statusu nadal działają. Szybkie kliknięcia, reset i zmiana widoku anulują poprzedni efekt. Na komputerze potwierdzenie jest przy bocznym worku. W obu układach karty prezentów nie dostają dodatkowych komunikatów pod produktem.
 
-Podpowiedzi i instrukcje mają minimum 1 rem (domyślnie 16 px). W poprawnym wariancie Grinch ma rolę alertdialog, nazwę z tytułu h2 i opis; fokus trafia do okna po jego pokazaniu. Teksty mówią o liście życzeń, a przycisk powrotu to „Wróć do listy życzeń”. Data 1931 w stylizacji odnosi się do kampanii Sundbloma dla Coca-Coli, nie do powstania legendy o biegunie północnym.
+Podpowiedzi i instrukcje mają minimum 1 rem (domyślnie 16 px). Drobny druk i dopiski z gwiazdką mają 0,875 rem (14 px). Przełącznik wariantów ma dwa równe pola z pełnym tłem aktywnej opcji. Opis terminu odpowiedzi znajduje się pod przyciskiem wysyłki i jest z nim powiązany. Dymek ilustracji ma dwie wyśrodkowane linie bez kursywy. Pieczątki i „Wydział spraw pilnych” są czytelne także na telefonie. Na ekranie sukcesu przycisk „Wróć do listu” ma wyraźną, dekoracyjną strzałkę.
+
+Jedna biała powierzchnia łączy zakładki, opis kategorii, prezenty i dopisek o umownych cenach. Na telefonie obejmuje również rozwijany wybór kategorii z graficznym wskaźnikiem stanu. W poprawnym wariancie przycisk udostępnia aktualne `aria-expanded`; w błędnym brak tego atrybutu jest celowy. Karty prezentów na telefonie występują pojedynczo w rzędzie.
+
+W poprawnym wariancie Grinch ma rolę `alertdialog`, nazwę z tytułu `h2` i opis; fokus trafia do okna po jego pokazaniu. Teksty mówią o liście życzeń, a przycisk powrotu to „Wróć do listy życzeń”. Data 1931 w stylizacji odnosi się do kampanii Sundbloma dla Coca-Coli, nie do powstania legendy o biegunie północnym.
+
+Historia czatu ma `role="log"` i `aria-live="off"`. Osobny, istniejący od początku dokumentu region `role="status"`, z `aria-live="polite"` i `aria-atomic="true"`, otrzymuje nową odpowiedź elfa z nazwą nadawcy. Ten podział ogranicza powtórny odczyt własnych pytań i odpowiedzi. Wysłanie wiadomości pozostawia fokus w polu edycji. Reset usuwa rozmowę i anuluje oczekujący komunikat. Odczyt wymaga sprawdzenia z docelowym czytnikiem.
 
 ## Dwa czasy Grincha
 
@@ -30,7 +36,7 @@ Ta opublikowana wersja używa ustawienia: `DEMO_PROFILE='public'` oznacza Grinch
 
 Projekt jest połączony z Netlify. Zmiany w `main` uruchamiają wdrożenie: instalację zależności, `npm test`, publikację katalogu `dist` i funkcji `letter-count`. Ustawienia są w `netlify.toml`. Własny fork można wdrożyć na Netlify, wskazując katalog główny repozytorium; nie trzeba dodawać kluczy do HTML. Samo wgranie HTML metodą drag-and-drop nie publikuje funkcji.
 
-Na prawidłowo wdrożonym Netlify strona używa wspólnego licznika. Na `file:`, `localhost`, `127.0.0.1` i w lokalnym podglądzie działa licznik lokalny. W lokalnym środowisku Netlify Dev można jawnie testować funkcję przez `?counter=server`. Brak połączenia nie blokuje sukcesu formularza, ale pokazuje niedostępność licznika i wyniku. Po wdrożeniu sprawdzono rzeczywisty zapis, odczyt bez logowania i ponowienie po odświeżeniu bez podwójnego naliczenia. Pierwszy list i udział są testowe. Próby 500 równoległych zgłoszeń dotyczą lokalnego magazynu w pamięci, nie produkcyjnej usługi.
+Na prawidłowo wdrożonym Netlify strona używa wspólnego licznika. Na `file:`, `localhost`, `127.0.0.1` i w lokalnym podglądzie działa licznik lokalny. W lokalnym środowisku Netlify Dev można jawnie testować funkcję przez `?counter=server`. Brak połączenia nie blokuje sukcesu formularza, ale pokazuje niedostępność licznika i wyniku. Licznik obejmuje również listy testowe. Próby 500 równoległych zgłoszeń korzystają z lokalnego magazynu w pamięci. Zwykła weryfikacja wdrożenia odczytuje licznik bez dodawania listów.
 
 Funkcja zapisuje losowy UUID, numer listu oraz opcjonalny numer udziału w loterii w Netlify Blobs. Wykorzystuje silną spójność i warunkowe, atomowe zapisy jednego stanu, aby nie dublować numerów przy równoczesnych zgłoszeniach. Ponowienie tego samego listu nie zwiększa licznika. Reset rozpoczyna nowy list; nie zeruje licznika. To liczba listów, nie liczba unikalnych osób. Demonstracyjny licznik nie chroni przed celowym generowaniem nowych zgłoszeń; przed użyciem na dużą skalę wymaga oceny pojemności i kosztów usługi.
 
@@ -38,13 +44,17 @@ Do funkcji trafia tylko UUID i logiczna flaga udziału w loterii. Imię, wiadomo
 
 ## Loteria
 
-Opcjonalny checkbox zapisuje wybór udziału. Wynik pojawia się po wysłaniu. Co setne zgłoszenie do loterii wygrywa symboliczną nagrodę: 100., 200., 300., 400., 500. i kolejne. Udziały mają własną numerację, więc listy bez udziału nie przesuwają wygranej. Jeden list otrzymuje jeden numer udziału; po powrocie można dopisać udział do tego samego listu bez ponownego naliczenia listu. Nie przyznajemy rzeczywistych tokenów ani kredytów AI. Lokalna próba ma oddzielną numerację. Wynik jest na ekranie sukcesu, bez dodatkowego okna.
+Opcjonalny checkbox zapisuje wybór udziału. Wynik pojawia się po wysłaniu. Co 25. zgłoszenie do loterii wygrywa symboliczną nagrodę: 25., 50., 75., 100. i kolejne. Mechanizm jest opisany w dokumentacji; panel loterii i komunikat wygranej nie ujawniają częstotliwości. Panel zawiera krótki opis „Wynik poznasz po wysłaniu listu” i dopisek „*Wygrana symboliczna”.
+
+Udziały mają własną numerację, więc listy bez udziału nie przesuwają wygranej. Jeden list otrzymuje jeden numer udziału; po powrocie można dopisać udział do tego samego listu bez ponownego naliczenia listu. Nie przyznajemy rzeczywistych tokenów ani kredytów AI. Lokalna próba ma oddzielną numerację. Wynik jest na ekranie sukcesu, bez dodatkowego okna. Zmiana interwału nie zeruje istniejących danych.
 
 ## Sprawdzenie
 
-Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 18 angielskich scenariuszy czatu, tłumaczenia i pierwszeństwo języka z URL, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami oraz wygranymi co 100 udziałów. Nie wymagają zależności Netlify.
+Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 19 angielskich scenariuszy czatu, naturalne zdania i liczbę pojedynczą/mnogą, ochronę treści użytkownika podczas tłumaczenia, pierwszeństwo języka z URL, tytuły stron, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami i wygranymi co 25 udziałów. Nie wymagają zależności Netlify.
 
-Poprzedni układ sprawdzono w przeglądarce w szerokościach telefonu. Nowe wersje językowe i przyciski ilości sprawdzono w DOM: zachowanie danych i fokusu, walidację, czat oraz sukces. Pomiary układu EN/PL przy 320/390 px, próba z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie pozostają do wykonania. Testy DOM i logiki nie zastępują tych prób.
+Dodatkowa weryfikacja pełnego HTML obejmuje walidację imienia, pustego worka i wymaganej zgody, powiązania błędów i fokus w ośmiu kombinacjach WEB/MOBILE, PL/EN i obu wariantów WCAG. Osobno obejmuje dialogi, przełączanie języka, ilości, mini worek, reset, animację, ograniczenie ruchu oraz wynik 25. udziału. Testy DOM i logiki nie potwierdzają syntezy mowy. Próby z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie wymagają docelowego sprzętu i czytnika.
+
+Próba w Chrome obejmuje PL i EN przy szerokościach ramki 320 px, 390 px oraz na komputerze, bez poziomego przewijania dokumentu. Obejmuje też nazwaną rolę `alertdialog` Grincha, fokus i jego zawijanie w oknie, zamknięcie przez Escape, fokus na błędnym polu z `aria-invalid`, aktualizację statusu odpowiedzi elfa, rozmiary przycisków ilości, dialog po trzecim prezencie i ekran sukcesu z osobnym tytułem. To test przeglądarki, nie fizycznego telefonu ani odczytu przez czytnik.
 
 ## Pliki
 

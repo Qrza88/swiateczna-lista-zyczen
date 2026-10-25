@@ -34,14 +34,14 @@ test('Równoległe powtórki jednego listu mają ten sam numer',async()=>{
  const results=await Promise.all(Array.from({length:8},()=>post(handler,1).then(r=>r.json())));
  assert.ok(results.every(x=>x.total===1&&x.ordinal===1));
 });
-test('500 równoległych udziałów i listy bez udziału: wygrane 100, 200, 300, 400, 500',async()=>{
+test('500 równoległych udziałów i listy bez udziału: wygrane 25, 50, 75 i kolejne wielokrotności 25',async()=>{
  const store=atomicStore(),handler=createCounterHandler(()=>store);
  await Promise.all(Array.from({length:12},(_,n)=>post(handler,1000+n)));
  const responses=await Promise.all(Array.from({length:500},(_,n)=>post(handler,n+1,true)));
  assert.ok(responses.every(r=>r.status===200));const results=await Promise.all(responses.map(r=>r.json()));
  assert.deepEqual(results.map(x=>x.lotteryOrdinal).sort((a,b)=>a-b),Array.from({length:500},(_,n)=>n+1));
  assert.equal(new Set(results.map(x=>x.ordinal)).size,500);
- assert.deepEqual(results.filter(x=>x.lotteryOrdinal%x.winningInterval===0).map(x=>x.lotteryOrdinal).sort((a,b)=>a-b),[100,200,300,400,500]);
+ assert.deepEqual(results.filter(x=>x.lotteryOrdinal%x.winningInterval===0).map(x=>x.lotteryOrdinal).sort((a,b)=>a-b),Array.from({length:20},(_,n)=>(n+1)*25));
  assert.equal((await (await handler(new Request(url))).json()).total,512);
  const duplicate=await(await post(handler,1)).json();assert.equal(duplicate.total,512);assert.equal(duplicate.ordinal,results[0].ordinal);
 });
@@ -58,12 +58,12 @@ test('Udział dopisany do wysłanego listu nie zwiększa liczby listów ani nie 
  const joined=await(await post(handler,1,true)).json();assert.equal(joined.total,1);assert.equal(joined.lotteryOrdinal,1);
  const again=await(await post(handler,1,true)).json();assert.equal(again.lotteryTotal,1);assert.equal(again.lotteryOrdinal,1);
 });
-test('Lokalna numeracja loterii pomija list bez udziału, liczy udział raz i wygrywa co 100',async()=>{
+test('Lokalna numeracja loterii pomija list bez udziału, liczy udział raz i wygrywa co 25',async()=>{
  const storage=memory(),session=memory();let serial=0,last;
  const counter=factory({storage,session,makeId:()=>id(++serial),onChange:x=>last=x});
  await counter.record(false);assert.equal(last.lotteryOrdinal,null);
  await counter.record(true);assert.equal(last.total,1);assert.equal(last.lotteryOrdinal,1);
  await counter.record(true);assert.equal(last.lotteryOrdinal,1);
  const winners=[];for(let n=2;n<=500;n++){counter.resetDraft();await counter.record(true);if(last.lotteryOrdinal%last.winningInterval===0)winners.push(last.lotteryOrdinal);}
- assert.deepEqual(winners,[100,200,300,400,500]);assert.equal(last.total,500);
+ assert.deepEqual(winners,Array.from({length:20},(_,n)=>(n+1)*25));assert.equal(last.total,500);
 });

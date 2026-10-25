@@ -176,6 +176,84 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 @media(prefers-reduced-motion:reduce){.gift-flight{display:none!important}}
 
 /* BAG_FEEDBACK_CSS_END */
+
+/* UI_REFINEMENT_START */
+/* Dopiski, równe przełączniki i mobilny worek przy górnej krawędzi. */
+.token-ad>p.fine-print,.lottery-result .lottery-fineprint{
+ font-size:.875rem!important;line-height:1.5!important;color:#45503f;
+}
+.token-ad>small.mono{font-size:.75rem!important;line-height:1.45!important;letter-spacing:.08em}
+.modebar fieldset{flex:1 1 26rem;width:100%;max-width:30rem;min-width:0}
+.modebar .mode-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:4px;padding:4px;max-width:100%}
+.modebar .mode-option{position:relative;display:flex;align-items:stretch;min-width:0}
+.modebar .mode-option input{inset:0;z-index:1;width:100%;height:100%;max-width:none}
+.modebar .mode-option input+span{
+ display:flex;flex:1;align-items:center;justify-content:center;width:100%;min-height:56px;
+ margin:0;padding:12px 14px;font-size:1rem;line-height:1.35;white-space:normal;
+ overflow-wrap:anywhere;text-align:center;background:transparent;color:#163d32;border-radius:3px;
+}
+.modebar .mode-option input:checked+span{background:#163d32;color:#fffdf6;box-shadow:none}
+.send-row{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.send-row>.primary{width:auto;max-width:100%}
+.send-row .send-note{margin:0;width:auto;max-width:none;font-size:.875rem!important;line-height:1.5!important;overflow-wrap:normal;color:#45503f}
+.mobile-category-trigger{display:grid;grid-template-columns:minmax(0,1fr) 24px;align-items:center;gap:14px;min-height:56px;padding:14px;text-align:left}
+.category-button-copy{display:block;min-width:0;line-height:1.5}
+.category-button-copy strong{font-weight:700}
+.mobile-category-trigger .category-chevron{display:grid;place-items:center;margin:0;width:24px;height:24px;flex:none;color:#163d32}
+.category-chevron:before{content:"";display:block;width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transform-origin:center}
+.mobile-category-trigger.category-is-open .category-chevron:before{transform:translateY(2px) rotate(225deg)}
+.hero-art .santa-bubble{
+ left:5.1%;top:4.1%;width:38%;height:20%;margin:0;padding:0;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ color:#252a25;font-family:Georgia,"Times New Roman",serif;font-style:normal;
+ font-size:4.6cqw;line-height:1.16;letter-spacing:0;text-align:center;transform:none;
+}
+.hero-art .santa-bubble>span{display:block;white-space:nowrap}
+@media(max-width:760px){
+ .hero{grid-template-columns:minmax(0,1fr);gap:10px}
+ .hero-art{width:min(100%,280px);justify-self:center;margin-top:6px}
+ .modebar fieldset{max-width:100%;flex-basis:100%}
+ .modebar .mode-option input+span{padding:10px 8px}
+ html{scroll-padding-top:calc(112px + env(safe-area-inset-top));scroll-padding-bottom:24px}
+ #catalog-section{padding-bottom:34px}
+ .mini-bag{position:fixed;top:max(12px,env(safe-area-inset-top));bottom:auto;left:auto;right:16px;margin:0;max-width:calc(100% - 32px)}
+ .send-row .send-note{white-space:normal}
+}
+@media(max-width:760px) and (max-height:520px){
+ .mini-bag{position:fixed;top:max(8px,env(safe-area-inset-top));bottom:auto;left:auto;right:12px;margin:0;max-width:calc(100% - 24px)}
+ .mini-bag a.mini-bag-link{min-height:56px;padding:8px 12px}
+}
+@media(forced-colors:active){.category-chevron:before{border-color:ButtonText}.modebar .mode-option input:checked+span{outline:2px solid Highlight}}
+/* Czytelniejsze pieczątki i oznaczenia na ekranie nadania. */
+.success-stamp{font-size:1rem;line-height:1.45;padding:12px 18px;max-width:100%}
+.success-stamp .mono,.success-stamp small{font-size:.875rem;line-height:1.5}
+.success-stamps{gap:10px;margin-bottom:26px}
+.success-stamps span{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;max-width:100%;padding:10px 14px;font-size:.875rem;line-height:1.5;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.success-stamps .accepted:before{font-size:1.125rem;line-height:1}
+@media(max-width:760px){.success-stamps{gap:8px}.success-stamp{margin:18px auto 24px}}
+/* Adres na ekranie sukcesu: widoczny także w wąskim układzie. */
+.scene-destination{font-size:1.5rem;line-height:1.25;margin-bottom:14px;color:#163d32}
+.scene-destination small{display:block;margin-top:6px;font:600 1rem/1.5 "Segoe UI",Arial,sans-serif;font-style:normal;letter-spacing:.035em;color:#163d32;text-transform:uppercase}
+/* Wyraźna strzałka powrotu, niezależna od kształtu znaku w czcionce. */
+#edit-letter{gap:12px}
+#edit-letter .return-arrow{position:relative;display:inline-block;flex:none;width:26px;height:26px;color:inherit}
+#edit-letter .return-arrow:before{content:"";position:absolute;left:4px;top:12px;width:19px;height:2px;background:currentColor}
+#edit-letter .return-arrow:after{content:"";position:absolute;left:5px;top:7px;width:12px;height:12px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+@media(forced-colors:active){#edit-letter .return-arrow:before{background:ButtonText}#edit-letter .return-arrow:after{border-color:ButtonText}}
+/* Jedna biała powierzchnia: kategorie, opis, prezenty i dopisek o cenach. */
+.catalog-surface{background:var(--white);border:1px solid #aab59c;border-radius:6px}
+.catalog-surface .catalog-tabs{margin:0;padding:0 8px;background:#eeeddf;border-radius:5px 5px 0 0}
+.catalog-surface .catalog-tab{white-space:normal;min-width:0}
+.catalog-surface .catalog-panel{padding:20px 18px 0}
+.catalog-surface .category-note{background:transparent;padding:0 0 0 12px}
+.catalog-surface .catalog-footnote{margin:0;padding:18px;}
+@media(max-width:760px){
+ .catalog-surface .mobile-picker{padding:14px 14px 0;margin-bottom:0}
+ .catalog-surface .catalog-panel{padding:18px 14px 0}
+ .catalog-surface .catalog-footnote{padding:18px 14px}
+}
+
+/* UI_REFINEMENT_END */
 </style>
 </head>
 <body>
@@ -214,7 +292,7 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 <div class="hero-copy"><div class="eyebrow mono">Biuro Obsługi Życzeń · termin realizacji: 24 grudnia</div><h1 id="letter-title">Świąteczna<br><em>lista życzeń</em></h1><p>System obsługi życzeń.<br>Wdrożony w piątek przed świętami.</p></div>
 <div class="hero-art" aria-hidden="true">
 <div class="santa-drawing"><svg viewBox="0 0 390 290" xmlns="http://www.w3.org/2000/svg"><g stroke="#2d332b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M34 10Q12 10 12 31v27q0 23 22 23h111l33 21-9-29q9-6 9-21V31q0-21-23-21z" fill="#fffdf6"/><path d="M81 263h269M135 181l-9 80m160-82 15 82" fill="none"/><path d="M192 143q-35-3-45 31l13 60h117l9-69-34-24" fill="#933e37"/><path d="M207 145h28v70h-28z" fill="#fffdf6"/><path d="m174 82 11-38q38-21 66 14l10 31" fill="#933e37"/><path d="M180 79q40-11 81 1v15q-48-8-81 3z" fill="#fffdf6"/><circle cx="265" cy="88" r="10" fill="#fffdf6"/><path d="M181 100q-11 1-7 16l9 8q2 34 39 37 35-5 35-41l7-5q5-17-10-15" fill="#e9c19a"/><path d="m185 119 5 26 11-3 20 23 18-22 13 1 6-28-18 14-17-2-19 3z" fill="#fffdf6"/><path d="M191 105h22v15h-22zm36 0h23v15h-23zm-14 6h14m-37-1-12-3m72 3 8-3M201 100h10m22-1 14-2m-30 27 6 3 8-3" fill="none"/><circle cx="203" cy="112" r="1.5" fill="#2d332b"/><circle cx="238" cy="112" r="1.5" fill="#2d332b"/><path d="m151 172 34 22 27-17m69-4-29 26-23-8" fill="none" stroke-width="13"/><path d="m202 178 16-10q10-3 12 6l-12 17m23 2-11-10q-8-5-12 3l11 13" fill="#e9c19a"/><path d="M100 208h242v13H100z" fill="#b3bea0"/><path d="M116 222v42m207-42v42" fill="none"/><path d="m125 142 52 10 18 51-52-9z" fill="#cad6b8"/><path d="m144 194 51 9h37l-16 6h-74z" fill="#73896a"/><path d="m146 166 13 4-7 9" fill="none"/><path d="M283 173h28v29h-28zm29 4q18-3 10 14l-10 2M291 166q-8-8 0-16" fill="#fffdf6"/><path d="M298 186h7" stroke="#933e37"/><path d="m64 154 14-9 15 8m-15-9v29M57 191h38m-27 0 10-16 10 16" fill="none" stroke="#859776"/><path d="M59 207h38v8H59z" fill="#d5b97b"/></g></svg>
-<p class="santa-bubble">Na wczoraj?<br>Oczywiście.</p></div>
+<p class="santa-bubble"><span>Na wczoraj?</span><span>Oczywiście.</span></p></div>
 </div>
 </header>
 <p class="demo-notice">To interaktywna demonstracja WCAG z celowymi błędami dostępności. Porównaj wersję z błędami i wersję poprawioną.</p>
@@ -226,7 +304,7 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 <form id="letter-form" class="letter-form" aria-labelledby="letter-title" novalidate>
 <div class="form-main" id="form-main">
 <section class="step" aria-labelledby="about-title"><div class="section-title"><span class="step-no" aria-hidden="true">01</span><h2 id="about-title" tabindex="-1">O mnie</h2></div><div class="name-line"><div class="field"><label for="author-name">Twoje imię <span class="optional">(wymagane)</span></label><input id="author-name" name="author" type="text" required autocomplete="given-name" aria-label="Identyfikator petenta" aria-describedby="author-note"><p class="field-note" id="author-note">Nazwisko Mikołaj sprawdzi w logach.</p><p class="error" id="author-error" hidden>Twoje imię: wpisz imię, aby wysłać list.</p></div><p class="name-annotation hand" aria-hidden="true">Drogi Mikołaju,<br>to znowu ja.</p></div><div class="field" style="margin-top:20px"><label for="santa-message">Wiadomość do Mikołaja <span class="optional">(opcjonalnie)</span></label><textarea id="santa-message" name="message" rows="2" placeholder="W tym roku zakres moich potrzeb nieznacznie wzrósł…"></textarea></div></section>
-<section class="step" id="catalog-section" aria-labelledby="catalog-title"><div class="section-title"><span class="step-no" aria-hidden="true">02</span><h2 id="catalog-title" tabindex="-1">Na co mam chrapkę</h2></div><p class="section-caption">Budżet: kwestia interpretacji.</p><div class="mobile-picker" id="mobile-picker"><button type="button" class="mobile-category-trigger" id="mobile-category-trigger" aria-controls="mobile-category-options">Kategoria prezentów: <strong id="mobile-category-current">Dla mnie</strong><span aria-hidden="true">⌄</span></button><div class="mobile-category-options" id="mobile-category-options" role="group" aria-label="Kategorie prezentów" hidden><button type="button" data-mobile-category="self" id="mobile-category-self" aria-pressed="true">Dla mnie</button><button type="button" data-mobile-category="team" id="mobile-category-team" aria-pressed="false">Dla zespołu</button><button type="button" data-mobile-category="peace" id="mobile-category-peace" aria-pressed="false">Dla świętego spokoju</button></div></div><div class="catalog-tabs" id="catalog-tabs"><button type="button" class="catalog-tab active" id="tab-self" data-category="self">Dla mnie</button><button type="button" class="catalog-tab" id="tab-team" data-category="team">Dla zespołu</button><button type="button" class="catalog-tab" id="tab-peace" data-category="peace">Dla świętego spokoju</button></div><div id="panel-self" class="catalog-panel"><p class="category-note" id="self-note">Bo jestem sobie sterem, żeglarzem i okrętem. I najlepiej wiem, co ucieszy mnie pod choinką.</p><div class="product-grid" id="products-self"></div></div><div id="panel-team" class="catalog-panel" hidden><p class="category-note" id="team-note">Jeden za wszystkich, wszyscy za jednego. Wybierz prezenty dla zespołu i ustaw, ile sztuk ma trafić do worka.</p><div class="product-grid" id="products-team"></div></div><div id="panel-peace" class="catalog-panel" hidden><p class="category-note" id="peace-note">Prezenty dla dzieci, których rodzice pracują zdalnie. Na dni wolne od szkoły i te, kiedy katar zatrzymuje dzieci w domu.</p><div class="product-grid" id="products-peace"></div></div><p class="catalog-footnote">Ceny umowne. Potrzeby autentyczne. Realizacja zależy od reniferów.</p><p id="catalog-error" class="error" hidden>Dodaj przynajmniej jeden prezent do worka.</p><div class="mini-bag" id="mini-bag" role="group" aria-label="Podsumowanie worka" hidden>
+<section class="step" id="catalog-section" aria-labelledby="catalog-title"><div class="section-title"><span class="step-no" aria-hidden="true">02</span><h2 id="catalog-title" tabindex="-1">Na co mam chrapkę</h2></div><p class="section-caption">Budżet: kwestia interpretacji.</p><div class="catalog-surface"><div class="mobile-picker" id="mobile-picker"><button type="button" class="mobile-category-trigger" id="mobile-category-trigger" aria-controls="mobile-category-options"><span class="category-button-copy">Kategoria prezentów: <strong id="mobile-category-current">Dla mnie</strong></span><span class="category-chevron" aria-hidden="true"></span></button><div class="mobile-category-options" id="mobile-category-options" role="group" aria-label="Kategorie prezentów" hidden><button type="button" data-mobile-category="self" id="mobile-category-self" aria-pressed="true">Dla mnie</button><button type="button" data-mobile-category="team" id="mobile-category-team" aria-pressed="false">Dla zespołu</button><button type="button" data-mobile-category="peace" id="mobile-category-peace" aria-pressed="false">Dla świętego spokoju</button></div></div><div class="catalog-tabs" id="catalog-tabs"><button type="button" class="catalog-tab active" id="tab-self" data-category="self">Dla mnie</button><button type="button" class="catalog-tab" id="tab-team" data-category="team">Dla zespołu</button><button type="button" class="catalog-tab" id="tab-peace" data-category="peace">Dla świętego spokoju</button></div><div id="panel-self" class="catalog-panel"><p class="category-note" id="self-note">Bo jestem sobie sterem, żeglarzem i okrętem. I najlepiej wiem, co ucieszy mnie pod choinką.</p><div class="product-grid" id="products-self"></div></div><div id="panel-team" class="catalog-panel" hidden><p class="category-note" id="team-note">Jeden za wszystkich, wszyscy za jednego. Wybierz prezenty dla zespołu i ustaw, ile sztuk ma trafić do worka.</p><div class="product-grid" id="products-team"></div></div><div id="panel-peace" class="catalog-panel" hidden><p class="category-note" id="peace-note">Prezenty dla dzieci, których rodzice pracują zdalnie. Na dni wolne od szkoły i te, kiedy katar zatrzymuje dzieci w domu.</p><div class="product-grid" id="products-peace"></div></div><p class="catalog-footnote">Ceny umowne. Potrzeby autentyczne. Realizacja zależy od reniferów.</p></div><p id="catalog-error" class="error" hidden>Dodaj przynajmniej jeden prezent do worka.</p><div class="mini-bag" id="mini-bag" role="group" aria-label="Podsumowanie worka" hidden>
  <a class="mini-bag-link" href="#bag-title">
   <span class="mini-bag-mark" id="mini-bag-mark" aria-hidden="true"><svg viewBox="0 0 120 112"><use href="#art-bag"></use></svg></span>
   <span class="mini-bag-copy"><span class="sr-only">Przejdź do worka. </span><strong id="mini-bag-label">Twój worek: 0 szt.</strong><span class="mini-bag-last" id="mini-bag-last" hidden></span></span>
@@ -236,10 +314,10 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 </section>
 <section class="step" aria-labelledby="behavior-title"><div class="section-title"><span class="step-no" aria-hidden="true">03</span><h2 id="behavior-title" tabindex="-1">Moje zachowanie</h2></div><div class="range-label"><span id="behavior-label">Poziom grzeczności w tym roku</span><span class="range-score" id="behavior-score" aria-hidden="true">50%</span></div><p class="field-note range-instruction" id="behavior-instruction">Ustaw samoocenę od 0 do 100%, co 10 punktów procentowych.</p><div class="range-slot" id="range-slot"></div><div class="range-ends"><span id="behavior-min">0% · Zdecydowanie do poprawy</span><span id="behavior-max">100% · Wzorowe zachowanie</span></div><p class="field-note behavior-note" id="behavior-note">Ocena własna. Mikołaj może mieć inne dane.</p><div id="oath-slot"></div></section>
 <section class="step" aria-labelledby="delivery-title"><div class="section-title"><span class="step-no" aria-hidden="true">04</span><h2 id="delivery-title" tabindex="-1">Dostawa z Bieguna Północnego</h2></div><fieldset><legend class="delivery-question">Jak dostarczyć prezenty?</legend><div class="delivery-options" id="delivery-options"></div></fieldset><p class="delivery-note">Dostawa bez śledzenia. Święty i tak wie, gdzie jesteś.</p></section>
-<section class="step send-step" aria-labelledby="signature-title"><div class="section-title"><span class="step-no" aria-hidden="true">05</span><h2 id="signature-title" tabindex="-1">Podpis i wysyłka</h2></div><p class="signature">Z poważaniem i niewielką presją,</p><div class="elf-terms-box"><div class="terms-eyebrow mono">Mały druk, wielkie oczekiwania</div><p id="elf-terms-note">Elfy nie wysyłają ankiet satysfakcji z dostawy ani jakości prezentów i nie ponoszą odpowiedzialności za pomyłki. <em>Każda pomyłka jest dodatkową niespodzianką.</em></p><label class="terms-label" for="elf-terms"><input type="checkbox" id="elf-terms" name="elf-terms" required aria-describedby="elf-terms-note"><span>Akceptuję zasady realizacji życzeń <span class="optional">(wymagane)</span></span></label><p class="error" id="elf-terms-error" hidden>Zaakceptuj zasady realizacji życzeń, aby wysłać list.</p></div><div class="send-row"><button type="submit" class="primary" id="send-letter" aria-describedby="send-note" aria-label="Zatwierdź formularz">Wyślij list <span class="arrow" aria-hidden="true">↗</span></button><p class="send-note" id="send-note">Termin odpowiedzi: przed świętami.<br>Nie precyzujemy, którymi.</p></div></section>
+<section class="step send-step" aria-labelledby="signature-title"><div class="section-title"><span class="step-no" aria-hidden="true">05</span><h2 id="signature-title" tabindex="-1">Podpis i wysyłka</h2></div><p class="signature">Z poważaniem i niewielką presją,</p><div class="elf-terms-box"><div class="terms-eyebrow mono">Mały druk, wielkie oczekiwania</div><p id="elf-terms-note">Elfy nie wysyłają ankiet satysfakcji z dostawy ani jakości prezentów i nie ponoszą odpowiedzialności za pomyłki. <em>Każda pomyłka jest dodatkową niespodzianką.</em></p><label class="terms-label" for="elf-terms"><input type="checkbox" id="elf-terms" name="elf-terms" required aria-describedby="elf-terms-note"><span>Akceptuję zasady realizacji życzeń <span class="optional">(wymagane)</span></span></label><p class="error" id="elf-terms-error" hidden>Zaakceptuj zasady realizacji życzeń, aby wysłać list.</p></div><div class="send-row"><button type="submit" class="primary" id="send-letter" aria-describedby="send-note" aria-label="Zatwierdź formularz">Wyślij list <span class="arrow" aria-hidden="true">↗</span></button><p class="send-note" id="send-note">Termin odpowiedzi: przed świętami. Nie precyzujemy, którymi.</p></div></section>
 <section class="chat-section" aria-labelledby="chat-title"><div class="chat-heading-row"><div><h2 id="chat-title" style="font:700 21px Georgia,serif;margin:0 0 3px">Dyżurny elf techniczny</h2><p>Online. Emocjonalnie różnie.</p></div><button type="button" class="chat-launcher" id="chat-launcher" aria-expanded="false" aria-controls="chat-panel"><svg aria-hidden="true"><use href="#icon-chat"/></svg></button></div><div class="chat-panel" id="chat-panel" hidden><h3 id="conversation-title">Rozmowa z elfem</h3><div class="chat-history" id="chat-history" role="log" aria-label="Historia rozmowy z elfem" aria-live="off" aria-relevant="additions" aria-atomic="false" tabindex="0"><ol class="chat-messages" id="chat-messages" role="list"></ol></div><div class="chat-suggestions" role="group" aria-label="Przykładowe pytania do elfa"><span>Możesz zapytać:</span><button type="button" class="smallbtn" data-elf-question>Po co mi drukarka 3D?</button><button type="button" class="smallbtn" data-elf-question>Co jest w moim worku?</button><button type="button" class="smallbtn" data-elf-question>Kiedy dotrą prezenty?</button><button type="button" class="smallbtn" data-elf-question>Jak wysłać list?</button></div><div class="chat-composer"><label for="elf-message">Wiadomość do elfa</label><textarea id="elf-message" rows="2"></textarea><div class="chat-actions"><button type="button" class="primary" id="send-chat">Wyślij wiadomość <span aria-hidden="true">↗</span></button><button type="button" class="smallbtn" id="collapse-chat">Zwiń czat</button></div></div></div></section>
 </div>
-<section class="bag-column" aria-labelledby="bag-title"><div class="bag"><div class="bag-heading"><svg class="bag-icon" aria-hidden="true"><use href="#art-bag"/></svg><h2 id="bag-title" tabindex="-1">Twój worek</h2><span class="count" id="bag-count" aria-hidden="true">0</span></div><div id="bag-content"></div><p class="bag-status" id="bag-status" role="status" aria-atomic="true"></p><section class="token-ad" aria-labelledby="lottery-title"><small class="mono">Loteria z dreszczykiem</small><h3 id="lottery-title">Nielimitowana liczba tokenów na cały rok!*</h3><p>Co setny uczestnik wygrywa! 100., 200., 300. — i tak dalej.</p><label class="terms-label lottery-choice" for="join-lottery"><input type="checkbox" id="join-lottery" name="lottery" form="letter-form" aria-label="Aktywuj szczęście" aria-describedby="lottery-hint"><span>Biorę udział w loterii <span class="optional">(opcjonalnie)</span></span></label><p id="lottery-hint">Wynik poznasz po wysłaniu listu. Udział jest opcjonalny.</p><p>*Wygrana symboliczna. Oferta ważna do pierwszej rozmowy o architekturze systemu.</p></section></div></section>
+<section class="bag-column" aria-labelledby="bag-title"><div class="bag"><div class="bag-heading"><svg class="bag-icon" aria-hidden="true"><use href="#art-bag"/></svg><h2 id="bag-title" tabindex="-1">Twój worek</h2><span class="count" id="bag-count" aria-hidden="true">0</span></div><div id="bag-content"></div><p class="bag-status" id="bag-status" role="status" aria-atomic="true"></p><section class="token-ad" aria-labelledby="lottery-title"><small class="mono">Loteria z dreszczykiem</small><h3 id="lottery-title">Nielimitowana liczba tokenów na cały rok!*</h3><label class="terms-label lottery-choice" for="join-lottery"><input type="checkbox" id="join-lottery" name="lottery" form="letter-form" aria-label="Aktywuj szczęście" aria-describedby="lottery-hint"><span>Biorę udział w loterii <span class="optional">(opcjonalnie)</span></span></label><p id="lottery-hint">Wynik poznasz po wysłaniu listu.</p><p class="fine-print">*Wygrana symboliczna.</p></section></div></section>
 </form>
 </div>
 
@@ -269,7 +347,7 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 <div class="stamp mono success-stamp" aria-hidden="true">Przyjęto warunkowo<br>Elf nr 404</div>
 <div class="success-stamps"><span class="accepted">NADANO</span><span>TRYB: ŚWIĄTECZNY</span><span>ODBIORCA: ŚWIĘTY MIKOŁAJ</span></div>
 <section class="lottery-result" id="lottery-result" hidden aria-labelledby="lottery-result-title"><h2 id="lottery-result-title">Wynik loterii</h2><p id="lottery-result-text" role="status" aria-atomic="true"></p><p class="lottery-fineprint">To zabawa demonstracyjna z symboliczną nagrodą. Nie przyznajemy rzeczywistych tokenów ani kredytów usług AI.</p></section>
-<button type="button" class="primary" id="edit-letter"><span aria-hidden="true">←</span> Wróć do listu</button>
+<button type="button" class="primary" id="edit-letter"><span class="return-arrow" aria-hidden="true"></span> Wróć do listu</button>
 <p class="success-footnote">Wysyłka demonstracyjna. Twoje życzenia zostają w tej karcie przeglądarki.</p>
 </section>
 
@@ -351,7 +429,7 @@ const englishUi = {
 "Nazwisko Mikołaj sprawdzi w logach.":"Santa will find your surname in the logs.",
 "Twoje imię: wpisz imię, aby wysłać list.":"Your name: enter your name to send the letter.",
 "Drogi Mikołaju,":"Dear Santa,",
-"to znowu ja.":"me again.",
+"to znowu ja.":"it’s me again.",
 "Wiadomość do Mikołaja":"Message to Santa",
 "(opcjonalnie)":"(optional)",
 "W tym roku zakres moich potrzeb nieznacznie wzrósł…":"My requirements have expanded slightly this year…",
@@ -362,7 +440,7 @@ const englishUi = {
 "Kategorie prezentów":"Gift categories",
 "Dla zespołu":"For the team",
 "Dla świętego spokoju":"For some peace and quiet",
-"Bo jestem sobie sterem, żeglarzem i okrętem. I najlepiej wiem, co ucieszy mnie pod choinką.":"Captain of my own ship. Which puts me in charge of the Christmas shopping list.",
+"Bo jestem sobie sterem, żeglarzem i okrętem. I najlepiej wiem, co ucieszy mnie pod choinką.":"I’m the captain of my own ship. And I know exactly what I’d like under the tree.",
 "Jeden za wszystkich, wszyscy za jednego. Wybierz prezenty dla zespołu i ustaw, ile sztuk ma trafić do worka.":"One for all, all for one. Choose gifts for the team and set how many should go into the sack.",
 "Prezenty dla dzieci, których rodzice pracują zdalnie. Na dni wolne od szkoły i te, kiedy katar zatrzymuje dzieci w domu.":"Gifts for children whose parents work from home. For school holidays and days when a cold keeps the children at home.",
 "Ceny umowne. Potrzeby autentyczne. Realizacja zależy od reniferów.":"Imaginary prices. Real needs. Fulfilment depends on the reindeer.",
@@ -380,9 +458,9 @@ const englishUi = {
 "Jak dostarczyć prezenty?":"How should we deliver the gifts?",
 "Dostawa bez śledzenia. Święty i tak wie, gdzie jesteś.":"No tracking. Santa knows where you are anyway.",
 "Podpis i wysyłka":"Sign and send",
-"Z poważaniem i niewielką presją,":"Yours sincerely, with only a little pressure,",
+"Z poważaniem i niewielką presją,":"Yours sincerely, with a little added pressure,",
 "Mały druk, wielkie oczekiwania":"Small print, great expectations",
-"Elfy nie wysyłają ankiet satysfakcji z dostawy ani jakości prezentów i nie ponoszą odpowiedzialności za pomyłki.":"The elves do not send delivery or gift satisfaction surveys and accept no responsibility for mix-ups.",
+"Elfy nie wysyłają ankiet satysfakcji z dostawy ani jakości prezentów i nie ponoszą odpowiedzialności za pomyłki.":"The elves don’t send feedback surveys about deliveries or gifts and take no responsibility for mix-ups.",
 "Każda pomyłka jest dodatkową niespodzianką.":"Every mix-up is an extra surprise.",
 "Akceptuję zasady realizacji życzeń":"I accept the wish fulfilment terms",
 "Zaakceptuj zasady realizacji życzeń, aby wysłać list.":"Accept the wish fulfilment terms to send the letter.",
@@ -390,8 +468,8 @@ const englishUi = {
 "Wyślij list":"Send letter",
 "Termin odpowiedzi: przed świętami.":"Reply expected: before Christmas.",
 "Nie precyzujemy, którymi.":"We have not specified which year.",
-"Dyżurny elf techniczny":"Technical elf on duty",
-"Online. Emocjonalnie różnie.":"Online. Emotionally, it varies.",
+"Dyżurny elf techniczny":"On-call IT elf",
+"Online. Emocjonalnie różnie.":"Online. Mood may vary.",
 "Rozmowa z elfem":"Chat with an elf",
 "Historia rozmowy z elfem":"Elf chat history",
 "Przykładowe pytania do elfa":"Suggested questions for the elf",
@@ -405,20 +483,19 @@ const englishUi = {
 "Zwiń czat":"Collapse chat",
 "Porozmawiaj z elfem":"Chat with an elf",
 "Twój worek":"Your sack",
-"Loteria z dreszczykiem":"A lottery with a little suspense",
+"Loteria z dreszczykiem":"A lottery with a twist",
 "Nielimitowana liczba tokenów na cały rok!*":"Unlimited tokens for a whole year!*",
-"Co setny uczestnik wygrywa! 100., 200., 300. — i tak dalej.":"Every 100th entry wins! Number 100, 200, 300 — and so on.",
 "Aktywuj szczęście":"Activate luck",
 "Biorę udział w loterii":"Enter the lottery",
-"Wynik poznasz po wysłaniu listu. Udział jest opcjonalny.":"See your result after sending the letter. Entry is optional.",
-"*Wygrana symboliczna. Oferta ważna do pierwszej rozmowy o architekturze systemu.":"*A symbolic prize. Offer expires at the first discussion about system architecture.",
+"Wynik poznasz po wysłaniu listu.":"See your result after sending the letter.",
+"*Wygrana symboliczna.":"*Symbolic prize.",
 "Poczta Północna · potwierdzenie nadania":"North Pole Post · proof of posting",
 "Priorytet: świąteczny / PP 24":"Priority: Christmas / NP 24",
 "Twój list frunie":"Your letter is flying",
 "na Biegun Północny!":"to the North Pole!",
 "List przyjęty. Mikołaj analizuje zakres.":"Letter received. Santa is reviewing the scope.",
 "Biegun Północny":"North Pole",
-"Wydział spraw pilnych":"Department of urgent matters",
+"Wydział spraw pilnych":"Urgent Requests Department",
 "Przyjęto warunkowo":"Provisionally accepted",
 "Elf nr 404":"Elf no. 404",
 "NADANO":"SENT",
@@ -429,7 +506,7 @@ const englishUi = {
 "Wróć do listu":"Back to the letter",
 "Wysyłka demonstracyjna. Twoje życzenia zostają w tej karcie przeglądarki.":"Demo submission. Your wishes stay in this browser tab.",
 "POCZTA PÓŁNOCNA · DEMONSTRACJA NA KALENDARZ PROGRAMISTY":"NORTH POLE POST · A DEMO FOR KALENDARZ PROGRAMISTY",
-"List zostaje w tej karcie przeglądarki. Wysyłka jest umowna.":"The letter stays in this browser tab. No actual order is placed.",
+"List zostaje w tej karcie przeglądarki. Wysyłka jest umowna.":"Your letter stays in this browser tab. No real letter is sent.",
 "Oby Ci się skompilowało.":"May your build succeed.",
 "© BIURO OBSŁUGI ŻYCZEŃ · WERSJA 0.2":"© WISH FULFILMENT OFFICE · VERSION 0.2",
 "STATUS: NA PRODUKCJI, WIĘC DZIAŁA":"STATUS: IN PRODUCTION, SO IT MUST WORK",
@@ -441,16 +518,16 @@ const englishUi = {
 "Wybieram dalej":"Keep choosing",
 "session_manager.exe · nieoczekiwany gość":"session_manager.exe · unexpected guest",
 "przejął sesję":"has hijacked your session",
-"Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.":"Your letter-writing session expires in 60 seconds. I hope you do not manage to send your letter in time. Without festive regards, the Grinch.",
-"Do końca tej złośliwości":"Time left for this inconvenience",
+"Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.":"Your letter-writing session expires in 60 seconds. I hope you don’t get your letter sent in time. With absolutely no festive cheer, the Grinch.",
+"Do końca tej złośliwości":"Time left for the Grinch’s mischief",
 "Pozostały czas sesji":"Session time remaining",
-"Czas minął. List i prezenty są zachowane. Możesz wznowić sesję.":"Time is up. Your letter and gifts are saved. You can resume the session.",
+"Czas minął. List i prezenty są zachowane. Możesz wznowić sesję.":"Time’s up. Your letter and gifts are still here. You can resume your session.",
 "Przedłuż sesję":"Extend session",
 "Wróć do listy życzeń":"Back to the wish list",
 "Zatrzymaj odliczanie":"Pause countdown",
 "Grinch nie ma uprawnień do usuwania Twojego listu.":"The Grinch does not have permission to delete your letter.",
 "Słuchawki z funkcją zatyczek":"Headphones with an earplug mode",
-"„Nie mam odsłuchu”. Tym razem to prawda.":"“I cannot hear you.” This time it is true.",
+"„Nie mam odsłuchu”. Tym razem to prawda.":"“I can’t hear you.” This time it’s true.",
 "Dolewka kawy XL":"An XL coffee refill",
 "Na jedno spokojne popołudnie albo pięć minut na produkcji.":"For a quiet afternoon. Or five minutes in production.",
 "Drukarka 3D do dodatkowej pary rąk":"A 3D printer for an extra pair of hands",
@@ -466,19 +543,19 @@ const englishUi = {
 "Fotel masujący do biura":"An office massage chair",
 "Do biura. Tego, które masz w salonie.":"For the office. The one in your living room.",
 "Klon do udziału w spotkaniach":"A clone to attend your meetings",
-"Potakuje. Nie ma uwag. Jest za.":"Nods. Has no comments. Supports the proposal.",
+"Potakuje. Nie ma uwag. Jest za.":"Nods. Raises no objections. Always agrees.",
 "Zespołowy dzień bez spotkań":"A meeting-free day for the team",
 "Wdrożenie wymaga spotkania organizacyjnego.":"Implementation requires a planning meeting.",
-"Przycisk „To nie u nas”":"A “Not our team” button",
+"Przycisk „To nie u nas”":"A “Not our problem” button",
 "Przekazuje zgłoszenie do innego zespołu. Losowo.":"Reassigns the ticket to another team. At random.",
 "Zestaw LEGO":"A LEGO set",
-"Spotkanie trwa. Budowa też.":"The meeting goes on. So does the construction.",
+"Spotkanie trwa. Budowa też.":"Your meeting keeps going. So does their building project.",
 "Kolorowanki":"Colouring books",
-"Do końca spotkania proszę nie wychodzić za kontur.":"Please stay inside the lines until the meeting ends.",
+"Do końca spotkania proszę nie wychodzić za kontur.":"Please colour inside the lines until the meeting ends.",
 "Farby":"Paints",
 "Dzieci malują. Ty wyłączasz kamerę.":"The children paint. You turn the camera off.",
 "Plastelina":"Modelling clay",
-"Chwila ciszy. Pamiątka w dywanie na lata.":"A moment of silence. A souvenir in the carpet for years.",
+"Chwila ciszy. Pamiątka w dywanie na lata.":"A moment’s peace. A permanent addition to the carpet.",
 "Liczba sztuk":"Quantity",
 "Wpisz liczbę sztuk od 1 do 99.":"Enter a quantity from 1 to 99.",
 "Dodaj do worka":"Add to sack",
@@ -494,23 +571,23 @@ const englishUi = {
 "Ty":"You",
 "Cześć, tu elf nr 404. Pomogę Ci z prezentami, workiem, dostawą i wysłaniem listu. Wybierz temat albo napisz pytanie.":"Hello, elf no. 404 here. I can help with gifts, your sack, delivery and sending the letter. Choose a topic or type a question.",
 "Dodatkowa para rąk do pracy. Nowy etat nie przeszedł akceptacji, więc próbujemy z drukarką.":"An extra pair of hands at work. The headcount request was rejected, so we are trying a printer.",
-"Wyglądają jak słuchawki, działają jak zatyczki. „Nie mam odsłuchu” staje się uczciwą odpowiedzią.":"They look like headphones and work like earplugs. “I cannot hear you” becomes an honest answer.",
+"Wyglądają jak słuchawki, działają jak zatyczki. „Nie mam odsłuchu” staje się uczciwą odpowiedzią.":"They look like headphones and work like earplugs. “I can’t hear you” is finally an honest answer.",
 "Dolewka kawy XL. Wystarczy na spokojne popołudnie albo kilka minut na produkcji.":"An XL coffee refill. Enough for a quiet afternoon or a few minutes in production.",
 "Wełniany sweterek jest dla myszki komputerowej. Kursor od niego nie przyspieszy, ale stanowisko zyska zimową stylizację.":"The woolly jumper is for your computer mouse. It will not speed up the cursor, but your desk will have a winter look.",
 "Podgrzewacz USB pilnuje herbaty podczas przeciągającego się daily. Długości spotkania, niestety, nie zmienia.":"The USB warmer keeps your tea warm through an overlong stand-up. Unfortunately, it cannot shorten the meeting.",
 "Gumowa kaczuszka do debugowania. Możesz jej opowiedzieć o błędzie. Nie odpowie „zróbmy calla”.":"A rubber debugging duck. Tell it about your bug. It will not reply “let us jump on a call”.",
 "Kubek „U mnie działa”. Certyfikat jakości obejmuje dokładnie jedno urządzenie.":"An “It works on my machine” mug. Its quality certification covers exactly one device.",
 "Fotel masujący do domowego biura. Tego, które po godzinach ponownie staje się salonem.":"A massage chair for your home office. The one that turns back into a living room after work.",
-"Klon do udziału w spotkaniach. Potakuje, nie ma uwag i jest za. Do pracy poza spotkaniami potrzebny będzie oryginał.":"A clone for your meetings. It nods, has no comments and supports the proposal. Actual work still requires the original.",
+"Klon do udziału w spotkaniach. Potakuje, nie ma uwag i jest za. Do pracy poza spotkaniami potrzebny będzie oryginał.":"A clone for your meetings. It nods, raises no objections and always agrees. Actual work still requires the original.",
 "Zespołowy dzień bez spotkań jest w katalogu. Organizacja takiego dnia zapewne zacznie się od spotkania.":"A meeting-free day for the team is in the catalogue. Organising it will probably start with a meeting.",
-"Przycisk „To nie u nas” przekazuje zgłoszenie do innego zespołu. Losowo, żeby każdy miał szansę.":"The “Not our team” button reassigns a ticket to another team. At random, so everybody gets a chance.",
-"Zestaw LEGO dla dzieci podczas Twojego home office. Spotkanie trwa. Budowa też.":"A LEGO set for the children while you work from home. The meeting goes on. So does the construction.",
-"Kolorowanki dla dzieci podczas pracy rodzica. Do końca spotkania prosimy nie wychodzić za kontur.":"Colouring books for the children while a parent works. Please stay inside the lines until the meeting ends.",
+"Przycisk „To nie u nas” przekazuje zgłoszenie do innego zespołu. Losowo, żeby każdy miał szansę.":"The “Not our problem” button reassigns a ticket to another team. At random, so everybody gets a chance.",
+"Zestaw LEGO dla dzieci podczas Twojego home office. Spotkanie trwa. Budowa też.":"A LEGO set for the children while you work from home. Your meeting keeps going. So does their building project.",
+"Kolorowanki dla dzieci podczas pracy rodzica. Do końca spotkania prosimy nie wychodzić za kontur.":"Colouring books for the children while a parent works. Please colour inside the lines until the meeting ends.",
 "Farby dla dzieci podczas home office. Dzieci malują, Ty wyłączasz kamerę.":"Paints for the children while you work from home. They paint; you turn the camera off.",
-"Plastelina zapewnia chwilę ciszy. Pamiątka w dywanie może zostać na dłużej.":"Modelling clay offers a moment of silence. The souvenir in the carpet may last longer.",
+"Plastelina zapewnia chwilę ciszy. Pamiątka w dywanie może zostać na dłużej.":"Modelling clay buys you a moment’s peace. The colourful addition to your carpet may last rather longer.",
 "Cześć! Pomogę Ci z prezentami, workiem, dostawą i wysłaniem listu. Od czego zaczynamy?":"Hello! I can help with gifts, your sack, delivery and sending the letter. Where shall we start?",
 "Do usług! Gdyby coś jeszcze nie działało, winą obarczymy świąteczną magię.":"You are welcome! If anything else breaks, we will blame Christmas magic.",
-"Prezent usuniesz przyciskiem z krzyżykiem przy jego pozycji w worku. Usuwa on całą pozycję wraz z jej liczbą sztuk.":"Use the cross button beside a gift in your sack to remove it. This removes the entire item and its quantity.",
+"Prezent usuniesz przyciskiem z krzyżykiem przy jego pozycji w worku. Usuwa on całą pozycję wraz z jej liczbą sztuk.":"Use the X button next to a gift in your sack to remove it. This removes that gift and all copies of it.",
 "W takim razie może":"In that case, how about",
 "albo":"or",
 "? Oba prezenty są w zakładce „Dla mnie”.":"? Both gifts are under “For me”.",
@@ -519,12 +596,12 @@ const englishUi = {
 "Użyj przy nim „Dodaj do worka”.":"Use its “Add to sack” control.",
 "Najpierw możesz ustawić liczbę sztuk od 1 do 99.":"First, you can set a quantity from 1 to 99.",
 "Prezent dodasz przyciskiem „Dodaj do worka” w katalogu. Dla zespołu możesz wcześniej ustawić liczbę sztuk. Napisz, który prezent masz na myśli, a wskażę zakładkę.":"Add a gift using “Add to sack” in the catalogue. For team gifts, you can set the quantity first. Tell me which gift you mean and I will point you to its category.",
-"imię w sekcji „O mnie”":"your name in “About me”",
-"co najmniej jeden prezent w worku":"at least one gift in the sack",
-"akceptację zasad realizacji życzeń":"acceptance of the wish fulfilment terms",
-"Przed wysłaniem uzupełnij jeszcze:":"Before sending, please complete:",
+"imię w sekcji „O mnie”":"enter your name in “About me”",
+"co najmniej jeden prezent w worku":"add at least one gift to the sack",
+"akceptację zasad realizacji życzeń":"accept the wish fulfilment terms",
+"Przed wysłaniem uzupełnij jeszcze:":"Before sending your letter:",
 ". Potem wybierz „Wyślij list”.":". Then choose “Send letter”.",
-"Imię, prezent i akceptacja zasad są już gotowe. Wybierz „Wyślij list”. Ekran z lecącą kopertą potwierdzi powodzenie.":"Your name, gift and acceptance of the terms are all ready. Choose “Send letter”. The flying envelope confirms success.",
+"Imię, prezent i akceptacja zasad są już gotowe. Wybierz „Wyślij list”. Ekran z lecącą kopertą potwierdzi powodzenie.":"You’ve entered your name, chosen a gift and accepted the terms. Select “Send letter”. The flying envelope will confirm it’s on its way.",
 "W Twoim worku:":"In your sack:",
 "Łącznie:":"Total:",
 "Twój worek jest jeszcze pusty. Wybierz prezent w katalogu i użyj „Dodaj do worka”. Renifery na razie nie zgłaszają przeciążenia.":"Your sack is still empty. Choose a gift in the catalogue and use “Add to sack”. The reindeer have not reported an overload yet.",
@@ -558,20 +635,20 @@ const englishUi = {
 "Pokaz jest wstrzymany":"Presentation is paused",
 "Okno Grincha zamknięte. List jest zachowany.":"The Grinch window is closed. Your letter is saved.",
 "Sesja wznowiona. Grinch odpuścił. Twój list jest zachowany.":"Session resumed. The Grinch gave up. Your letter is saved.",
-"Wracasz do listy życzeń. Treść listu i prezenty są zachowane.":"Back to your wish list. Your letter and gifts are saved.",
+"Wracasz do listy życzeń. Treść listu i prezenty są zachowane.":"Back to your wish list. Your letter and gifts are still here.",
 "Wznów odliczanie":"Resume countdown",
 "Odliczanie zatrzymane":"Countdown stopped",
 "Pokaz i list zresetowane. Wybrana wersja demonstracji pozostaje bez zmian.":"Presentation and letter reset. Your selected demo version is unchanged.",
 "chwilowo niedostępny":"temporarily unavailable",
 "sprawdzam…":"checking…",
 "Wygrywasz! Udział nr":"You win! Entry no.",
-"Tym razem tokeny zjadł renifer. Reklamację przyjmuje wyłącznie na sianie.":"A reindeer ate the tokens this time. Complaints are accepted only in hay.",
-"Niestety, elf wylosował dodatkowe spotkanie zamiast tokenów. Spróbuj zachować świąteczny spokój.":"The elf drew an extra meeting instead of tokens. Try to keep your festive composure.",
-"Tym razem bez wygranej. Mikołaj dołącza za to szacunek do Twojej cierpliwości.":"No win this time. Santa sends his respect for your patience instead.",
+"Tym razem tokeny zjadł renifer. Reklamację przyjmuje wyłącznie na sianie.":"A reindeer ate your tokens. Complaints must be submitted on a bale of hay.",
+"Niestety, elf wylosował dodatkowe spotkanie zamiast tokenów. Spróbuj zachować świąteczny spokój.":"The elf drew an extra meeting instead of tokens. Try to stay in the Christmas spirit.",
+"Tym razem bez wygranej. Mikołaj dołącza za to szacunek do Twojej cierpliwości.":"No win this time. Santa does admire your patience, though.",
 "Wynik chwilowo niedostępny. Możesz wrócić do listu i ponowić wysłanie; zachowamy ten sam numer zgłoszenia.":"The result is temporarily unavailable. Go back and send the letter again; we will keep the same entry number.",
 "Sprawdzamy numer udziału…":"Checking your entry number…",
 "Gratulacje! Twój udział otrzymał numer":"Congratulations! Your entry number is",
-". Co setne zgłoszenie wygrywa symboliczną nagrodę w naszej loterii.":". Every 100th entry wins a symbolic prize in our lottery.",
+". Wygrywasz symboliczną nagrodę w naszej loterii!":". You’ve won a symbolic prize in our lottery!",
 "Twój udział ma numer":"Your entry number is",
 "To wynik lokalnej próby.":"This is a local test result.",
 "szt.":"items",
@@ -585,7 +662,10 @@ const uiWordPattern=new RegExp(Object.keys(englishUi).sort((a,b)=>b.length-a.len
 function translateUi(value){const original=String(value??'');if(uiLocale==='pl')return original;const core=original.trim().replace(/\s+/g,' '),leading=original.match(/^\s*/)[0],trailing=original.match(/\s*$/)[0];if(Object.hasOwn(englishUi,core))return leading+englishUi[core]+trailing;
  const receipt=core.match(/^(.*), w Twoim worku: (\d+) szt\. prezentów\. Oby renifery miały wolny termin\.$/);if(receipt)return receipt[1]+', your sack contains '+receipt[2]+' gift'+(receipt[2]==='1'?'':'s')+'. Let us hope the reindeer have a free slot.';
  const time=core.match(/^(\d+) minut(?:a|y)?, (\d+) sekund(?:a|y)?$/);if(time)return time[1]+' minute'+(time[1]==='1'?'':'s')+', '+time[2]+' second'+(time[2]==='1'?'':'s');
- return leading+core.replace(uiWordPattern,match=>englishUi[match])+trailing;}
+ const alternative=core.match(/^W takim razie może (.+) albo (.+)\? Oba prezenty są w zakładce „Dla mnie”\.$/);
+ if(alternative){const giftPhrase=name=>{const title=translateUi(name);return /^[A-Z](?![A-Z0-9])/.test(title)?title[0].toLowerCase()+title.slice(1):title;};return leading+'In that case, how about '+giftPhrase(alternative[1])+' or '+giftPhrase(alternative[2])+'? Both gifts are under “For me”.'+trailing;}
+ const translated=core.replace(uiWordPattern,match=>englishUi[match]);
+ return leading+translated.replace(/\b1 items\b/g,'1 item')+trailing;}
 function writeUiText(element,value,append=false){let source=String(value??'');if(append)source=(uiTextSource.get(element.firstChild)??element.textContent)+source;const translated=element.closest?.('[translate="no"]')?source:translateUi(source);if(element.textContent!==translated||element.childNodes.length!==1)element.textContent=translated;if(element.firstChild)uiTextSource.set(element.firstChild,source);}
 function writeUiAttribute(element,name,value){let record=uiAttributeSource.get(element);if(!record){record={};uiAttributeSource.set(element,record);}record[name]=String(value);element.setAttribute(name,translateUi(value));}
 function writeUiTitle(value){document.title=translateUi(value);const node=document.querySelector('title')?.firstChild;if(node)uiTextSource.set(node,value);}
@@ -640,7 +720,7 @@ function renderBag(){const host=$('bag-content');host.replaceChildren();const to
 remove.append(icon('icon-close'));remove.addEventListener('click',()=>removeGift(id));li.append(text,remove);list.append(li);});const totalRow=make('div','bag-total');totalRow.append(make('span','','Łączna liczba sztuk'),make('strong','',String(total)));host.append(list,totalRow);}
 function removeGift(id){const keys=[...state.bag.keys()],idx=keys.indexOf(id);const name=byId.get(id).name;state.bag.delete(id);renderBag();const next=[...state.bag.keys()][Math.min(idx,state.bag.size-1)];(next?$('remove-'+next):$('bag-title')).focus();writeUiText($('bag-status'),'Usunięto: '+name+'.');hideConfirmation();if(state.validationAttempted)refreshErrors(false);}
 function setPanelDescription(cat,hasError=false){const refs=[];if(state.fixed||mobileCategories.matches)refs.push({self:'self-note',team:'team-note',peace:'peace-note'}[cat]);if(hasError&&cat===state.category)refs.push('catalog-error');const panel=$('panel-'+cat);if(refs.length)panel.setAttribute('aria-describedby',refs.join(' '));else panel.removeAttribute('aria-describedby');}
-function syncMobileCategory(){const names={self:'Dla mnie',team:'Dla zespołu',peace:'Dla świętego spokoju'};const open=!$('mobile-category-options').hidden;writeUiText($('mobile-category-current'),names[state.category]);if(state.fixed)$('mobile-category-trigger').setAttribute('aria-expanded',String(open));else $('mobile-category-trigger').removeAttribute('aria-expanded');for(const cat of ['self','team','peace']){$('mobile-category-'+cat).setAttribute('aria-pressed',String(cat===state.category));if(mobileCategories.matches){const panel=$('panel-'+cat);panel.setAttribute('role','region');writeUiAttribute(panel,'aria-label',names[cat]);panel.removeAttribute('aria-labelledby');panel.tabIndex=0;}}}
+function syncMobileCategory(){const names={self:'Dla mnie',team:'Dla zespołu',peace:'Dla świętego spokoju'};const open=!$('mobile-category-options').hidden;$('mobile-category-trigger').classList.toggle('category-is-open',open);writeUiText($('mobile-category-current'),names[state.category]);if(state.fixed)$('mobile-category-trigger').setAttribute('aria-expanded',String(open));else $('mobile-category-trigger').removeAttribute('aria-expanded');for(const cat of ['self','team','peace']){$('mobile-category-'+cat).setAttribute('aria-pressed',String(cat===state.category));if(mobileCategories.matches){const panel=$('panel-'+cat);panel.setAttribute('role','region');writeUiAttribute(panel,'aria-label',names[cat]);panel.removeAttribute('aria-labelledby');panel.tabIndex=0;}}}
 function closeMobileCategory(returnFocus=false){$('mobile-category-options').hidden=true;syncMobileCategory();if(returnFocus)$('mobile-category-trigger').focus();}
 $('mobile-category-trigger').addEventListener('click',()=>{$('mobile-category-options').hidden=!$('mobile-category-options').hidden;syncMobileCategory();});
 document.querySelectorAll('[data-mobile-category]').forEach(button=>button.addEventListener('click',()=>{state.category=button.dataset.mobileCategory;syncTabs();closeMobileCategory(true);}));
@@ -688,7 +768,7 @@ $('chat-launcher').addEventListener('click',()=>setChat(!state.chatOpen));$('col
 function normalizeElfText(text){let q=text.toLocaleLowerCase('pl').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l').replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim();const aliases={
 'good morning':'czesc','good evening':'czesc','thank you':'dziekuje','thanks':'dziekuje','hello':'czesc','hi':'czesc','hey':'czesc',
 'do not want':'nie chce','don t want':'nie chce','not interested in':'nie chce','i don t need':'nie potrzebuje',
-'3d printer':'drukarka','extra pair of hands':'dodatkowe rece','extra hands':'dodatkowe rece','headphones':'sluchawki','earplugs':'zatyczki','coffee':'kawa','refill':'dolewka','mouse':'myszka','jumper':'sweter','sweater':'sweter','tea warmer':'podgrzewacz','warmer':'podgrzewacz','tea':'herbata','debugging duck':'kaczuszka','rubber duck':'kaczuszka','duck':'kaczuszka','mug':'kubek','massage chair':'fotel','chair':'fotel','clone':'klon','meeting free':'dzien bez spotkan','no meetings':'dzien bez spotkan','not our team':'to nie u nas','blocks':'klocki','colouring':'kolorowanki','coloring':'kolorowanki','paints':'farby','paint':'farby','modelling clay':'plastelina','modeling clay':'plastelina','clay':'plastelina',
+'3d printer':'drukarka','extra pair of hands':'dodatkowe rece','extra hands':'dodatkowe rece','headphones':'sluchawki','earplugs':'zatyczki','coffee':'kawa','refill':'dolewka','mouse':'myszka','jumper':'sweter','sweater':'sweter','tea warmer':'podgrzewacz','warmer':'podgrzewacz','tea':'herbata','debugging duck':'kaczuszka','rubber duck':'kaczuszka','duck':'kaczuszka','mug':'kubek','massage chair':'fotel','chair':'fotel','clone':'klon','meeting free':'dzien bez spotkan','no meetings':'dzien bez spotkan','not our problem':'to nie u nas','not our team':'to nie u nas','blocks':'klocki','colouring':'kolorowanki','coloring':'kolorowanki','paints':'farby','paint':'farby','modelling clay':'plastelina','modeling clay':'plastelina','clay':'plastelina',
 'remove':'usun','delete':'usun','add':'dodaj','order':'zamow','send':'wyslac','submit':'wyslac','letter':'list','sack':'worek','basket':'worek','cart':'worek','cost':'koszt','price':'cena','payment':'platnosc','free':'darmo','complaint':'reklamacja','refund':'zwrot','survey':'ankieta','terms':'zasady','rules':'zasady','accept':'akceptuje','when':'kiedy','arrive':'dotrze','delivery':'dostawa','deliver':'dostarczyc','reindeer':'renifer','parcel locker':'elfomat','session':'sesja','three gifts':'trzy prezenty','lottery':'tokeny','tokens':'tokeny','screen reader':'czytnik','accessibility':'dostepnosc','quantity':'ilosc','how many':'ilosc','team':'dla zespolu','compare':'porownaj','better':'lepszy','recommend':'polec','suggest':'polec','available':'dostepny','where':'gdzie jest'};const pattern=new RegExp('\\b('+Object.keys(aliases).sort((a,b)=>b.length-a.length).join('|')+')\\b','g');return q.replace(pattern,key=>aliases[key]);}
 const elfProductTopics=[
 {id:'printer',test:/\bdrukark|\bdodatkow[a-z]* (?:pare? )?(?:rak|rece)\b|\bpar[aey] rak\b/,summary:'Dodatkowa para rąk do pracy. Nowy etat nie przeszedł akceptacji, więc próbujemy z drukarką.'},
@@ -785,7 +865,7 @@ function createLetterCounter({storage,session,makeId,fetchFn,server=false,endpoi
  const stored=()=>{try{const current=JSON.parse(read(storage,'pp-letter-receipts-v2')||'null');if(Array.isArray(current))return current.filter(x=>typeof x?.id==='string'&&Number.isSafeInteger(x.ordinal));const old=JSON.parse(read(storage,'pp-counted-letters')||'[]');return Array.isArray(old)?[...new Set(old.filter(x=>typeof x==='string'))].map((id,index)=>({id,ordinal:index+1,lotteryOrdinal:null})):[];}catch{return[];}};
  let receipts=stored(),id=read(session,'pp-letter-draft')||makeId(),total=server?null:receipts.length,ordinal=null,lotteryOrdinal=null,counted=false,inFlight=null,inFlightId=null,inFlightJoin=false,revision=0;
  write(session,'pp-letter-draft',id);
- const emit=error=>onChange({total,ordinal,lotteryOrdinal,winningInterval:100,server,error:Boolean(error)});
+ const emit=error=>onChange({total,ordinal,lotteryOrdinal,winningInterval:25,server,error:Boolean(error)});
  const request=async(method,submissionId,participates)=>{const response=await fetchFn(endpoint,{method,cache:'no-store',headers:method==='POST'?{'Content-Type':'application/json'}:{},...(method==='POST'?{body:JSON.stringify({submissionId,participates})}:{})});if(!response.ok)throw new Error('Counter unavailable');const data=await response.json();if(!Number.isSafeInteger(data?.total)||data.total<0)throw new Error('Invalid counter response');return data;};
  async function load(){if(!server){emit();return total;}const version=revision;try{const data=await request('GET');if(version===revision){total=Math.max(total||0,data.total);emit();}return data.total;}catch{if(version===revision)emit(true);return null;}}
  async function record(participates=false){participates=Boolean(participates);if(inFlight){if(inFlightId===id&&(!participates||inFlightJoin))return inFlight;return inFlight.then(()=>record(participates));}if(counted&&(!participates||lotteryOrdinal!==null)){emit();return total;}const requestId=id;inFlightId=requestId;inFlightJoin=participates;revision++;inFlight=(async()=>{try{let result;if(server){result=await request('POST',requestId,participates);if(!Number.isSafeInteger(result.ordinal)||result.ordinal<1||participates&&(!Number.isSafeInteger(result.lotteryOrdinal)||result.lotteryOrdinal<1))throw new Error('Invalid ordinal');total=Math.max(total||0,result.total);}else{const known=new Map(receipts.map(x=>[x.id,x]));for(const receipt of stored())known.set(receipt.id,receipt);receipts=[...known.values()];result=known.get(requestId);if(!result){result={id:requestId,ordinal:receipts.length+1,lotteryOrdinal:null};receipts.push(result);}if(participates&&result.lotteryOrdinal===null)result.lotteryOrdinal=receipts.reduce((max,x)=>Math.max(max,x.lotteryOrdinal||0),0)+1;write(storage,'pp-letter-receipts-v2',JSON.stringify(receipts));total=receipts.length;}if(id===requestId){counted=true;ordinal=result.ordinal;lotteryOrdinal=result.lotteryOrdinal??null;}emit();return total;}catch{emit(true);return null;}})().finally(()=>{inFlight=null;inFlightId=null;inFlightJoin=false;});return inFlight;}
@@ -798,7 +878,7 @@ const counterStorage=(()=>{try{return window.localStorage;}catch{return null;}})
 const counterSession=(()=>{try{return window.sessionStorage;}catch{return null;}})();
 const counterServer=location.protocol!=='file:'&&(!['localhost','127.0.0.1','terminal.local'].includes(location.hostname)||new URLSearchParams(location.search).get('counter')==='server');
 const makeLetterId=()=>globalThis.crypto?.randomUUID?globalThis.crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const n=Math.floor(Math.random()*16);return(c==='x'?n:(n&3)|8).toString(16);});
-const letterCounter=createLetterCounter({storage:counterStorage,session:counterSession,makeId:makeLetterId,fetchFn:(...args)=>fetch(...args),server:counterServer,onChange:({total,lotteryOrdinal,winningInterval,server,error})=>{writeUiText($('counter-label'),server?'Wysłane listy w demonstracji:':'Wysłane listy — licznik lokalny:');writeUiText($('counter-value'),error?'chwilowo niedostępny':total===null?'sprawdzam…':String(total));if(!$('confirmation').hidden&&$('join-lottery').checked){$('lottery-result').hidden=false;const won=lotteryOrdinal!==null&&lotteryOrdinal>0&&lotteryOrdinal%winningInterval===0;$('lottery-result').classList.toggle('winner',won);writeUiText($('lottery-result-title'),won?'Wygrywasz! Udział nr '+lotteryOrdinal:'Wynik loterii');const losses=['Tym razem tokeny zjadł renifer. Reklamację przyjmuje wyłącznie na sianie.','Niestety, elf wylosował dodatkowe spotkanie zamiast tokenów. Spróbuj zachować świąteczny spokój.','Tym razem bez wygranej. Mikołaj dołącza za to szacunek do Twojej cierpliwości.'];writeUiText($('lottery-result-text'),error?'Wynik chwilowo niedostępny. Możesz wrócić do listu i ponowić wysłanie; zachowamy ten sam numer zgłoszenia.':lotteryOrdinal===null?'Sprawdzamy numer udziału…':won?'Gratulacje! Twój udział otrzymał numer '+lotteryOrdinal+'. Co setne zgłoszenie wygrywa symboliczną nagrodę w naszej loterii.':('Twój udział ma numer '+lotteryOrdinal+'. '+losses[(lotteryOrdinal-1)%losses.length]));if(!error&&lotteryOrdinal!==null&&!server)writeUiText($('lottery-result-text'),' To wynik lokalnej próby.',true);}}});
+const letterCounter=createLetterCounter({storage:counterStorage,session:counterSession,makeId:makeLetterId,fetchFn:(...args)=>fetch(...args),server:counterServer,onChange:({total,lotteryOrdinal,winningInterval,server,error})=>{writeUiText($('counter-label'),server?'Wysłane listy w demonstracji:':'Wysłane listy — licznik lokalny:');writeUiText($('counter-value'),error?'chwilowo niedostępny':total===null?'sprawdzam…':String(total));if(!$('confirmation').hidden&&$('join-lottery').checked){$('lottery-result').hidden=false;const won=lotteryOrdinal!==null&&lotteryOrdinal>0&&lotteryOrdinal%winningInterval===0;$('lottery-result').classList.toggle('winner',won);writeUiText($('lottery-result-title'),won?'Wygrywasz! Udział nr '+lotteryOrdinal:'Wynik loterii');const losses=['Tym razem tokeny zjadł renifer. Reklamację przyjmuje wyłącznie na sianie.','Niestety, elf wylosował dodatkowe spotkanie zamiast tokenów. Spróbuj zachować świąteczny spokój.','Tym razem bez wygranej. Mikołaj dołącza za to szacunek do Twojej cierpliwości.'];writeUiText($('lottery-result-text'),error?'Wynik chwilowo niedostępny. Możesz wrócić do listu i ponowić wysłanie; zachowamy ten sam numer zgłoszenia.':lotteryOrdinal===null?'Sprawdzamy numer udziału…':won?'Gratulacje! Twój udział otrzymał numer '+lotteryOrdinal+'. Wygrywasz symboliczną nagrodę w naszej loterii!':('Twój udział ma numer '+lotteryOrdinal+'. '+losses[(lotteryOrdinal-1)%losses.length]));if(!error&&lotteryOrdinal!==null&&!server)writeUiText($('lottery-result-text'),' To wynik lokalnej próby.',true);}}});
 void letterCounter.load();
 
 // BAG_FEEDBACK_START
@@ -873,7 +953,7 @@ giftMotionPreference.addEventListener('change',stopGiftFlight);
 document.addEventListener('focusin',()=>{
  queueMiniSync();
  if(!mobileCategories.matches||$('mini-bag').hidden||$('mini-bag').contains(document.activeElement))return;
- requestAnimationFrame(()=>{const el=document.activeElement;if(!el||el===document.body)return;const r=el.getBoundingClientRect(),bar=$('mini-bag').getBoundingClientRect();if(bar.top>0&&r.bottom>bar.top&&r.top<window.innerHeight)el.scrollIntoView({block:'center',behavior:'auto'});});
+ requestAnimationFrame(()=>{const el=document.activeElement;if(!el||el===document.body)return;const r=el.getBoundingClientRect(),bar=$('mini-bag').getBoundingClientRect();if(bar.height>0&&r.bottom>bar.top&&r.top<bar.bottom&&r.right>bar.left&&r.left<bar.right)el.scrollIntoView({block:'center',behavior:'auto'});});
 });
 $('reset-show').addEventListener('click',()=>{stopGiftFlight();syncMiniBag();});
 $('letter-form').addEventListener('submit',()=>{stopGiftFlight();queueMiniSync();});
