@@ -92,6 +92,8 @@ Mobilna kolejność dokumentu: O mnie → katalog → zachowanie → pełny wore
 
 ## 4. Katalog prezentów
 
+Karty prezentów nie zawierają dekoracyjnych kodów ani numerów katalogowych, takich jak „PP/01”. Ta sama zasada obowiązuje w obu językach, wariantach WCAG oraz układach WEB i MOBILE.
+
 Trzy kategorie: „Dla mnie”, „Dla zespołu”, „Dla świętego spokoju”. Ich opisy są widoczne nad kartami i powiązane programowo z panelem w poprawnym wariancie. Niewybrany panel jest ukryty z odczytu i kolejności fokusu.
 
 ### 4.1. Dla mnie
