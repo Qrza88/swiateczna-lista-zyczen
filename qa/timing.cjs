@@ -1,0 +1,42 @@
+// Sprawdza rzeczywiste funkcje zegara z HTML przy kontrolowanym czasie.
+const fs=require('node:fs');
+const vm=require('node:vm');
+const assert=require('node:assert/strict');
+const html=fs.readFileSync(__dirname+'/../dist/index.html','utf8');
+const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
+const clocks=script.slice(script.indexOf('const formatTime='),script.indexOf("$('start-show').addEventListener"));
+let now=0,opens=0;
+const elements=new Map();
+const get=id=>{if(!elements.has(id))elements.set(id,{textContent:'',hidden:true,disabled:false,attrs:{},setAttribute(k,v){this.attrs[k]=v;}});return elements.get(id);};
+const initial=script.match(/const show=([^;]+);/)[1];
+const show=vm.runInNewContext('('+initial+')',{performance:{now:()=>now}});
+assert.equal(show.running,true);assert.equal(show.started,true);assert.equal(show.startedAt,0);
+const session={open:false,remaining:60000,startedAt:0,running:false,expired:false,pausedByShow:false};
+const minutes=vm.runInNewContext(script.match(/const DEMO_PROFILE=[\s\S]*?const GRINCH_DELAY_MINUTES=[^;]+;/)[0]+"\nGRINCH_DELAY_MINUTES");
+assert.ok([2,7].includes(minutes));
+const threshold=minutes*60000;
+const context=vm.createContext({$,show,session,GRINCH_DELAY_MINUTES:minutes,performance:{now:()=>now},announce(){},openGrinch(){opens++;show.grinchUsed=true;}});
+function $(id){return get(id);}
+vm.runInContext(clocks+'\nthis.timer={tick,toggleShow,elapsed,formatTime};',context);
+const {tick,toggleShow,elapsed,formatTime}=context.timer;
+now=threshold-1;tick();assert.equal(opens,0,'Nie otwieramy przed 2:00');
+now=threshold;tick();assert.equal(opens,1,'Wyzwolenie przy progu 2:00');
+now=900000;tick();assert.equal(opens,1,'Tylko jedno automatyczne wyzwolenie');
+show.grinchUsed=false;tick();assert.equal(opens,2,'Opóźniona obsługa nie gubi progu');
+show.elapsed=0;show.startedAt=now;show.running=true;
+now+=10000;toggleShow();assert.equal(elapsed(),10000,'Pauza zachowuje upływ');
+now+=70000;assert.equal(elapsed(),10000,'Pauza nie liczy czasu');
+toggleShow();now+=5000;assert.equal(elapsed(),15000,'Wznowienie kontynuuje czas');
+session.open=true;session.remaining=60000;session.startedAt=now;session.running=true;
+now+=10000;tick();assert.equal(get('session-clock').textContent,'00:50','Osobny czas sesji');
+toggleShow();now+=30000;tick();assert.equal(get('session-clock').textContent,'00:50','Pauza pokazu zatrzymuje sesję');
+toggleShow();now+=50001;tick();assert.equal(session.expired,true,'Wygaśnięcie sesji');
+assert.equal(get('extend-session').textContent,'Wznów sesję','Akcja odzyskania sesji');
+assert.equal(get('session-expired').hidden,false,'Jawny komunikat po wygaśnięciu');
+assert.equal(formatTime(420000),'07:00');
+console.log('OK: automatyczny start po otwarciu, próg 2:00, jednorazowość, opóźniona obsługa, pauza/wznawianie, niezależna sesja i wygaśnięcie.');
+
+const publicShow={elapsed:119999,startedAt:0,running:false,started:true,grinchUsed:false};
+const publicContext=vm.createContext({$,show:publicShow,session:{open:false},GRINCH_DELAY_MINUTES:2,performance:{now:()=>0},openGrinch(){publicShow.grinchUsed=true;},announce(){}});
+vm.runInContext(clocks+'\ntick();',publicContext);assert.equal(publicContext.show.grinchUsed,false);publicContext.show.elapsed=120000;publicContext.show.running=true;vm.runInContext('tick();',publicContext);assert.equal(publicContext.show.grinchUsed,true);
+console.log('OK: profil publiczny ma osobny próg 2:00.');
