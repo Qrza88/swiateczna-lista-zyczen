@@ -20,11 +20,19 @@ W „Dla zespołu” ilość można wpisać albo zmienić przyciskami −/+, w z
 
 Podczas przeglądania katalogu na telefonie mini worek znajduje się u góry widoku, w prawym rogu, z sumą sztuk i przejściem do pełnej zawartości. Udane dodanie uruchamia krótki przelot ilustracji i ruch ikony oraz licznika. Ustawienie ograniczenia ruchu pomija animację; tekstowe potwierdzenie i odczyt statusu nadal działają. Szybkie kliknięcia, reset i zmiana widoku anulują poprzedni efekt. Na komputerze potwierdzenie jest przy bocznym worku. W obu układach karty prezentów nie dostają dodatkowych komunikatów pod produktem.
 
-Podpowiedzi i instrukcje mają minimum 1 rem (domyślnie 16 px). Drobny druk i dopiski z gwiazdką mają 0,875 rem (14 px). Przełącznik wariantów ma dwa równe pola z pełnym tłem aktywnej opcji. Opis terminu odpowiedzi znajduje się pod przyciskiem wysyłki i jest z nim powiązany. Dymek ilustracji ma dwie wyśrodkowane linie bez kursywy. Pieczątki i „Wydział spraw pilnych” są czytelne także na telefonie. Na ekranie sukcesu przycisk „Wróć do listu” ma wyraźną, dekoracyjną strzałkę.
+Podpowiedzi i instrukcje mają minimum 1 rem (domyślnie 16 px). Drobny druk i dopiski z gwiazdką mają 0,875 rem (14 px). Przełącznik wariantów ma dwa równe pola z pełnym tłem aktywnej opcji. Opis terminu odpowiedzi znajduje się pod przyciskiem wysyłki i jest z nim powiązany. Dymek ilustracji ma dwie wyśrodkowane linie bez kursywy. Pieczątki i oznaczenia nadania mają pogrubiony krój Georgia 1,125 rem i wyraźne ramki; „Wydział spraw pilnych” ma 1 rem. Są czytelne także na telefonie. Na ekranie sukcesu przycisk „Wróć do listu” ma wyraźną, dekoracyjną strzałkę.
 
 Jedna biała powierzchnia łączy zakładki, opis kategorii, prezenty i dopisek o umownych cenach. Na telefonie obejmuje również rozwijany wybór kategorii z graficznym wskaźnikiem stanu. W poprawnym wariancie przycisk udostępnia aktualne `aria-expanded`; w błędnym brak tego atrybutu jest celowy. Karty prezentów na telefonie występują pojedynczo w rzędzie.
 
+W upomnieniu Mikołaja liczba prezentów ma osobne jasne tło z zieloną ramką i pogrubioną wartość 1,5 rem. Jest częścią opisu dialogu dostępnego dla czytnika.
+
 W poprawnym wariancie Grinch ma rolę `alertdialog`, nazwę z tytułu `h2` i opis; fokus trafia do okna po jego pokazaniu. Teksty mówią o liście życzeń, a przycisk powrotu to „Wróć do listy życzeń”. Data 1931 w stylizacji odnosi się do kampanii Sundbloma dla Coca-Coli, nie do powstania legendy o biegunie północnym.
+
+Przy 20 sekundach pozostałego czasu pojawia się jednorazowe, widoczne ostrzeżenie. Osobny, istniejący od początku `role="alert"` ogłasza je czytnikowi w obu wariantach. Pauza i wznowienie nie powtarzają komunikatu, a ponowne ręczne otwarcie rozpoczyna nową próbę. Opóźniona obsługa progu informuje o mniej niż 20 sekundach; po upływie czasu ostrzeżenie znika.
+
+Po upływie 60 sekund Grinch opróżnia worek. Nagłówek zmienia się na „Grinch wyjął Twoje prezenty z worka”; dla pustego worka brzmi „Grinch nie miał czego zabrać”. Kolejne ręczne otwarcie przywraca tytuł „Grinch przejął sesję”. Elfy zachowują kopię pozycji i ilości w pamięci karty. „Odzyskaj prezenty” jest dostępne w oknie Grincha oraz przy pełnym worku po jego zamknięciu. Odzyskanie dodaje zabrane sztuki do aktualnego worka, bez utraty nowych wyborów i bez podwójnego przywrócenia. Imię i wiadomość pozostają zachowane, a pełny reset usuwa także kopię. Zamknięcie okna przed upływem czasu zapobiega psikusowi. Automatyczny atak nie przerywa ekranu sukcesu. Pasek okna brzmi „Nieoczekiwany gość”.
+
+Nagłówek loterii oraz ilości w worku mają prosty, grubszy krój w obu układach. Suma sztuk ma 1,5 rem, a licznik w nagłówku worka 1,125 rem. Procent na skali grzeczności ma 1,25 rem, pogrubienie i jasne tło z ramką; pełny opis wartości zawija się na telefonie.
 
 Historia czatu ma `role="log"` i `aria-live="off"`. Osobny, istniejący od początku dokumentu region `role="status"`, z `aria-live="polite"` i `aria-atomic="true"`, otrzymuje nową odpowiedź elfa z nazwą nadawcy. Ten podział ogranicza powtórny odczyt własnych pytań i odpowiedzi. Wysłanie wiadomości pozostawia fokus w polu edycji. Reset usuwa rozmowę i anuluje oczekujący komunikat. Odczyt wymaga sprawdzenia z docelowym czytnikiem.
 
@@ -63,6 +71,7 @@ Próba w Chrome obejmuje PL i EN przy szerokościach ramki 320 px, 390 px oraz n
 - `elf-engine.js` — źródło logiki odpowiedzi, włączone w HTML między `ELF_REPLY_ENGINE_START/END`.
 - `i18n.js` — teksty i mechanizm wersji językowych, włączone w HTML między `UI_I18N_START/END`.
 - `bag-feedback.js` — mini worek i opcjonalna animacja, włączone w HTML między `BAG_FEEDBACK_START/END`.
+- `grinch-prank.js` — odwracalne opróżnianie worka i odzyskiwanie prezentów, osadzone również w HTML między `GRINCH_PRANK_START/END`.
 - `netlify/` — funkcja i logika wspólnego licznika.
 - `qa/` — testy lokalne.
 - `WYMAGANIA.md` — wymagania, instrukcja pokazu i mapa celowych błędów.

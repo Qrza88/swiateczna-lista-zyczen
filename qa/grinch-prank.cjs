@@ -1,0 +1,14 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync(__dirname+'/../dist/index.html','utf8');
+const helper=fs.readFileSync(__dirname+'/../grinch-prank.js','utf8');
+assert.equal(html.match(/\/\/ GRINCH_PRANK_START[\s\S]*?\/\/ GRINCH_PRANK_END/)[0].trim(),helper.trim());
+const scope=vm.createContext({Map});vm.runInContext(helper+'\nthis.create=createGrinchPrank;',scope);
+const prank=scope.create(),bag=new Map([['chair',3],['duck',1]]);
+assert.equal(prank.empty(bag),4);assert.equal(bag.size,0);assert(prank.hasGifts);assert.equal(prank.quantity,4);
+bag.set('chair',2);bag.set('coffee',1);
+assert.equal(prank.restore(bag),4);assert.equal(bag.get('chair'),5);assert.equal(bag.get('duck'),1);assert.equal(bag.get('coffee'),1);
+assert.equal(prank.hasGifts,false);assert.equal(prank.restore(bag),0);assert.equal(bag.get('chair'),5,'Powtórne odzyskanie nie dubluje sztuk');
+prank.empty(bag);bag.set('duck',2);prank.empty(bag);assert.equal(prank.quantity,9);prank.restore(bag);assert.equal(bag.get('duck'),3,'Kolejny ręczny psikus zachowuje poprzednią kopię');
+prank.empty(bag);prank.reset();assert.equal(prank.hasGifts,false);assert.equal(prank.restore(bag),0,'Pełny reset usuwa kopię');
+assert.equal(prank.empty(new Map()),0);assert.equal(prank.hasGifts,false);
+console.log('OK: Grinch opróżnia worek, zachowuje i odzyskuje ilości, łączy z nowymi prezentami, nie dubluje przywrócenia i respektuje reset.');
