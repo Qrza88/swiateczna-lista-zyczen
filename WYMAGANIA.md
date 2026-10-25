@@ -184,8 +184,8 @@ Odpowiedzi są lokalne, przygotowane z góry i dopasowane do pytania oraz bież�
 
 | Profil czasu | Zastosowanie | Automatyczny atak |
 | --- | --- | --- |
-| `presentation` — aktualnie wybrany | Nagranie 15-minutowej prezentacji. | 7:00 od automatycznego startu. |
-| `public` — do włączenia po nagraniu, przed publikacją | Samodzielna zabawa odwiedzających. | 2:00 od automatycznego startu. |
+| `presentation` — lokalny plik do nagrania | Nagranie 15-minutowej prezentacji. | 7:00 od automatycznego startu. |
+| `public` — opublikowana strona | Samodzielna zabawa odwiedzających. | 2:00 od automatycznego startu. |
 
 W `dist/index.html` zmieniamy jedną stałą `DEMO_PROFILE` z `'presentation'` na `'public'`. Próg, opis w panelu i komunikat ręcznego startu korzystają z tego ustawienia. Profil publiczny działa na Netlify; plik do nagrania zachowuje 7 minut. Reset i pauza działają tak samo w obu profilach.
 
@@ -459,3 +459,11 @@ Czat pozostaje lokalnym silnikiem przygotowanych odpowiedzi. Rozpoznaje obsługi
 **MOBILE:** wybór języka ma wysokość co najmniej 44 px i może przejść do osobnego wiersza nagłówka. Każdy przycisk ilości ma 44 × 44 px, pole ma wysokość minimum 44 px, a etykieta mieści się w osobnym wierszu. Licznik listów w stopce jest częścią układu, bez stałego pływającego elementu; zachowuje kontrast tekstu. Nadal jedna karta prezentu i dostawy w rzędzie oraz rozwijany wybór kategorii.
 
 **Weryfikacja:** 22 polskie i 18 angielskich scenariuszy silnika elfa, testy czasu, 8 testów liczników, sprawdzenie tłumaczeń parametrów i tytułów. Dodatkowa próba DOM obejmuje EN → PL → EN bez utraty danych, +/- i granice, zachowanie fokusu, status czatu, walidację, oba okna, sukces i loterię, ochronę własnej treści przed tłumaczeniem i interpretacją HTML oraz położenie licznika w stopce. Test DOM nie mierzy geometrii ani syntezy mowy. Nowy układ EN/PL przy 320/390 px oraz NVDA i rzeczywisty telefon wymagają osobnej próby.
+
+### Potwierdzenie aktualizacji publicznej (25.10.2026)
+
+- Repozytorium: https://github.com/Qrza88/swiateczna-lista-zyczen . Kod aplikacji i testy opublikowano razem w commicie `0e8bf26d70ec33832afee6a60a4dc60c4c256e1c`.
+- Netlify: wdrożenie `6ade0b093f5447d3345a4680`, stan `ready`, dokładnie dla tego commita. Strona jest publiczna, bez hasła ani logowania zespołowego.
+- Anonimowy odczyt HTML zwrócił HTTP 200; plik publiczny jest identyczny bajt po bajcie z przygotowanym `dist/index.html`. Obejmuje Polski / English, poprawione zegary i kanał czatu, większe cele, przyciski ilości i licznik w stopce.
+- Endpoint licznika odpowiedział HTTP 200, `Cache-Control: no-store`, interwał wygranej 100. Przy tej kontroli odczyt wynosił 3 listy i 3 udziały; nie wykonywano dodatkowego produkcyjnego wysłania ani zerowania. Wartości są stanem z chwili kontroli, nie stałą treścią strony.
+- Testy `npm test` zakończyły się powodzeniem. Próby DOM dla interakcji i zmiany języka opisano wyżej; pomiar nowego układu 320/390 px i test syntezy czytnika pozostają do wykonania.
