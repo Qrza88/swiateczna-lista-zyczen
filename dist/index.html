@@ -112,6 +112,70 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 /* Language and the discreet shared letter counter. */
 .catalog-tab{white-space:normal;overflow-wrap:anywhere}
 .topline{flex-wrap:wrap;gap:14px}.site-tools{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.language-picker{display:flex;align-items:center;gap:8px}.language-picker label{font-size:12px}.language-picker select{min-width:110px;min-height:44px;padding:8px 10px;border:1px solid #68765e;border-radius:3px;background:var(--paper);color:var(--forest);font-size:16px}.language-picker select:focus-visible{outline:3px solid var(--focus);outline-offset:4px;box-shadow:0 0 0 2px #fffdf6}.footer .letter-counter{flex-basis:100%;align-self:flex-end;margin:0;padding:5px 0 0;border:0;font-size:12px;text-align:right;color:var(--muted)}.footer .letter-counter strong{font:600 12px/1.55 "Segoe UI",Arial,sans-serif;color:var(--muted)}
+
+/* BAG_FEEDBACK_CSS_START */
+/* czytelniejsze instrukcje i potwierdzenia działań. */
+.field-note,.section-caption,.mode-note,.category-note,.product-body p,.qty-row,
+.qty-error,.catalog-footnote,.bag-empty p,.bag-status,.bag-item small,.bag-total,
+.range-ends,.delivery-note,.send-note,.window-footnote,.window-body>p,
+.chat-heading-row p,.chat-message,.chat-message p,.chat-composer label,
+.chat-composer textarea,.token-ad p,.token-ad small,.terms-label,
+.terms-note,.optional,.error,.demo-notice,.presenter-inner p,.oath,
+.field label,.delivery-question,.range-label,.range-score,.elf-terms-box>p,
+.chat-suggestions>span,.chat-suggestions .smallbtn,.chat-actions .primary,
+.success-footnote,.success-personal,.success-lead,.confirmation p,
+.lottery-result p,.lottery-result .lottery-fineprint,.santa-count,
+.smallbtn,.primary,.add-button{font-size:1rem!important;line-height:1.5!important}
+.field-note,.product-body p,.catalog-footnote,.category-note,.delivery-note,
+.send-note,.window-footnote,.optional{color:#45503f}
+.category-note{max-width:none}.product-body h3{font-size:1.125rem}
+.bag-item strong{font-size:1rem}.bag-item small{display:block}
+.product-body p,.token-ad p,.window-footnote,.send-note{overflow-wrap:anywhere}
+.qty-error,.error{color:#8a2d28!important}
+.modebar{flex-wrap:wrap}.mode-note{text-align:left;max-width:24rem}
+.modebar fieldset{min-width:0;max-width:100%}.mode-options{max-width:100%}
+.mode-option{min-width:0;flex:1}.mode-option span{white-space:normal}
+.range-ends{gap:20px}.range-ends span{max-width:46%}
+.mini-bag{display:none}.mini-bag[hidden]{display:none!important}
+@media(max-width:760px){
+ html{scroll-padding-bottom:125px}.sheet{overflow:visible}
+ .hero-copy>p{font-size:1rem}.product-body p{font-size:1rem}
+ .mode-option span,.mobile-category-trigger,.mobile-category-options button,
+ .catalog-tab,.add-button,.smallbtn,.primary,.delivery-option{font-size:1rem}
+ .modebar fieldset,.mode-options{width:100%}.mode-options{display:flex}
+ .mode-option span{padding:10px;line-height:1.4}
+ .section-caption{margin-left:0}.range-ends{gap:14px}
+ .mini-bag{position:fixed;z-index:120;left:16px;right:16px;bottom:max(14px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:2px solid #163d32;background:#fffdf6;color:#163d32;box-shadow:0 6px 24px #102f2733;border-radius:5px}
+ .mini-bag strong{display:block;font-size:1rem;line-height:1.4;min-width:0}
+ .mini-bag a{display:flex;align-items:center;justify-content:center;flex:0 1 145px;min-width:44px;min-height:44px;padding:8px 10px;font-size:1rem;font-weight:600;line-height:1.4;color:#fffdf6;background:#163d32;border-radius:3px;text-align:center;text-decoration:none}
+ #catalog-section{padding-bottom:115px}
+ .window-body{padding:20px}.window-hero{gap:12px}.window-hero h2{font-size:1.75rem}
+ .window-hero svg{width:64px;height:76px}.window-actions>*{width:100%}
+ .token-ad{transform:none}.token-ad h3{overflow-wrap:anywhere}
+ .chat-message strong{font-size:.875rem}
+}
+@media(max-width:760px) and (max-height:520px){
+ .mini-bag{position:static;margin-top:20px;box-shadow:none}
+ #catalog-section{padding-bottom:30px}
+}
+/* Mały worek: pojedyncza, kompaktowa akcja z krótkim potwierdzeniem. */
+.mini-bag-mark{display:block;flex:none;width:42px;height:44px;transform-origin:50% 90%}
+.mini-bag-mark svg{display:block;width:100%;height:100%}
+.mini-bag-copy{display:block;min-width:0}
+.mini-bag-last{display:block;margin-top:3px;color:#315e43;font-size:1rem;line-height:1.4}
+.mini-bag-arrow{font-size:22px;flex:none}
+.gift-flight{position:fixed;z-index:160;width:48px;height:48px;display:grid;place-items:center;border:1px solid #315e43;border-radius:50%;background:#fffdf6;box-shadow:0 3px 12px #102f2722;pointer-events:none;will-change:transform,opacity}
+.gift-flight svg{display:block;width:44px;height:38px}
+.gift-flight-qty{position:absolute;right:-4px;top:-7px;padding:1px 5px;border-radius:12px;background:#163d32;color:#fffdf6;font:600 14px/1.4 "Segoe UI",Arial,sans-serif}
+@media(max-width:760px){
+ .mini-bag{left:auto;right:16px;max-width:calc(100% - 32px);padding:0;border-radius:9px}
+ .mini-bag a.mini-bag-link{display:flex;flex:1 1 auto;justify-content:flex-start;gap:12px;width:100%;min-height:64px;padding:10px 14px;background:#fffdf6;color:#163d32;text-align:left;text-decoration:none;border-radius:7px}
+ .mini-bag strong{font-size:1rem;line-height:1.4}
+}
+@media(max-width:760px) and (max-height:520px){.mini-bag{width:max-content;max-width:100%;margin-left:auto}}
+@media(prefers-reduced-motion:reduce){.gift-flight{display:none!important}}
+
+/* BAG_FEEDBACK_CSS_END */
 </style>
 </head>
 <body>
@@ -143,7 +207,7 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 </defs></svg>
 <div id="page-root">
 <a class="skip" id="skip-content" href="#author-name">Przejdź do treści</a>
-<header class="topline"><div class="brand"><svg aria-hidden="true"><use href="#icon-mail"/></svg><span>Poczta Północna</span></div><div class="site-tools"><span class="edition">BIURO OBSŁUGI ŻYCZEŃ · OD 1881</span><div class="language-picker"><label for="page-language">Język strony</label><select id="page-language" name="page-language"><option value="pl" lang="pl" translate="no">Polski</option><option value="en" lang="en" translate="no">English</option></select></div></div></header>
+<header class="topline"><div class="brand"><svg aria-hidden="true"><use href="#icon-mail"/></svg><span>Poczta Północna</span></div><div class="site-tools"><span class="edition">BIURO OBSŁUGI ŻYCZEŃ · OD 1931</span><div class="language-picker"><label for="page-language">Język strony</label><select id="page-language" name="page-language"><option value="pl" lang="pl" translate="no">Polski</option><option value="en" lang="en" translate="no">English</option></select></div></div></header>
 <div class="sheet"><main id="main">
 <details class="presenter" id="presenter"><summary>Panel prowadzącej <span class="clock" id="show-clock" role="timer" aria-label="Czas pokazu" aria-live="off"><span id="show-clock-digits" aria-hidden="true">00:00</span><span class="sr-only" id="show-clock-text">0 minut, 0 sekund</span></span></summary><div class="presenter-inner"><p>Zegar rusza po otwarciu strony. Grinch pojawi się raz, przy <span id="grinch-delay-label">7:00</span>. Pauza zatrzymuje też odliczanie sesji. Po resecie rozpocznij nowy pokaz ręcznie.</p><div class="presenter-actions"><button type="button" class="smallbtn" id="start-show" disabled>Rozpocznij pokaz</button><button type="button" class="smallbtn" id="pause-show">Pauza</button><button type="button" class="smallbtn" id="test-grinch">Przetestuj Grincha</button><button type="button" class="smallbtn danger" id="reset-show">Resetuj pokaz i list</button></div><nav class="jump-links" aria-label="Przejdź do przykładu"><a href="#author-name">Nazwa pola</a><a href="#catalog-title">Katalog i role</a><a href="#behavior-title">Wartość suwaka</a><a href="#delivery-title">Przyciski opcji</a><a href="#chat-launcher">Czat bez nazwy</a><a href="#send-letter">Wysyłanie</a></nav></div></details>
 <header class="hero" id="letter-hero">
@@ -162,7 +226,14 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 <form id="letter-form" class="letter-form" aria-labelledby="letter-title" novalidate>
 <div class="form-main" id="form-main">
 <section class="step" aria-labelledby="about-title"><div class="section-title"><span class="step-no" aria-hidden="true">01</span><h2 id="about-title" tabindex="-1">O mnie</h2></div><div class="name-line"><div class="field"><label for="author-name">Twoje imię <span class="optional">(wymagane)</span></label><input id="author-name" name="author" type="text" required autocomplete="given-name" aria-label="Identyfikator petenta" aria-describedby="author-note"><p class="field-note" id="author-note">Nazwisko Mikołaj sprawdzi w logach.</p><p class="error" id="author-error" hidden>Twoje imię: wpisz imię, aby wysłać list.</p></div><p class="name-annotation hand" aria-hidden="true">Drogi Mikołaju,<br>to znowu ja.</p></div><div class="field" style="margin-top:20px"><label for="santa-message">Wiadomość do Mikołaja <span class="optional">(opcjonalnie)</span></label><textarea id="santa-message" name="message" rows="2" placeholder="W tym roku zakres moich potrzeb nieznacznie wzrósł…"></textarea></div></section>
-<section class="step" aria-labelledby="catalog-title"><div class="section-title"><span class="step-no" aria-hidden="true">02</span><h2 id="catalog-title" tabindex="-1">Na co mam chrapkę</h2></div><p class="section-caption">Budżet: kwestia interpretacji.</p><div class="mobile-picker" id="mobile-picker"><button type="button" class="mobile-category-trigger" id="mobile-category-trigger" aria-controls="mobile-category-options">Kategoria prezentów: <strong id="mobile-category-current">Dla mnie</strong><span aria-hidden="true">⌄</span></button><div class="mobile-category-options" id="mobile-category-options" role="group" aria-label="Kategorie prezentów" hidden><button type="button" data-mobile-category="self" id="mobile-category-self" aria-pressed="true">Dla mnie</button><button type="button" data-mobile-category="team" id="mobile-category-team" aria-pressed="false">Dla zespołu</button><button type="button" data-mobile-category="peace" id="mobile-category-peace" aria-pressed="false">Dla świętego spokoju</button></div></div><div class="catalog-tabs" id="catalog-tabs"><button type="button" class="catalog-tab active" id="tab-self" data-category="self">Dla mnie</button><button type="button" class="catalog-tab" id="tab-team" data-category="team">Dla zespołu</button><button type="button" class="catalog-tab" id="tab-peace" data-category="peace">Dla świętego spokoju</button></div><div id="panel-self" class="catalog-panel"><p class="category-note" id="self-note">Bo jestem sobie sterem, żeglarzem i okrętem. I najlepiej wiem, co ucieszy mnie pod choinką.</p><div class="product-grid" id="products-self"></div></div><div id="panel-team" class="catalog-panel" hidden><p class="category-note" id="team-note">Jeden za wszystkich, wszyscy za jednego. Wybierz prezenty dla zespołu i ustaw, ile sztuk ma trafić do worka.</p><div class="product-grid" id="products-team"></div></div><div id="panel-peace" class="catalog-panel" hidden><p class="category-note" id="peace-note">Prezenty dla dzieci, których rodzice pracują zdalnie. Na dni wolne od szkoły i te, kiedy katar zatrzymuje dzieci w domu.</p><div class="product-grid" id="products-peace"></div></div><p class="catalog-footnote">Ceny umowne. Potrzeby autentyczne. Realizacja zależy od reniferów.</p><p id="catalog-error" class="error" hidden>Dodaj przynajmniej jeden prezent do worka.</p></section>
+<section class="step" id="catalog-section" aria-labelledby="catalog-title"><div class="section-title"><span class="step-no" aria-hidden="true">02</span><h2 id="catalog-title" tabindex="-1">Na co mam chrapkę</h2></div><p class="section-caption">Budżet: kwestia interpretacji.</p><div class="mobile-picker" id="mobile-picker"><button type="button" class="mobile-category-trigger" id="mobile-category-trigger" aria-controls="mobile-category-options">Kategoria prezentów: <strong id="mobile-category-current">Dla mnie</strong><span aria-hidden="true">⌄</span></button><div class="mobile-category-options" id="mobile-category-options" role="group" aria-label="Kategorie prezentów" hidden><button type="button" data-mobile-category="self" id="mobile-category-self" aria-pressed="true">Dla mnie</button><button type="button" data-mobile-category="team" id="mobile-category-team" aria-pressed="false">Dla zespołu</button><button type="button" data-mobile-category="peace" id="mobile-category-peace" aria-pressed="false">Dla świętego spokoju</button></div></div><div class="catalog-tabs" id="catalog-tabs"><button type="button" class="catalog-tab active" id="tab-self" data-category="self">Dla mnie</button><button type="button" class="catalog-tab" id="tab-team" data-category="team">Dla zespołu</button><button type="button" class="catalog-tab" id="tab-peace" data-category="peace">Dla świętego spokoju</button></div><div id="panel-self" class="catalog-panel"><p class="category-note" id="self-note">Bo jestem sobie sterem, żeglarzem i okrętem. I najlepiej wiem, co ucieszy mnie pod choinką.</p><div class="product-grid" id="products-self"></div></div><div id="panel-team" class="catalog-panel" hidden><p class="category-note" id="team-note">Jeden za wszystkich, wszyscy za jednego. Wybierz prezenty dla zespołu i ustaw, ile sztuk ma trafić do worka.</p><div class="product-grid" id="products-team"></div></div><div id="panel-peace" class="catalog-panel" hidden><p class="category-note" id="peace-note">Prezenty dla dzieci, których rodzice pracują zdalnie. Na dni wolne od szkoły i te, kiedy katar zatrzymuje dzieci w domu.</p><div class="product-grid" id="products-peace"></div></div><p class="catalog-footnote">Ceny umowne. Potrzeby autentyczne. Realizacja zależy od reniferów.</p><p id="catalog-error" class="error" hidden>Dodaj przynajmniej jeden prezent do worka.</p><div class="mini-bag" id="mini-bag" role="group" aria-label="Podsumowanie worka" hidden>
+ <a class="mini-bag-link" href="#bag-title">
+  <span class="mini-bag-mark" id="mini-bag-mark" aria-hidden="true"><svg viewBox="0 0 120 112"><use href="#art-bag"></use></svg></span>
+  <span class="mini-bag-copy"><span class="sr-only">Przejdź do worka. </span><strong id="mini-bag-label">Twój worek: 0 szt.</strong><span class="mini-bag-last" id="mini-bag-last" hidden></span></span>
+  <span class="mini-bag-arrow" aria-hidden="true">↗</span>
+ </a>
+</div>
+</section>
 <section class="step" aria-labelledby="behavior-title"><div class="section-title"><span class="step-no" aria-hidden="true">03</span><h2 id="behavior-title" tabindex="-1">Moje zachowanie</h2></div><div class="range-label"><span id="behavior-label">Poziom grzeczności w tym roku</span><span class="range-score" id="behavior-score" aria-hidden="true">50%</span></div><p class="field-note range-instruction" id="behavior-instruction">Ustaw samoocenę od 0 do 100%, co 10 punktów procentowych.</p><div class="range-slot" id="range-slot"></div><div class="range-ends"><span id="behavior-min">0% · Zdecydowanie do poprawy</span><span id="behavior-max">100% · Wzorowe zachowanie</span></div><p class="field-note behavior-note" id="behavior-note">Ocena własna. Mikołaj może mieć inne dane.</p><div id="oath-slot"></div></section>
 <section class="step" aria-labelledby="delivery-title"><div class="section-title"><span class="step-no" aria-hidden="true">04</span><h2 id="delivery-title" tabindex="-1">Dostawa z Bieguna Północnego</h2></div><fieldset><legend class="delivery-question">Jak dostarczyć prezenty?</legend><div class="delivery-options" id="delivery-options"></div></fieldset><p class="delivery-note">Dostawa bez śledzenia. Święty i tak wie, gdzie jesteś.</p></section>
 <section class="step send-step" aria-labelledby="signature-title"><div class="section-title"><span class="step-no" aria-hidden="true">05</span><h2 id="signature-title" tabindex="-1">Podpis i wysyłka</h2></div><p class="signature">Z poważaniem i niewielką presją,</p><div class="elf-terms-box"><div class="terms-eyebrow mono">Mały druk, wielkie oczekiwania</div><p id="elf-terms-note">Elfy nie wysyłają ankiet satysfakcji z dostawy ani jakości prezentów i nie ponoszą odpowiedzialności za pomyłki. <em>Każda pomyłka jest dodatkową niespodzianką.</em></p><label class="terms-label" for="elf-terms"><input type="checkbox" id="elf-terms" name="elf-terms" required aria-describedby="elf-terms-note"><span>Akceptuję zasady realizacji życzeń <span class="optional">(wymagane)</span></span></label><p class="error" id="elf-terms-error" hidden>Zaakceptuj zasady realizacji życzeń, aby wysłać list.</p></div><div class="send-row"><button type="submit" class="primary" id="send-letter" aria-describedby="send-note" aria-label="Zatwierdź formularz">Wyślij list <span class="arrow" aria-hidden="true">↗</span></button><p class="send-note" id="send-note">Termin odpowiedzi: przed świętami.<br>Nie precyzujemy, którymi.</p></div></section>
@@ -209,7 +280,7 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 <div class="sr-only" id="elf-status" role="status" aria-live="polite" aria-atomic="true"></div>
 </div>
 <div class="overlay" id="santa-overlay" hidden><div class="retro-window santa-window" id="santa-window" role="dialog" aria-modal="true" aria-labelledby="santa-title" aria-describedby="santa-description"><div class="window-titlebar"><span>Poczta Północna · kontrola ładowności</span><button type="button" class="window-close" id="close-santa" aria-label="Zamknij"><svg aria-hidden="true"><use href="#icon-close"/></svg></button></div><div class="window-body"><div class="window-hero"><svg aria-hidden="true"><use href="#art-bag"/></svg><h2 id="santa-title">Święty widzi,<br>na co masz chrapkę!</h2></div><p id="santa-description">Zostaw trochę dla innych. Renifery mają ograniczoną ładowność.</p><p class="santa-count" id="santa-count"></p><button type="button" class="primary" id="continue-shopping">Wybieram dalej <span aria-hidden="true">↗</span></button></div></div></div>
-<div class="overlay" id="grinch-overlay" hidden><div class="retro-window" id="grinch-window"><div class="window-titlebar"><span>session_manager.exe · nieoczekiwany gość</span><button type="button" class="window-close" id="close-grinch" aria-label="Zamknij"><svg aria-hidden="true"><use href="#icon-close"/></svg></button></div><div class="window-body"><div class="window-hero"><svg aria-hidden="true"><use href="#art-grinch"/></svg><h2 id="grinch-title">Grinch<br>przejął sesję</h2></div><p id="grinch-description">Za 60 sekund Twoja sesja zakupowa wygaśnie. Mam nadzieję, że nie zdążysz wysłać zamówienia. Pozdrawiam bez świątecznej serdeczności, Grinch.</p><div class="session-count"><span id="session-label">Do końca tej złośliwości</span><span id="session-clock" role="timer" aria-label="Pozostały czas sesji" aria-live="off"><span id="session-clock-digits" aria-hidden="true">01:00</span><span class="sr-only" id="session-clock-text">1 minuta, 0 sekund</span></span></div><p id="session-expired" class="error" role="status" hidden>Czas minął. List i prezenty są zachowane. Możesz wznowić sesję.</p><div class="window-actions"><button type="button" class="primary" id="extend-session">Przedłuż sesję</button><button type="button" class="smallbtn" id="end-session">Zakończ zakupy</button><button type="button" class="smallbtn" id="pause-session">Zatrzymaj odliczanie</button></div><p class="window-footnote">Grinch nie ma uprawnień do usuwania Twojego listu.</p></div></div></div>
+<div class="overlay" id="grinch-overlay" hidden><div class="retro-window" id="grinch-window"><div class="window-titlebar"><span>session_manager.exe · nieoczekiwany gość</span><button type="button" class="window-close" id="close-grinch" aria-label="Zamknij"><svg aria-hidden="true"><use href="#icon-close"/></svg></button></div><div class="window-body"><div class="window-hero"><svg aria-hidden="true"><use href="#art-grinch"/></svg><h2 id="grinch-title">Grinch przejął sesję</h2></div><p id="grinch-description">Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.</p><div class="session-count"><span id="session-label">Do końca tej złośliwości</span><span id="session-clock" role="timer" aria-label="Pozostały czas sesji" aria-live="off"><span id="session-clock-digits" aria-hidden="true">01:00</span><span class="sr-only" id="session-clock-text">1 minuta, 0 sekund</span></span></div><p id="session-expired" class="error" role="status" hidden>Czas minął. List i prezenty są zachowane. Możesz wznowić sesję.</p><div class="window-actions"><button type="button" class="primary" id="extend-session">Przedłuż sesję</button><button type="button" class="smallbtn" id="end-session">Wróć do listy życzeń</button><button type="button" class="smallbtn" id="pause-session">Zatrzymaj odliczanie</button></div><p class="window-footnote">Grinch nie ma uprawnień do usuwania Twojego listu.</p></div></div></div>
 <script>
 /*
  * Kalendarz Programisty — lokalna demonstracja, bez zależności i połączeń sieciowych.
@@ -221,6 +292,14 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 // Hand-written English copy. The Polish source is retained per text node;
 // language changes never rewrite form values or the user's chat messages.
 const englishUi = {
+"Usunięto prezent.":"Gift removed.",
+"Przejdź do worka.":"View your sack.",
+"Podsumowanie worka":"Gift sack summary",
+"Przejdź do worka":"View your sack",
+"Twój worek:":"Your sack:",
+"W worku:":"In your sack:",
+"Grinch przejął sesję":"The Grinch has hijacked your session",
+
 "Zmniejsz liczbę sztuk:":"Decrease quantity:",
 "Zwiększ liczbę sztuk:":"Increase quantity:",
 "Minimalna liczba sztuk to 1.":"The minimum quantity is 1.",
@@ -233,7 +312,7 @@ const englishUi = {
 "Język strony":"Page language",
 "Przejdź do treści":"Skip to content",
 "Poczta Północna":"North Pole Post",
-"BIURO OBSŁUGI ŻYCZEŃ · OD 1881":"WISH FULFILMENT OFFICE · SINCE 1881",
+"BIURO OBSŁUGI ŻYCZEŃ · OD 1931":"WISH FULFILMENT OFFICE · SINCE 1931",
 "Panel prowadzącej":"Presenter controls",
 "Czas pokazu":"Presentation time",
 "Zegar rusza po otwarciu strony. Grinch pojawi się raz, przy":"The clock starts when you open this page. The Grinch appears once, at",
@@ -362,12 +441,12 @@ const englishUi = {
 "Wybieram dalej":"Keep choosing",
 "session_manager.exe · nieoczekiwany gość":"session_manager.exe · unexpected guest",
 "przejął sesję":"has hijacked your session",
-"Za 60 sekund Twoja sesja zakupowa wygaśnie. Mam nadzieję, że nie zdążysz wysłać zamówienia. Pozdrawiam bez świątecznej serdeczności, Grinch.":"Your shopping session expires in 60 seconds. I hope you do not manage to send the order in time. Without festive regards, the Grinch.",
+"Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.":"Your letter-writing session expires in 60 seconds. I hope you do not manage to send your letter in time. Without festive regards, the Grinch.",
 "Do końca tej złośliwości":"Time left for this inconvenience",
 "Pozostały czas sesji":"Session time remaining",
 "Czas minął. List i prezenty są zachowane. Możesz wznowić sesję.":"Time is up. Your letter and gifts are saved. You can resume the session.",
 "Przedłuż sesję":"Extend session",
-"Zakończ zakupy":"Finish shopping",
+"Wróć do listy życzeń":"Back to the wish list",
 "Zatrzymaj odliczanie":"Pause countdown",
 "Grinch nie ma uprawnień do usuwania Twojego listu.":"The Grinch does not have permission to delete your letter.",
 "Słuchawki z funkcją zatyczek":"Headphones with an earplug mode",
@@ -479,7 +558,7 @@ const englishUi = {
 "Pokaz jest wstrzymany":"Presentation is paused",
 "Okno Grincha zamknięte. List jest zachowany.":"The Grinch window is closed. Your letter is saved.",
 "Sesja wznowiona. Grinch odpuścił. Twój list jest zachowany.":"Session resumed. The Grinch gave up. Your letter is saved.",
-"Zakupy zakończone. List i prezenty pozostają do dalszej edycji.":"Shopping finished. You can still edit your letter and gifts.",
+"Wracasz do listy życzeń. Treść listu i prezenty są zachowane.":"Back to your wish list. Your letter and gifts are saved.",
 "Wznów odliczanie":"Resume countdown",
 "Odliczanie zatrzymane":"Countdown stopped",
 "Pokaz i list zresetowane. Wybrana wersja demonstracji pozostaje bez zmian.":"Presentation and letter reset. Your selected demo version is unchanged.",
@@ -691,10 +770,10 @@ function syncGrinchSemantics(){const win=$('grinch-window');if(state.fixed){win.
 function openSanta(){if(santa.open||santa.shown)return;santa.shown=true;santa.open=true;santa.returnFocus=document.activeElement;writeUiText($('santa-count'),'Łączna liczba prezentów w worku: '+[...state.bag.values()].reduce((sum,n)=>sum+n,0)+' szt.');$('santa-overlay').hidden=false;$('page-root').inert=true;document.body.classList.add('modal-open');$('continue-shopping').focus();}
 function closeSanta(){if(!santa.open)return;santa.open=false;$('santa-overlay').hidden=true;$('page-root').inert=false;document.body.classList.remove('modal-open');const target=santa.returnFocus&&santa.returnFocus.isConnected?santa.returnFocus:$('bag-title');target.focus();if(santa.grinchPending){santa.grinchPending=false;openGrinch();}else announce('Możesz wybierać dalej. Prezenty są zachowane w worku.');}
 $('close-santa').addEventListener('click',closeSanta);$('continue-shopping').addEventListener('click',closeSanta);
-function openGrinch(){if(santa.open){santa.grinchPending=true;return;}show.grinchUsed=true;if(session.open)return;session.returnFocus=document.activeElement;session.open=true;session.remaining=60000;session.startedAt=performance.now();session.running=!(show.started&&!show.running);session.pausedByShow=!session.running;session.expired=false;writeUiText($('extend-session'),'Przedłuż sesję');$('session-expired').hidden=true;$('pause-session').disabled=session.pausedByShow;writeUiText($('pause-session'),session.pausedByShow?'Odliczanie wstrzymane':'Zatrzymaj odliczanie');writeUiText($('session-label'),session.pausedByShow?'Pokaz jest wstrzymany':'Do końca tej złośliwości');syncGrinchSemantics();$('grinch-overlay').hidden=false;$('page-root').inert=true;document.body.classList.add('modal-open');$('extend-session').focus();tick();}
+function openGrinch(){if(santa.open){santa.grinchPending=true;return;}show.grinchUsed=true;if(session.open)return;session.returnFocus=document.activeElement;session.open=true;session.remaining=60000;session.startedAt=performance.now();session.running=!(show.started&&!show.running);session.pausedByShow=!session.running;session.expired=false;writeUiText($('extend-session'),'Przedłuż sesję');$('session-expired').hidden=true;$('pause-session').disabled=session.pausedByShow;writeUiText($('pause-session'),session.pausedByShow?'Odliczanie wstrzymane':'Zatrzymaj odliczanie');writeUiText($('session-label'),session.pausedByShow?'Pokaz jest wstrzymany':'Do końca tej złośliwości');clearTimeout(liveTimer);writeUiText($('app-status'),'');writeUiText($('bag-status'),'');clearElfAnnouncement();syncGrinchSemantics();$('grinch-overlay').hidden=false;$('page-root').inert=true;document.body.classList.add('modal-open');requestAnimationFrame(()=>{if(session.open)$('extend-session').focus({preventScroll:true});});tick();}
 function closeGrinch(message){if(!session.open)return;session.open=false;session.running=false;session.pausedByShow=false;$('page-root').inert=false;$('grinch-overlay').hidden=true;document.body.classList.remove('modal-open');const target=session.returnFocus&&session.returnFocus.isConnected&&!session.returnFocus.disabled?session.returnFocus:$('author-name');target.focus();announce(message);}
 $('close-grinch').addEventListener('click',()=>closeGrinch('Okno Grincha zamknięte. List jest zachowany.'));
-$('test-grinch').addEventListener('click',openGrinch);$('extend-session').addEventListener('click',()=>closeGrinch('Sesja wznowiona. Grinch odpuścił. Twój list jest zachowany.'));$('end-session').addEventListener('click',()=>closeGrinch('Zakupy zakończone. List i prezenty pozostają do dalszej edycji.'));
+$('test-grinch').addEventListener('click',openGrinch);$('extend-session').addEventListener('click',()=>closeGrinch('Sesja wznowiona. Grinch odpuścił. Twój list jest zachowany.'));$('end-session').addEventListener('click',()=>closeGrinch('Wracasz do listy życzeń. Treść listu i prezenty są zachowane.'));
 $('pause-session').addEventListener('click',()=>{if(session.running){session.remaining=Math.max(0,session.remaining-(performance.now()-session.startedAt));session.running=false;session.pausedByShow=false;writeUiText($('pause-session'),'Wznów odliczanie');}else{if(show.started&&!show.running){writeUiText($('session-label'),'Pokaz jest wstrzymany');return;}session.startedAt=performance.now();session.running=true;session.pausedByShow=false;writeUiText($('pause-session'),'Zatrzymaj odliczanie');}writeUiText($('session-label'),session.running?'Do końca tej złośliwości':'Odliczanie zatrzymane');tick();});
 function modalKeys(e,id,close){if(e.key==='Escape'){e.preventDefault();close();return;}if(e.key==='Tab'){const buttons=[...$(id).querySelectorAll('button:not([disabled])')],idx=buttons.indexOf(document.activeElement);if(e.shiftKey&&idx<=0){e.preventDefault();buttons[buttons.length-1].focus();}else if(!e.shiftKey&&(idx===buttons.length-1||idx<0)){e.preventDefault();buttons[0].focus();}}}
 document.addEventListener('keydown',e=>{if(santa.open){modalKeys(e,'santa-window',closeSanta);return;}if(session.open)modalKeys(e,'grinch-window',()=>closeGrinch('Okno Grincha zamknięte. List jest zachowany.'));});
@@ -722,9 +801,90 @@ const makeLetterId=()=>globalThis.crypto?.randomUUID?globalThis.crypto.randomUUI
 const letterCounter=createLetterCounter({storage:counterStorage,session:counterSession,makeId:makeLetterId,fetchFn:(...args)=>fetch(...args),server:counterServer,onChange:({total,lotteryOrdinal,winningInterval,server,error})=>{writeUiText($('counter-label'),server?'Wysłane listy w demonstracji:':'Wysłane listy — licznik lokalny:');writeUiText($('counter-value'),error?'chwilowo niedostępny':total===null?'sprawdzam…':String(total));if(!$('confirmation').hidden&&$('join-lottery').checked){$('lottery-result').hidden=false;const won=lotteryOrdinal!==null&&lotteryOrdinal>0&&lotteryOrdinal%winningInterval===0;$('lottery-result').classList.toggle('winner',won);writeUiText($('lottery-result-title'),won?'Wygrywasz! Udział nr '+lotteryOrdinal:'Wynik loterii');const losses=['Tym razem tokeny zjadł renifer. Reklamację przyjmuje wyłącznie na sianie.','Niestety, elf wylosował dodatkowe spotkanie zamiast tokenów. Spróbuj zachować świąteczny spokój.','Tym razem bez wygranej. Mikołaj dołącza za to szacunek do Twojej cierpliwości.'];writeUiText($('lottery-result-text'),error?'Wynik chwilowo niedostępny. Możesz wrócić do listu i ponowić wysłanie; zachowamy ten sam numer zgłoszenia.':lotteryOrdinal===null?'Sprawdzamy numer udziału…':won?'Gratulacje! Twój udział otrzymał numer '+lotteryOrdinal+'. Co setne zgłoszenie wygrywa symboliczną nagrodę w naszej loterii.':('Twój udział ma numer '+lotteryOrdinal+'. '+losses[(lotteryOrdinal-1)%losses.length]));if(!error&&lotteryOrdinal!==null&&!server)writeUiText($('lottery-result-text'),' To wynik lokalnej próby.',true);}}});
 void letterCounter.load();
 
+// BAG_FEEDBACK_START
+// Potwierdzenie przy worku i opcjonalna animacja korzystają ze wspólnego stanu formularza.
+const giftMotionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
+let giftFlight=null,bagLandingAnimations=[];
+function giftTotal(){return [...state.bag.values()].reduce((a,b)=>a+b,0);}
+function stopGiftFlight(){
+ if(giftFlight){const current=giftFlight;giftFlight=null;current.animation.onfinish=null;current.animation.oncancel=null;current.animation.cancel();current.element.remove();}
+ bagLandingAnimations.forEach(animation=>animation.cancel());bagLandingAnimations=[];
+}
+function pulseMiniBag(){
+ if(giftMotionPreference.matches||santa.open||session.open||$('mini-bag').hidden)return;
+ const mark=$('mini-bag-mark'),label=$('mini-bag-label');
+ if(typeof mark.animate!=='function')return;
+ bagLandingAnimations.forEach(animation=>animation.cancel());
+ bagLandingAnimations=[
+  mark.animate([{transform:'scale(1) rotate(0deg)'},{transform:'scale(1.14) rotate(-5deg)'},{transform:'scale(1) rotate(0deg)'}],{duration:320,easing:'ease-out'}),
+  label.animate([{transform:'translateY(0)'},{transform:'translateY(-2px)'},{transform:'translateY(0)'}],{duration:300,easing:'ease-out'})
+ ];
+}
+function animateGiftToMiniBag(p,qty){
+ stopGiftFlight();
+ if(!mobileCategories.matches||giftMotionPreference.matches||santa.open||session.open||$('mini-bag').hidden)return;
+ const source=$('add-slot-'+p.id).firstElementChild,target=$('mini-bag-mark');
+ if(typeof source?.animate!=='function')return;
+ const a=source.getBoundingClientRect(),b=target.getBoundingClientRect();
+ if(!a.width||!b.width)return;
+ const fromX=a.left+a.width/2-24,fromY=a.top+a.height/2-24;
+ const dx=b.left+b.width/2-24-fromX,dy=b.top+b.height/2-24-fromY;
+ const flyer=make('span','gift-flight');flyer.setAttribute('aria-hidden','true');
+ flyer.style.left=fromX+'px';flyer.style.top=fromY+'px';flyer.append(icon('art-'+p.art));
+ if(qty>1)flyer.append(make('span','gift-flight-qty','×'+qty));
+ document.body.append(flyer);
+ const animation=flyer.animate([
+  {transform:'translate(0px,0px) scale(1) rotate(-5deg)',opacity:1},
+  {transform:'translate('+dx*.45+'px,'+(dy*.35-35)+'px) scale(.9) rotate(6deg)',opacity:1,offset:.45},
+  {transform:'translate('+dx+'px,'+dy+'px) scale(.25) rotate(0deg)',opacity:0}
+ ],{duration:520,easing:'cubic-bezier(.2,.6,.35,1)',fill:'forwards'});
+ const current={element:flyer,animation};giftFlight=current;
+ animation.onfinish=()=>{flyer.remove();if(giftFlight===current){giftFlight=null;pulseMiniBag();}};
+ animation.oncancel=()=>{flyer.remove();if(giftFlight===current)giftFlight=null;};
+}
+function syncMiniBag(){
+ const mini=$('mini-bag'),catalog=$('catalog-section');
+ writeUiText($('mini-bag-label'),'Twój worek: '+giftTotal()+' szt.');
+ if(!state.bag.size){$('mini-bag-last').hidden=true;writeUiText($('mini-bag-last'),'');}
+ const r=catalog.getBoundingClientRect();
+ const compact=window.matchMedia('(max-height:520px)').matches;
+ const visible=mobileCategories.matches&&!$('form-content').hidden&&(compact||r.top<window.innerHeight*.85&&r.bottom>110);
+ mini.hidden=!visible&&!mini.contains(document.activeElement);
+}
+const originalRenderBag=renderBag;
+renderBag=function(){originalRenderBag();syncMiniBag();};
+const originalAddGift=addGift;
+addGift=function(p){
+ stopGiftFlight();const before=giftTotal();originalAddGift(p);const added=giftTotal()-before;
+ if(added<=0)return;
+ const message='Dodano: '+p.name+' · '+added+' szt. W worku: '+giftTotal()+' szt.';
+ writeUiText($('mini-bag-last'),'Dodano: '+added+' szt.');$('mini-bag-last').hidden=false;
+ if(santa.open)writeUiText($('bag-status'),'');else writeUiText($('bag-status'),message);
+ syncMiniBag();animateGiftToMiniBag(p,added);
+};
+const originalRemoveGift=removeGift;
+removeGift=function(id){stopGiftFlight();originalRemoveGift(id);if(state.bag.size){writeUiText($('mini-bag-last'),'Usunięto prezent.');$('mini-bag-last').hidden=false;}};
+let miniFrame=0;
+function queueMiniSync(){if(!miniFrame)miniFrame=requestAnimationFrame(()=>{miniFrame=0;syncMiniBag();});}
+window.addEventListener('scroll',()=>{stopGiftFlight();queueMiniSync();},{passive:true});
+window.addEventListener('resize',()=>{stopGiftFlight();queueMiniSync();},{passive:true});
+mobileCategories.addEventListener('change',()=>{stopGiftFlight();queueMiniSync();});
+giftMotionPreference.addEventListener('change',stopGiftFlight);
+document.addEventListener('focusin',()=>{
+ queueMiniSync();
+ if(!mobileCategories.matches||$('mini-bag').hidden||$('mini-bag').contains(document.activeElement))return;
+ requestAnimationFrame(()=>{const el=document.activeElement;if(!el||el===document.body)return;const r=el.getBoundingClientRect(),bar=$('mini-bag').getBoundingClientRect();if(bar.top>0&&r.bottom>bar.top&&r.top<window.innerHeight)el.scrollIntoView({block:'center',behavior:'auto'});});
+});
+$('reset-show').addEventListener('click',()=>{stopGiftFlight();syncMiniBag();});
+$('letter-form').addEventListener('submit',()=>{stopGiftFlight();queueMiniSync();});
+$('edit-letter').addEventListener('click',queueMiniSync);
+$('page-language').addEventListener('change',()=>{stopGiftFlight();queueMiniSync();});
+if(typeof ResizeObserver!=='undefined')new ResizeObserver(queueMiniSync).observe($('catalog-section'));
+// BAG_FEEDBACK_END
+
 writeUiText($('grinch-delay-label'),GRINCH_DELAY_MINUTES+':00');
 $('page-language').addEventListener('change',e=>{setUiLanguage(e.target.value,true);announce(e.target.value==='en'?'Język zmieniony na angielski.':'Język zmieniony na polski.');});
-syncMobileOrder();renderCards();renderBag();syncTabs();renderRange();renderOath();renderDelivery();tick();setUiLanguage(uiLocale);setInterval(tick,200);
+syncMobileOrder();renderCards();renderBag();syncTabs();renderRange();renderOath();renderDelivery();syncGrinchSemantics();tick();setUiLanguage(uiLocale);syncMiniBag();setInterval(tick,200);
 })();
 </script>
 </body>

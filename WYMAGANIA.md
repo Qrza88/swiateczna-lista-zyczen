@@ -3,7 +3,7 @@
 **Event:** Kalendarz Programisty · **Odbiorcy:** dorośli, szczególnie osoby pracujące w IT  
 **Tytuł strony i formularza:** Świąteczna lista życzeń  
 **Aktualizacja:** 25 października 2026  
-**Status:** repozytorium i strona opublikowane. Wdrożenie Netlify oraz wspólny licznik sprawdzone; próby z docelowym czytnikiem i rzeczywistym telefonem pozostają do wykonania.
+**Status:** użytkowniczka zatwierdziła próbny interfejs i publikację 25.10.2026. Wersja z mini workiem, animacją, większymi podpowiedziami i semantyką Grincha jest przygotowana do wdrożenia. Testy logiki i DOM przeszły; faktyczny odczyt dialogu przez czytnik i nowy renderowany układ wymagają osobnej próby. Potwierdzenie konkretnego wdrożenia zapisujemy po publikacji.
 
 **Strona publiczna:** https://swiateczna-lista-zyczen.netlify.app/  
 **Kod źródłowy:** https://github.com/Qrza88/swiateczna-lista-zyczen  
@@ -18,12 +18,28 @@ Dokument opisuje jeden responsywny projekt. „WEB” oznacza poniżej widok des
 | --- | --- | --- |
 | Katalog | Zakładki obok siebie. | Przycisk rozwijający wybór kategorii. |
 | Prezenty | 2 karty w rzędzie; przy szerokości co najmniej 1600 px — 3. | Dokładnie 1 karta w rzędzie. |
-| Worek | Boczna kolumna przy formularzu. | W głównym przepływie, przed dostawą i wysyłką. |
+| Worek | Boczna kolumna przy formularzu. | Pełny worek przed dostawą i wysyłką; dodatkowo kompaktowy mini worek podczas przeglądania katalogu. |
+| Potwierdzenie dodania | Aktualizacja i komunikat przy bocznym worku. Bez dopisków pod prezentem. | Krótka animacja do mini worka, aktualna suma i „Dodano”; bez dopisków pod prezentem. |
+| Podpowiedzi i instrukcje | Co najmniej 1 rem, domyślnie 16 px; kontrast 4,5:1. | Ten sam próg; nie zmniejszamy tekstu, żeby zmieścić go na telefonie. |
 | Dostawa | 3 opcje obok siebie. | 1 opcja w rzędzie. |
 | Kolejność głównej kolumny | O mnie → katalog → zachowanie → dostawa → podpis i wysyłka → czat. | O mnie → katalog → zachowanie → worek z loterią → dostawa → podpis i wysyłka → czat. |
 | Przykład dotyczący kategorii | Brak ról zakładek i `aria-selected` w błędnym wariancie. | Brak `aria-expanded` na przycisku rozwijania w błędnym wariancie. |
 | Obsługa | Klawiatura, mysz, czytnik. | Dotyk, klawiatura i czytnik; wygodne cele dotykowe. |
 | Pozostałe przykłady WCAG | Wspólna mapa w sekcji 5. | Ta sama mapa, z mobilnym zamiennikiem zakładek. |
+
+### 1.1. Zmiany zatwierdzone do publikacji
+
+Po zebraniu wymagań użytkowniczka sprawdziła próbny interfejs i 25.10.2026 poleciła wypchnąć zatwierdzone zmiany na produkcję. Ostateczna decyzja: wizualne potwierdzenie znajduje się przy worku w obu widokach; na telefonie uzupełnia je krótka animacja. Usuwamy komunikaty dodania spod kart zarówno na WEB, jak i MOBILE. Status publikacji wymaga potwierdzenia wdrożenia; testy DOM nie potwierdzają syntezy mowy ani geometrii.
+
+| ID | Wymaganie | Zakres | Status |
+| --- | --- | --- | --- |
+| R1 | Poprawny Grinch: rola `alertdialog`, nazwa z widocznego tytułu, opis, modalność, fokus i odczyt po otwarciu. | WEB + MOBILE, PL + EN; wariant poprawiony. | Semantyka, powiązania i przekazanie fokusu przygotowane; sprawdzone w DOM. Odczyt docelowym czytnikiem pozostaje do wykonania. |
+| R2 | Potwierdzenie przy worku; na MOBILE mini worek z animacją, aktualną sumą sztuk i przejściem do zawartości. Brak komunikatów pod kartami w obu układach. | WEB + MOBILE; animacja i mini worek tylko MOBILE; oba warianty WCAG i języki. | Zatwierdzone i przygotowane do publikacji; logika DOM sprawdzona. |
+| R3 | Powiększenie obecnych zbyt małych podpowiedzi: minimum 1 rem, kontrast 4,5:1, zawijanie i możliwość powiększania. | WEB + MOBILE, PL + EN, oba warianty WCAG. | Powiększone w obu widokach; renderowany układ i pomiary wymagają osobnej próby. |
+| R4 | Data 1931 jako odniesienie do kampanii Sundbloma dla Coca-Coli, bez przypisywania firmie pomysłu bieguna północnego. | Nagłówek PL + EN, oba widoki i profile czasu. | Historia sprawdzona; tekst w zatwierdzonej wersji do publikacji. |
+| R5 | „Wróć do listy życzeń” / „Back to the wish list” w oknie Grincha; ostrzeżenie o pisaniu listu zamiast zakupach. | WEB + MOBILE, oba warianty WCAG, PL + EN i oba profile czasu. | Teksty w zatwierdzonej wersji do publikacji. |
+
+R1 wymaga końcowej próby odczytu w czytniku. Nie wskazujemy przyczyny wcześniejszego braku odczytu jako ustalonej. R2 i R3 działają według tych samych zasad w obu wariantach WCAG; różnica WEB/MOBILE dotyczy formy worka i dodatkowej animacji na telefonie.
 
 ## 2. Wymagania wspólne
 
@@ -40,6 +56,8 @@ Interaktywna demonstracja WCAG 2.5.3 „Etykieta w nazwie” i 4.1.2 „Nazwa, r
 - Dymek „Na wczoraj? Oczywiście.” mieści się w ilustracji i skaluje z nią. Teksty są HTML; dekoracje ukryte przed czytnikiem.
 - Pieczątka „Przyjęto warunkowo · Elf nr 404” występuje na ekranie sukcesu, na własnym jasnym tle, z czytelnym tekstem. Nie nachodzi na ilustrację.
 - Tekst ma kontrast co najmniej 4,5:1; istotne nietekstowe granice, stany i ikony kontrolek co najmniej 3:1. Wymaganie obowiązuje również wariant z błędami. Zapewniamy widoczny fokus, czytelne placeholdery i krawędzie suwaka. Dekoracyjne linie nie zastępują informacji potrzebnych do obsługi.
+- **R3:** powiększamy obecne zbyt małe podpowiedzi. Podpowiedzi pod polami, opisy kategorii i prezentów, instrukcje zgód, wyjaśnienia loterii i wysyłki, komunikaty walidacji oraz teksty pomocnicze w oknach i czacie mają minimum `1rem` (domyślnie 16 px), interlinię co najmniej 1,5 i kontrast tekstu minimum 4,5:1. Rozmiary względne respektują ustawienia użytkownika; nie zmniejszamy bazowego rozmiaru dokumentu, by obejść ten próg. Treść ważna dla wypełnienia formularza ma być wyraźnie czytelna. Odręczny krój pozostaje dla krótkich dekoracyjnych akcentów.
+- Próg 16 px jest zasadą czytelności tego projektu, nie minimalnym rozmiarem czcionki nakazanym przez WCAG. Odbiór obejmuje powiększenie tekstu do 200%, zawijanie przy szerokości 320 px CSS i brak utraty treści lub obsługi po zmianie odstępów zgodnie z 1.4.12.
 
 ### 2.2. Warianty i zachowanie danych
 
@@ -137,6 +155,10 @@ Worek pokazuje nazwy, ilości i sumę sztuk. Pusty worek: „Tu jest jeszcze mie
 
 Dodanie ogłasza nazwę i ilość przez `role="status"`, zachowuje fokus na akcji; wyjątkiem jest jednorazowe otwarcie upomnienia po 3 sztukach. Usuwamy całą pozycję ikonowym przyciskiem. Fokus przechodzi do kolejnej odpowiedniej akcji, a po usunięciu ostatniej pozycji do nagłówka worka. Ogłaszamy zmianę.
 
+**R2 — ostateczna wersja:** wizualne potwierdzenie występuje przy worku. Na WEB jest to aktualizacja zawartości, sumy i tekstowego statusu przy bocznym worku. Na MOBILE aktualizuje się mini worek: liczba sztuk oraz krótki tekst „Dodano: 2 szt.”. Nie tworzymy komunikatów ani dodatkowych bloków pod kartami prezentów w żadnym układzie. Status dla czytnika podaje pełny kontekst, np. „Dodano: Podgrzewacz do herbaty USB · 2 szt. W worku: 5 szt.”. Potwierdzenie tekstowe nie znika po krótkim limicie czasu. Nie przewijamy automatycznie do pełnego worka. Wszystkie podsumowania liczą sztuki ze wspólnego stanu. Same przyciski −/+ zmieniają wybraną ilość, bez dodania do worka.
+
+Odczyt dodania wykorzystuje pojedynczy kanał `status`; mini worek nie ma kolejnego regionu live. Po osiągnięciu 3 sztuk pozostaje dialog Mikołaja; w tej sytuacji pomijamy przelot i nie konkurujemy komunikatem dodania z otwarciem okna. Czytnikiem należy sprawdzić kolejność odczytu. Szczegóły animacji i ograniczenia ruchu są w 4.4.
+
 ### 2.5. Formularz, kontekst i walidacja
 
 | Pole / wybór | Wartość początkowa i wymaganie |
@@ -189,7 +211,18 @@ Odpowiedzi są lokalne, przygotowane z góry i dopasowane do pytania oraz bież�
 
 W `dist/index.html` zmieniamy jedną stałą `DEMO_PROFILE` z `'presentation'` na `'public'`. Próg, opis w panelu i komunikat ręcznego startu korzystają z tego ustawienia. Profil publiczny działa na Netlify; plik do nagrania zachowuje 7 minut. Reset i pauza działają tak samo w obu profilach.
 
-**Grinch:** automatycznie raz przy 7:00 (420 s) w wersji do nagrania zegara uruchamianego automatycznie po otwarciu strony. Pauza zatrzymuje odliczanie, więc 7:00 oznacza siedem minut aktywnego czasu zegara. Straszy końcem sesji zakupowej i nadzieją, że nie zdążysz wysłać listu. Ma retro pasek tytułu z jednym działającym „X” — bez atrap minimalizacji i maksymalizacji. Błędny wariant pomija rolę i nazwę okna; poprawiony jest nazwanym `alertdialog` z modalnością i opisem. Przyciski wewnętrzne są prawidłowo nazwane w obu wariantach.
+**Grinch:** automatycznie raz przy 7:00 (420 s) w wersji do nagrania zegara uruchamianego automatycznie po otwarciu strony. Pauza zatrzymuje odliczanie, więc 7:00 oznacza siedem minut aktywnego czasu zegara. Straszy końcem sesji tworzenia listu i nadzieją, że nie zdążysz wysłać listu. Ma retro pasek tytułu z jednym działającym „X” — bez atrap minimalizacji i maksymalizacji. Błędny wariant pomija rolę i nazwę okna; poprawiony jest nazwanym `alertdialog` z modalnością i opisem. Przyciski wewnętrzne są prawidłowo nazwane w obu wariantach.
+
+**R1 — zgłoszenie i poprawka:** użytkowniczka zgłosiła brak roli, ogłoszenia otwarcia i powiązania tytułu również w wersji poprawionej. Przygotowana wersja ustawia semantykę przed pokazaniem okna, czyści oczekujące komunikaty i przenosi fokus po klatce renderowania. Tytuł `h2` jest jednym ciągłym tekstem. W DOM sprawdzono następujące warunki; faktyczny odczyt przez czytnik pozostaje do potwierdzenia:
+
+- Kontener obejmujący tytuł, opis i przyciski ma w wariancie poprawionym `role="alertdialog"`, `aria-modal="true"`, `aria-labelledby="grinch-title"` i `aria-describedby="grinch-description"`.
+- Widoczny tytuł jest `h2` z unikalnym `id="grinch-title"`; opis ma unikalne `id="grinch-description"`. Oba są dostępne dla czytnika w chwili otwarcia. Atrybuty odwołują się do elementów z aktualną treścią PL albo EN.
+- Semantyka jest gotowa przed pokazaniem okna i przeniesieniem fokusu na „Przedłuż sesję”. Czytnik ma poinformować o otwarciu okna alarmowego, jego nazwie i ostrzeżeniu. Nie wymagamy identycznego zdania ani dźwięku systemowego w każdym czytniku. Nie dodajemy osobnego `role="alert"` lub drugiego regionu live tylko po to, by powtórzyć cały dialog.
+- Tło pozostaje nieaktywne, Tab i Shift+Tab pozostają w oknie, Escape i nazwany „X” działają. Zamknięcie przywraca poprzedni fokus i zachowuje list. Odliczanie nie ogłasza każdej sekundy; wygaśnięcie ma osobny komunikat.
+- Warunki obowiązują przy wywołaniu ręcznym i automatycznym, po zmianie wariantu lub języka, po resecie, w obu profilach czasu i obu układach. Sprawdzamy również Grincha oczekującego na zamknięcie dialogu Mikołaja.
+- Brak roli i nazwy pozostaje celowym błędem wyłącznie w wariancie z błędami. Przy porównaniu zamykamy okno, przełączamy wariant i otwieramy je ponownie. Poprawka nie może ujednolicić semantyki obu wariantów.
+
+Rola i powiązania w DOM są warunkiem koniecznym, lecz odbiór wymaga także sprawdzenia drzewa dostępności i faktycznego odczytu. Otwarcie modalu przenosi fokus i zmienia kontekst; nie traktujemy braku dodatkowego regionu `alert` jako samodzielnego naruszenia 4.1.3. W tym przykładzie naprawiamy nazwę i rolę z 4.1.2 oraz zachowanie modalne.
 
 Grinch uruchamia osobny 60-sekundowy zegar sesji dopiero po otwarciu. Przedłużenie zamyka atak do resetu. Zakończenie sesji nie usuwa danych; po upływie czasu można ją wznowić. Panel prowadzącej pozwala zatrzymać czas. Nie wprowadzamy dodatkowego celowego problemu ograniczenia czasu.
 
@@ -270,6 +303,21 @@ To mobilny przykład braku informacji o stanie z 4.1.2. Nie zastępujemy go naty
 - Okna mieszczą się w ekranie; zawartość można przewinąć, „X” jest osiągalny, fokus widoczny. Tło pozostaje nieaktywne.
 - Historia i pole czatu, ilości zespołowe, usuwanie z worka, walidacja i sukces są obsługiwalne również na małym ekranie.
 - Próba w ramce telefonu sprawdza układ; rzeczywisty telefon z VoiceOver/TalkBack wymaga osobnego testu przed publikacją.
+
+- **R3:** podpowiedzi i instrukcje mają ten sam minimalny rozmiar `1rem` co na WEB. Weryfikujemy obliczony rozmiar i kontrast, a nie tylko deklarację CSS; tekst zawija się bez obcinania także po zmianie języka i powiększeniu.
+
+### 4.4. Mini worek i potwierdzenie dodania
+
+- Po udanym dodaniu na MOBILE mała ilustracja prezentu przelatuje od użytego przycisku do ikony mini worka przez około 520 ms; po lądowaniu ikona i licznik poruszają się przez około 300 ms. To pojedynczy efekt bez zapętlania. Animacja nie przejmuje fokusu i jest ukryta przed czytnikiem; aktualizacja sumy następuje od razu.
+- Przy `prefers-reduced-motion: reduce` pomijamy przelot i ruch worka. Pozostają liczba sztuk, krótki napis „Dodano” oraz jeden komunikat dla czytnika. Brak obsługi API animacji również nie blokuje dodawania.
+- Przy szybkim kolejnym dodaniu anulujemy poprzedni przelot. Reset, usunięcie, przewinięcie, zmiana szerokości, języka albo preferencji ruchu usuwa trwający efekt. Nie pozostają latające kopie prezentów. Dialog Mikołaja ma pierwszeństwo przed animacją.
+- Podczas przeglądania katalogu dostępny kompaktowy mini worek w dolnym prawym rogu widoku. Zawiera ikonę i jawny tekst „Twój worek: 5 szt.”; cały element jest odnośnikiem do pełnego worka. Nazwa uwzględnia „Przejdź do worka”. Początkowo pokazuje 0. To podsumowanie pełnego worka.
+- Widoczny przy dodawaniu prezentów, żeby wynik akcji był zauważalny bez przewijania poniżej katalogu. W pełnym worku, dalszych sekcjach formularza i na sukcesie pasek nie jest potrzebny. Poza katalogiem znika dopiero, gdy nie ma w nim fokusu; nie usuwamy z odczytu aktualnie używanego odnośnika. Podczas modalu pozostaje częścią nieaktywnego tła.
+- Suma sztuk odpowiada pełnemu workowi po każdym dodaniu, usunięciu i resecie oraz zmianie kategorii, języka, wariantu WCAG i szerokości. Nie mylimy jej z licznikiem wysłanych listów w stopce ani z zegarem pokazu.
+- Odnośnik prowadzi do nagłówka pełnego worka, przewija go do widoku i ustawia na nim fokus. Ma czytelną nazwę, widoczny fokus i aktywny obszar co najmniej 44 × 44 px. Ozdobna ikona jest ukryta przed czytnikiem. Dalsze działania i loteria pozostają w pełnym worku.
+- Pasek nie zasłania użytej karty, elementów z fokusem, czatu ani pól przy otwartej klawiaturze ekranowej. Układ rezerwuje dla niego miejsce, uwzględnia bezpieczny obszar telefonu i powiększenie. Przy zbyt małej wysokości albo dużym tekście pasek przechodzi do przepływu dokumentu, bez utraty informacji. Sprawdzamy pion i poziom przy 320/390 px.
+- Potwierdzenie przy worku i pojedynczy kanał odczytu pozostają zgodne z 2.4. Mini worek nie dodaje niezależnego live regionu ani przechwytywania fokusu. Teksty PL i EN zawijają się; nie ścieśniamy ich małą czcionką.
+- Na WEB pozostaje pełny worek w bocznej kolumnie i status przy nim; nie dodajemy mobilnego mini worka ani potwierdzenia pod kartą. Wersja z błędami i poprawiona mają jednakowe, poprawne potwierdzenia akcji.
 
 ## 5. Mapa celowych błędów i ich poprawionych odpowiedników
 
@@ -387,6 +435,19 @@ Na opublikowanej stronie sprawdzono rzeczywisty odczyt i zapis licznika, wynik l
 
 Pomiary obliczonych kolorów oraz kontrola wizualna służą weryfikacji kontrastu. Pozostają próba NVDA, rzeczywisty telefon z czytnikiem i pełna próba nagrania. Nie wykonano testu obciążenia produkcyjnego licznika.
 
+### 8.5. Zakres sprawdzenia zatwierdzonej wersji
+
+W zatwierdzonej wersji przeszły `npm test` oraz próby rzeczywistego DOM aplikacji: oba warianty, PL/EN, otwarcie i zamknięcie Grincha, fokus, powiązania, mini worek, ilości, reset oraz brak komunikatów pod kartami. Próby animacji z kontrolowanym API obejmują szybkie kliknięcia, lądowanie, anulowanie, ograniczony ruch i brak API. To weryfikacja logiki, bez pomiaru renderowanej geometrii lub syntezy mowy. Poniższe warunki odbioru pozostają odniesieniem dla próby NVDA i rzeczywistego telefonu.
+
+| Obszar | WEB | MOBILE | Warunek odbioru |
+| --- | --- | --- | --- |
+| Grinch, wariant poprawiony | NVDA + przeglądarka prowadzącej; otwarcie ręczne i automatyczne. | VoiceOver + Safari albo TalkBack + Chrome; otwarcie ręczne i automatyczne. | W drzewie dostępności właściwa rola, nazwa i opis; rzeczywisty odczyt otwarcia, fokus wewnątrz, zamknięcie i powrót. Zapisujemy wersje oprogramowania i faktycznie wypowiedziany tekst. |
+| Grinch, porównanie wariantów | Błędny → poprawiony → błędny; zmiana języka i reset. | Te same scenariusze, kontrola przewijania okna. | Brak semantyki tylko w wariancie z błędami. Test po zamknięciu i ponownym otwarciu, także po dialogu Mikołaja. |
+| Dodanie prezentu | Status przy bocznym worku i aktualna zawartość. | Mini worek, krótka animacja, aktualna suma i przejście do pełnego worka. | Dodaj 1 sztukę, dodaj ponownie tę samą pozycję, dodaj kilka sztuk dla zespołu, usuń i zresetuj. Wszędzie ta sama suma; sam −/+ nie dodaje. Brak komunikatów pod kartami; jeden odczyt potwierdzenia, bez automatycznego skoku do worka. |
+| Mini worek | Brak mobilnego paska. | 320/390 px, pion/poziom, klawiatura ekranowa, fokus, powiększenie i ograniczenie ruchu. | Brak zasłoniętych kontrolek i przewijania strony w poziomie; link dociera do worka; ukrywanie paska nie gubi fokusu. |
+| Podpowiedzi i instrukcje | Rozmiar obliczony minimum 1 rem, kontrast, tekst powiększony do 200%. | Te same warunki oraz reflow przy 320 px CSS. | Czytelna treść bez ucięcia lub nakładania, także z odstępami użytkownika: interlinia 1,5, odstęp po akapicie 2 em, między literami 0,12 em i słowami 0,16 em. Oba języki i warianty WCAG. |
+| Data i język okna | Nagłówek i teksty w PL/EN. | Te same treści bez obcięcia. | 1931 odnosi się do kampanii Sundbloma; przycisk „Wróć do listy życzeń” zamyka okno z zachowaniem listu; ostrzeżenie dotyczy pisania listu. |
+
 ## 9. Pliki, uruchomienie i publikacja
 
 - Samodzielny HTML działa lokalnie. Wersja źródłowa zawiera `dist/index.html`, kod funkcji Netlify, logikę pomocniczą, testy, `netlify.toml`, `package.json`, README i te wymagania jako `WYMAGANIA.md`.
@@ -397,6 +458,8 @@ Pomiary obliczonych kolorów oraz kontrola wizualna służą weryfikacji kontras
 - Wysłanie pozostaje symulacją, czat nie korzysta z zewnętrznego AI, formularz nie tworzy zamówień. Treści pozostają w pamięci karty; wyjątkiem są anonimowe identyfikatory i flaga udziału dla licznika oraz loterii, opisane wyżej.
 - Plik lokalny, localhost i podgląd roboczy korzystają z licznika lokalnego. W Netlify Dev można jawnie przetestować funkcję parametrem `?counter=server`. W przypadku błędu usługi nie zastępujemy globalnej liczby liczbą lokalną bez informacji.
 - Repozytorium i hosting są publiczne. Netlify wdraża gałąź `main`, uruchamia `npm test`, publikuje `dist` oraz funkcję `letter-count` z katalogu `netlify/functions`. Zmiany w gałęzi głównej uruchamiają kolejne wdrożenie. Pliki `.netlify` i dane uwierzytelnienia nie są przechowywane w repozytorium.
+
+- **Bieżący etap:** publikacja zatwierdzona przez użytkowniczkę po próbie. Zmiany aplikacji i dokumentacja trafiają razem do `main`; Netlify uruchamia testy i wdrożenie. Za potwierdzenie publikacji uznajemy nowy deploy `ready` dla właściwego commita i zgodność anonimowo pobranego HTML. Nie przesyłamy testowych listów do produkcyjnego licznika przy tej aktualizacji.
 
 ## 10. Źródła techniczne
 
@@ -414,6 +477,11 @@ Pomiary obliczonych kolorów oraz kontrola wizualna służą weryfikacji kontras
 
 
 - [WCAG 1.4.3: Contrast Minimum](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+- [WCAG 1.4.4: Resize Text](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html)
+- [WCAG 1.4.10: Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
+- [WCAG 1.4.12: Text Spacing](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html)
+- [WCAG 2.4.11: Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)
+- [WCAG 4.1.3: Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
 - [WCAG 1.4.11: Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
 - [WAI-ARIA APG: Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
 - [WAI-ARIA APG: Slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
@@ -438,7 +506,7 @@ Pomiary obliczonych kolorów oraz kontrola wizualna służą weryfikacji kontras
 - **MOBILE:** ten sam rozmiar docelowy obejmuje także przyciski wyboru kategorii, czatu, sugestii, wysyłania i powrotu, obie modalności oraz wszystkie kontrolki w worku. Zachowujemy jedną kartę prezentu i jedną dostawę w rzędzie. Bez nakładających się niewidocznych nakładek powiększających cele; większy rozmiar wynika z rzeczywistego układu.
 - Checkboxy nadal mają białe tło kontrolki 20 px i zielone zaznaczenie; cała powiązana etykieta jest klikalna i ma wysokość co najmniej 44 px. Własne oświadczenie obsługuje kliknięcie całego wiersza. Radio dostawy jest aktywne na całej karcie. Graficzny uchwyt suwaka może pozostać mniejszy: aktywny jest cały obszar suwaka o wysokości 44 px.
 - Zasady rozmiaru dotyczą **obu wariantów**. Nie dodajemy celowego błędu 2.5.8 do pokazu nazw, ról i wartości.
-- Oba tytuły okien — „Święty widzi, na co masz chrapkę!” i „Grinch przejął sesję” — już mają poziom `h2`, pod głównym `h1` strony. Poprawne okna odwołują się do tych tytułów przez `aria-labelledby`; brak nazwy okna Grincha pozostaje zaplanowanym błędem w wariancie niepoprawnym. `h2` jest wyborem odpowiednim dla hierarchii tego projektu, nie uniwersalnym obowiązkiem dla każdego dialogu.
+- Oba tytuły okien — „Święty widzi, na co masz chrapkę!” i „Grinch przejął sesję” — mają poziom `h2`, pod głównym `h1` strony. Wymagane jest powiązanie poprawnych okien z tymi tytułami przez `aria-labelledby`; brak nazwy okna Grincha pozostaje zaplanowanym błędem wyłącznie w wariancie niepoprawnym. Późniejsze zgłoszenie braku roli i odczytu w poprawnym Grinchu opisano jako R1 w 1.1 i 2.7; semantyka i fokus są poprawione w kodzie, odczyt trzeba potwierdzić docelowym czytnikiem. `h2` jest wyborem odpowiednim dla hierarchii tego projektu, nie uniwersalnym obowiązkiem dla każdego dialogu.
 - Weryfikacja tej zmiany: przejrzano reguły CSS, powiązania etykiet z kontrolkami, obsługę kliknięcia pełnego wiersza i poziomy nagłówków. Rzeczywiste pomiary celów, brak nakładania i układ po powiększeniu kontrolek przy 320/390 px oraz na telefonie pozostają do sprawdzenia; bieżąca sesja przeglądarki jest niedostępna. Nie deklarujemy nowego testu renderowanego układu.
 - Aktualizacja obejmuje wspólne reguły wymiarów dla WEB i MOBILE. Weryfikacja renderowanego układu po tych zmianach pozostaje osobnym krokiem.
 
@@ -467,3 +535,13 @@ Czat pozostaje lokalnym silnikiem przygotowanych odpowiedzi. Rozpoznaje obsługi
 - Anonimowy odczyt HTML zwrócił HTTP 200; plik publiczny jest identyczny bajt po bajcie z przygotowanym `dist/index.html`. Obejmuje Polski / English, poprawione zegary i kanał czatu, większe cele, przyciski ilości i licznik w stopce.
 - Endpoint licznika odpowiedział HTTP 200, `Cache-Control: no-store`, interwał wygranej 100. Przy tej kontroli odczyt wynosił 3 listy i 3 udziały; nie wykonywano dodatkowego produkcyjnego wysłania ani zerowania. Wartości są stanem z chwili kontroli, nie stałą treścią strony.
 - Testy `npm test` zakończyły się powodzeniem. Próby DOM dla interakcji i zmiany języka opisano wyżej; pomiar nowego układu 320/390 px i test syntezy czytnika pozostają do wykonania.
+
+### Data stylizacji i język okna Grincha (25.10.2026)
+
+**Status:** historia zweryfikowana; teksty w zatwierdzonej wersji do publikacji. To wymagania R4 i R5 z 1.1.
+
+- Docelowy nagłówek: „BIURO OBSŁUGI ŻYCZEŃ · OD 1931” / „WISH FULFILMENT OFFICE · SINCE 1931”, zamiast 1881. Data fikcyjnego biura jest nawiązaniem do debiutu Mikołaja Haddona Sundbloma w kampanii Coca-Coli z 1931 roku. Nie oznacza powstania postaci Mikołaja, czerwonego stroju ani motywu bieguna północnego w tym roku.
+- Coca-Cola opisuje debiut Mikołaja Sundbloma w 1931 r. i wcześniejsze reklamy firmy z Mikołajem w latach 20. XX wieku. Smithsonian wiąże dom Mikołaja na biegunie północnym z ilustracjami Thomasa Nasta już w latach 60. XIX wieku.
+- Docelowo przycisk powrotu w oknie Grincha ma nazwę „Wróć do listy życzeń” / „Back to the wish list”. Zamyka to okno, zachowuje dane i przywraca poprzedni fokus. Komunikat po zamknięciu: „Wracasz do listy życzeń. Treść listu i prezenty są zachowane”. W sprawdzonym szkicu zmieniany przycisk nazywał się „Zakończ zakupy”; wymaganie obejmuje też usunięcie ewentualnego „Kontynuuj zakupy” w tym oknie.
+- Docelowy opis PL: „Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.” Opis EN: „Your letter-writing session expires in 60 seconds. I hope you do not manage to send your letter in time. Without festive regards, the Grinch.” Te teksty zastępują określenia zakupów i zamówienia w obu wariantach WCAG i obu profilach czasu.
+- Źródła: [Coca-Cola — Haddon Sundblom and the Coca-Cola Santas](https://www.coca-colacompany.com/about-us/history/haddon-sundblom-and-the-coca-cola-santas), [Smithsonian — How Santa brought Coca-Cola in from the cold](https://americanhistory.si.edu/explore/stories/how-santa-brought-coca-cola-cold).

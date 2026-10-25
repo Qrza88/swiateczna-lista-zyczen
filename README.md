@@ -16,6 +16,12 @@ Przełącznik Polski / English tłumaczy formularz, opisy i nazwy dostępne, bł
 
 W „Dla zespołu” ilość można wpisać albo zmienić przyciskami −/+, w zakresie 1–99. Przyciski mają nazwy z nazwą prezentu, stan graniczny i komunikat o zmianie bez utraty fokusu. Licznik wysłanych listów jest dyskretnie umieszczony w prawym dolnym rogu stopki.
 
+## Worek, czytelność i okna
+
+Podczas przeglądania katalogu na telefonie widoczny jest kompaktowy mini worek z sumą sztuk i przejściem do pełnej zawartości. Udane dodanie uruchamia krótki przelot ilustracji i ruch ikony oraz licznika. Ustawienie ograniczenia ruchu pomija animację; tekstowe potwierdzenie i odczyt statusu nadal działają. Szybkie kliknięcia, reset i zmiana widoku anulują poprzedni efekt. Na komputerze potwierdzenie jest przy bocznym worku. W obu układach karty prezentów nie dostają dodatkowych komunikatów pod produktem.
+
+Podpowiedzi i instrukcje mają minimum 1 rem (domyślnie 16 px). W poprawnym wariancie Grinch ma rolę alertdialog, nazwę z tytułu h2 i opis; fokus trafia do okna po jego pokazaniu. Teksty mówią o liście życzeń, a przycisk powrotu to „Wróć do listy życzeń”. Data 1931 w stylizacji odnosi się do kampanii Sundbloma dla Coca-Coli, nie do powstania legendy o biegunie północnym.
+
 ## Dwa czasy Grincha
 
 Ta opublikowana wersja używa ustawienia: `DEMO_PROFILE='public'` oznacza Grincha po 2 minutach. Do nagrania można ustawić tę samą stałą na `'presentation'`, czyli 7 minut. Lokalny plik prezentacyjny przechowujemy osobno. Opis panelu i komunikat startu wynikają z profilu.
@@ -46,6 +52,7 @@ Poprzedni układ sprawdzono w przeglądarce w szerokościach telefonu. Nowe wers
 - `counter-client.js` — źródło testowanej logiki licznika, włączone również w HTML pomiędzy znacznikami `LETTER_COUNTER_START/END`.
 - `elf-engine.js` — źródło logiki odpowiedzi, włączone w HTML między `ELF_REPLY_ENGINE_START/END`.
 - `i18n.js` — teksty i mechanizm wersji językowych, włączone w HTML między `UI_I18N_START/END`.
+- `bag-feedback.js` — mini worek i opcjonalna animacja, włączone w HTML między `BAG_FEEDBACK_START/END`.
 - `netlify/` — funkcja i logika wspólnego licznika.
 - `qa/` — testy lokalne.
 - `WYMAGANIA.md` — wymagania, instrukcja pokazu i mapa celowych błędów.
