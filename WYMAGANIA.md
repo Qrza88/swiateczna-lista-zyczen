@@ -3,7 +3,7 @@
 **Event:** Kalendarz Programisty · **Odbiorcy:** dorośli, szczególnie osoby pracujące w IT  
 **Tytuł strony i formularza:** Świąteczna lista życzeń  
 **Aktualizacja:** 25 października 2026  
-**Status:** użytkowniczka zatwierdziła próbny interfejs i publikację 25.10.2026. Wersja z mini workiem, animacją, większymi podpowiedziami i semantyką Grincha jest przygotowana do wdrożenia. Testy logiki i DOM przeszły; faktyczny odczyt dialogu przez czytnik i nowy renderowany układ wymagają osobnej próby. Potwierdzenie konkretnego wdrożenia zapisujemy po publikacji.
+**Status:** zatwierdzone poprawki opublikowano 25.10.2026 na GitHubie i Netlify. Wdrożenie ma stan `ready`, a anonimowo pobrany HTML jest identyczny z wydaniem. Testy logiki i DOM przeszły; faktyczny odczyt Grincha przez czytnik oraz nowy renderowany układ wymagają osobnej próby. Szczegóły potwierdzenia znajdują się na końcu dokumentu.
 
 **Strona publiczna:** https://swiateczna-lista-zyczen.netlify.app/  
 **Kod źródłowy:** https://github.com/Qrza88/swiateczna-lista-zyczen  
@@ -27,17 +27,17 @@ Dokument opisuje jeden responsywny projekt. „WEB” oznacza poniżej widok des
 | Obsługa | Klawiatura, mysz, czytnik. | Dotyk, klawiatura i czytnik; wygodne cele dotykowe. |
 | Pozostałe przykłady WCAG | Wspólna mapa w sekcji 5. | Ta sama mapa, z mobilnym zamiennikiem zakładek. |
 
-### 1.1. Zmiany zatwierdzone do publikacji
+### 1.1. Zmiany zatwierdzone i opublikowane
 
-Po zebraniu wymagań użytkowniczka sprawdziła próbny interfejs i 25.10.2026 poleciła wypchnąć zatwierdzone zmiany na produkcję. Ostateczna decyzja: wizualne potwierdzenie znajduje się przy worku w obu widokach; na telefonie uzupełnia je krótka animacja. Usuwamy komunikaty dodania spod kart zarówno na WEB, jak i MOBILE. Status publikacji wymaga potwierdzenia wdrożenia; testy DOM nie potwierdzają syntezy mowy ani geometrii.
+Po zebraniu wymagań użytkowniczka sprawdziła próbny interfejs i 25.10.2026 poleciła wypchnąć zatwierdzone zmiany na produkcję. Ostateczna decyzja: wizualne potwierdzenie znajduje się przy worku w obu widokach; na telefonie uzupełnia je krótka animacja. Usuwamy komunikaty dodania spod kart zarówno na WEB, jak i MOBILE. Publikację potwierdzono dla konkretnego wdrożenia; testy DOM nie potwierdzają syntezy mowy ani geometrii.
 
 | ID | Wymaganie | Zakres | Status |
 | --- | --- | --- | --- |
-| R1 | Poprawny Grinch: rola `alertdialog`, nazwa z widocznego tytułu, opis, modalność, fokus i odczyt po otwarciu. | WEB + MOBILE, PL + EN; wariant poprawiony. | Semantyka, powiązania i przekazanie fokusu przygotowane; sprawdzone w DOM. Odczyt docelowym czytnikiem pozostaje do wykonania. |
-| R2 | Potwierdzenie przy worku; na MOBILE mini worek z animacją, aktualną sumą sztuk i przejściem do zawartości. Brak komunikatów pod kartami w obu układach. | WEB + MOBILE; animacja i mini worek tylko MOBILE; oba warianty WCAG i języki. | Zatwierdzone i przygotowane do publikacji; logika DOM sprawdzona. |
+| R1 | Poprawny Grinch: rola `alertdialog`, nazwa z widocznego tytułu, opis, modalność, fokus i odczyt po otwarciu. | WEB + MOBILE, PL + EN; wariant poprawiony. | Semantyka, powiązania i przekazanie fokusu opublikowane; sprawdzone w DOM. Odczyt docelowym czytnikiem pozostaje do wykonania. |
+| R2 | Potwierdzenie przy worku; na MOBILE mini worek z animacją, aktualną sumą sztuk i przejściem do zawartości. Brak komunikatów pod kartami w obu układach. | WEB + MOBILE; animacja i mini worek tylko MOBILE; oba warianty WCAG i języki. | Opublikowane; logika DOM sprawdzona. |
 | R3 | Powiększenie obecnych zbyt małych podpowiedzi: minimum 1 rem, kontrast 4,5:1, zawijanie i możliwość powiększania. | WEB + MOBILE, PL + EN, oba warianty WCAG. | Powiększone w obu widokach; renderowany układ i pomiary wymagają osobnej próby. |
-| R4 | Data 1931 jako odniesienie do kampanii Sundbloma dla Coca-Coli, bez przypisywania firmie pomysłu bieguna północnego. | Nagłówek PL + EN, oba widoki i profile czasu. | Historia sprawdzona; tekst w zatwierdzonej wersji do publikacji. |
-| R5 | „Wróć do listy życzeń” / „Back to the wish list” w oknie Grincha; ostrzeżenie o pisaniu listu zamiast zakupach. | WEB + MOBILE, oba warianty WCAG, PL + EN i oba profile czasu. | Teksty w zatwierdzonej wersji do publikacji. |
+| R4 | Data 1931 jako odniesienie do kampanii Sundbloma dla Coca-Coli, bez przypisywania firmie pomysłu bieguna północnego. | Nagłówek PL + EN, oba widoki i profile czasu. | Historia sprawdzona; tekst opublikowany. |
+| R5 | „Wróć do listy życzeń” / „Back to the wish list” w oknie Grincha; ostrzeżenie o pisaniu listu zamiast zakupach. | WEB + MOBILE, oba warianty WCAG, PL + EN i oba profile czasu. | Teksty opublikowane. |
 
 R1 wymaga końcowej próby odczytu w czytniku. Nie wskazujemy przyczyny wcześniejszego braku odczytu jako ustalonej. R2 i R3 działają według tych samych zasad w obu wariantach WCAG; różnica WEB/MOBILE dotyczy formy worka i dodatkowej animacji na telefonie.
 
@@ -302,7 +302,7 @@ To mobilny przykład braku informacji o stanie z 4.1.2. Nie zastępujemy go naty
 - Pola do wpisywania mają na telefonie 16 px. Główne przyciski i cele dotykowe mają około 44 px lub więcej; etykiety checkboxów są klikalne.
 - Okna mieszczą się w ekranie; zawartość można przewinąć, „X” jest osiągalny, fokus widoczny. Tło pozostaje nieaktywne.
 - Historia i pole czatu, ilości zespołowe, usuwanie z worka, walidacja i sukces są obsługiwalne również na małym ekranie.
-- Próba w ramce telefonu sprawdza układ; rzeczywisty telefon z VoiceOver/TalkBack wymaga osobnego testu przed publikacją.
+- Próba w ramce telefonu sprawdza układ; rzeczywisty telefon z VoiceOver/TalkBack pozostaje do sprawdzenia w osobnej próbie.
 
 - **R3:** podpowiedzi i instrukcje mają ten sam minimalny rozmiar `1rem` co na WEB. Weryfikujemy obliczony rozmiar i kontrast, a nie tylko deklarację CSS; tekst zawija się bez obcinania także po zmianie języka i powiększeniu.
 
@@ -538,10 +538,20 @@ Czat pozostaje lokalnym silnikiem przygotowanych odpowiedzi. Rozpoznaje obsługi
 
 ### Data stylizacji i język okna Grincha (25.10.2026)
 
-**Status:** historia zweryfikowana; teksty w zatwierdzonej wersji do publikacji. To wymagania R4 i R5 z 1.1.
+**Status:** historia zweryfikowana; teksty opublikowane. To wymagania R4 i R5 z 1.1.
 
 - Docelowy nagłówek: „BIURO OBSŁUGI ŻYCZEŃ · OD 1931” / „WISH FULFILMENT OFFICE · SINCE 1931”, zamiast 1881. Data fikcyjnego biura jest nawiązaniem do debiutu Mikołaja Haddona Sundbloma w kampanii Coca-Coli z 1931 roku. Nie oznacza powstania postaci Mikołaja, czerwonego stroju ani motywu bieguna północnego w tym roku.
 - Coca-Cola opisuje debiut Mikołaja Sundbloma w 1931 r. i wcześniejsze reklamy firmy z Mikołajem w latach 20. XX wieku. Smithsonian wiąże dom Mikołaja na biegunie północnym z ilustracjami Thomasa Nasta już w latach 60. XIX wieku.
 - Docelowo przycisk powrotu w oknie Grincha ma nazwę „Wróć do listy życzeń” / „Back to the wish list”. Zamyka to okno, zachowuje dane i przywraca poprzedni fokus. Komunikat po zamknięciu: „Wracasz do listy życzeń. Treść listu i prezenty są zachowane”. W sprawdzonym szkicu zmieniany przycisk nazywał się „Zakończ zakupy”; wymaganie obejmuje też usunięcie ewentualnego „Kontynuuj zakupy” w tym oknie.
 - Docelowy opis PL: „Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.” Opis EN: „Your letter-writing session expires in 60 seconds. I hope you do not manage to send your letter in time. Without festive regards, the Grinch.” Te teksty zastępują określenia zakupów i zamówienia w obu wariantach WCAG i obu profilach czasu.
 - Źródła: [Coca-Cola — Haddon Sundblom and the Coca-Cola Santas](https://www.coca-colacompany.com/about-us/history/haddon-sundblom-and-the-coca-cola-santas), [Smithsonian — How Santa brought Coca-Cola in from the cold](https://americanhistory.si.edu/explore/stories/how-santa-brought-coca-cola-cold).
+
+### Potwierdzenie publikacji zatwierdzonych poprawek (25.10.2026)
+
+- Commit aplikacji: `2f0bcacf6d8b4197bb16e2d144a7290da358ac4c` w repozytorium https://github.com/Qrza88/swiateczna-lista-zyczen .
+- Netlify: wdrożenie `6ade394c2dddd1db23b2a280`, stan `ready`, dokładnie dla tego commita. Publiczny adres: https://swiateczna-lista-zyczen.netlify.app/ .
+- Anonimowe pobranie HTML zwróciło HTTP 200, a treść była identyczna bajt po bajcie z zatwierdzonym `dist/index.html`; Git SHA pliku: `dc2dd116d785f1901e2340b6dc349ff23de93db0`.
+- Wydanie obejmuje mini worek i krótką animację na telefonie, wariant bez ruchu, potwierdzenia tylko przy worku, większe podpowiedzi, nazwany Grinch w poprawnym wariancie oraz datę 1931 i teksty listu życzeń w PL/EN. Domyślnie pozostaje wariant z celowymi błędami. Profil publiczny ma 2 minuty, a lokalny plik prezentacji 7 minut.
+- `npm test` oraz próby DOM pełnego pliku produkcyjnego przeszły. Sprawdzono także domyślny wariant z błędami, przełączenie na poprawiony, role i powiązania Grincha, fokus, mini worek, ilości, PL/EN, reset, brak komunikatów pod prezentami oraz logikę animacji przy szybkim dodawaniu, ograniczeniu ruchu i braku API.
+- Funkcja licznika zwróciła HTTP 200 i `Cache-Control: no-store`, interwał wygranej 100. W chwili odczytu było 5 listów i 5 udziałów. Nie wysyłano nowych listów ani nie zerowano statystyki w ramach tej publikacji.
+- Testy nie stanowią potwierdzenia faktycznej syntezy NVDA/VoiceOver/TalkBack ani nowych pomiarów układu 320/390 px. Te próby pozostają do wykonania. Źródła zaplecza licznika i jego dane nie były zmieniane.
