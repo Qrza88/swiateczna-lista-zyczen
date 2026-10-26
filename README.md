@@ -58,7 +58,7 @@ Udziały mają własną numerację, więc listy bez udziału nie przesuwają wyg
 
 ## Sprawdzenie
 
-Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 19 angielskich scenariuszy czatu, naturalne zdania i liczbę pojedynczą/mnogą, ochronę treści użytkownika podczas tłumaczenia, pierwszeństwo języka z URL, tytuły stron, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami i wygranymi co 25 udziałów. Nie wymagają zależności Netlify.
+Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 19 angielskich scenariuszy czatu, naturalne zdania i liczbę pojedynczą/mnogą, ochronę treści użytkownika podczas tłumaczenia, pierwszeństwo języka z URL, tytuły stron, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami i wygranymi co 5 udziałów. Nie wymagają zależności Netlify.
 
 Dodatkowa weryfikacja pełnego HTML obejmuje walidację imienia, pustego worka i wymaganej zgody, powiązania błędów i fokus w ośmiu kombinacjach WEB/MOBILE, PL/EN i obu wariantów WCAG. Osobno obejmuje dialogi, przełączanie języka, ilości, mini worek, reset, animację, ograniczenie ruchu oraz wynik 25. udziału. Testy DOM i logiki nie potwierdzają syntezy mowy. Próby z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie wymagają docelowego sprzętu i czytnika.
 

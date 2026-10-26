@@ -79,8 +79,8 @@ Mobilna kolejność dokumentu: O mnie → katalog → zachowanie → pełny wore
 | Sukces | List wysłany &#124; Świąteczna lista życzeń | Letter sent &#124; Christmas wish list |
 
 - Tytuły formularza i sukcesu są odczytywane jako pełne nagłówki `h1`. Wymuszone znaczniki `br` nie dzielą ich treści; zawijanie wizualne wynika z dostępnego miejsca. W każdym widoku tylko jego aktualny `h1` jest dostępny dla czytnika.
-- Na początku formularza występują dwa skip linki w kolejności klawiaturowej: „Przejdź do treści” i „Przejdź do worka z prezentami”. Drugi prowadzi do `#bag-title`, przenosi fokus na nagłówek „Twój worek” i przewija go do widocznego miejsca. Działa na WEB i MOBILE, w obu wariantach oraz językach.
-- Skip link do worka jest ukryty na ekranie sukcesu, gdy cały worek jest niedostępny, i wraca po powrocie do formularza. Link do treści wskazuje aktualny widok.
+- Na początku formularza występują trzy skip linki w kolejności klawiaturowej: „Przejdź do treści”, „Przejdź do worka z prezentami” i „Przejdź do pomocy technicznej z elfem”. Drugi prowadzi do `#bag-title`, a trzeci do `#chat-title`. Oba przenoszą fokus na odpowiedni nagłówek i przewijają go do widocznego miejsca. Działają na WEB i MOBILE, w obu wariantach oraz językach. Skip link do elfa nie rozwija automatycznie czatu.
+- Skip linki do worka i pomocy z elfem są ukryte na ekranie sukcesu, gdy ich cele są niedostępne, i wracają po powrocie do formularza. Link do treści wskazuje aktualny widok.
 
 ### 3.1. Polski i English
 
@@ -300,10 +300,10 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 
 ### 10.2. Mechanizm loterii
 
-- Wygrywa co 25. udział w loterii: 25, 50, 75, 100 i kolejne wielokrotności 25.
+- Wygrywa co 5. udział w loterii: 5, 10, 15, 20 i kolejne wielokrotności 5.
 - Numeracja dotyczy udziałów w loterii, a nie wszystkich listów ani unikalnych osób. List bez udziału nie przesuwa numeru wygranej.
 - Jeden list otrzymuje jeden numer udziału. Ponowienie nie nalicza go ponownie. Późniejsze dopisanie udziału do tego samego listu nie zwiększa liczby listów.
-- Klient, licznik lokalny i funkcja serwerowa używają tego samego interwału 25. Podgląd roboczy ma osobną numerację i nie dopisuje zgłoszeń do produkcji.
+- Klient, licznik lokalny i funkcja serwerowa używają tego samego interwału 5. Podgląd roboczy ma osobną numerację i nie dopisuje zgłoszeń do produkcji.
 
 ### 10.3. Licznik listów i dane
 
@@ -374,7 +374,7 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 - Animacja: szybkie dodawanie, anulowanie, zmiana szerokości i ograniczenia ruchu; brak ruchu przy `prefers-reduced-motion: reduce`.
 - Grinch: ręczne i automatyczne wywołanie, oczekiwanie za Mikołajem, role i powiązania właściwe dla wariantu, fokus, zamknięcie i powrót, opróżnienie przy 0:00, odzyskanie z okna i worka, zachowanie nowych pozycji oraz reset kopii. Rzeczywisty odczyt w NVDA z przeglądarką prowadzącej oraz VoiceOver lub TalkBack na telefonie.
 - Czat: pojedynczy odczyt nowej odpowiedzi, fokus w polu wiadomości, brak ponownego odczytu całej historii i własnego pytania.
-- Loteria: wygrane przy udziałach 25, 50, 75 i kolejnych wielokrotnościach 25; pominięcie listów bez udziału; deduplikacja i późniejsze dopisanie udziału; brak ujawnienia interwału w interfejsie.
+- Loteria: wygrane przy udziałach 5, 10, 15 i kolejnych wielokrotnościach 5; pominięcie listów bez udziału; deduplikacja i późniejsze dopisanie udziału; brak ujawnienia interwału w interfejsie.
 - Statystyka: odświeżenie, ponowienie po błędzie, opóźniony odczyt i równoczesne wysyłki bez dublowania numerów.
 - Typografia: pełne teksty i widoczny fokus po powiększeniu do 200%, reflow przy 320 px CSS oraz po ustawieniu interlinii 1,5, odstępu po akapicie 2 em, między literami 0,12 em i słowami 0,16 em.
 - Podgląd roboczy w oknie przeglądarki: możliwość przejęcia kontroli oraz przełączenia szerokości między komputerem i telefonem.
@@ -406,9 +406,25 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 - Pauza i wznowienie, zatrzymanie przed końcem, zamknięcie przed 20 sekundami i po ostrzeżeniu, reset oraz kolejna próba. Brak podwójnych, spóźnionych lub nieaktualnych komunikatów.
 - Odzyskanie prezentów i powrót do listy po upływie czasu; poprawna zawartość worka, dostępny przycisk odzyskania i logiczny fokus.
 - H1: nawigacja po nagłówkach i odczyt ciągły, formularz i sukces, PL/EN, wąski ekran oraz powiększenie. Pełna nazwa bez dwukrotnej zapowiedzi H1 dla tego samego tytułu.
-- Skip linki: pierwsze dwa naciśnięcia Tab pokazują kolejno oba linki; Enter na drugim ustawia fokus na nagłówku worka. Następny Tab kontynuuje obsługę w tym obszarze. Fokus nie jest zasłonięty przez mobilny mini worek. Po sukcesie link nie prowadzi do ukrytego celu.
+- Skip linki: pierwsze trzy naciśnięcia Tab pokazują kolejno trzy linki; Enter na drugim ustawia fokus na nagłówku worka, a na trzecim na nagłówku pomocy z elfem. Następny Tab kontynuuje obsługę w tym obszarze. Fokus nie jest zasłonięty przez mobilny mini worek. Po sukcesie link nie prowadzi do ukrytego celu.
 
 **Powiązanie z WCAG:** ostrzeżenie i możliwość reakcji sprawdzamy w kontekście 2.2.1. Samo przypomnienie „20 sekund” nie potwierdza spełnienia całego kryterium. Automatyczne przekazanie wyniku bez zmiany kontekstu weryfikujemy także w kontekście 4.1.3. Drugi skip link rozszerza nawigację; jego brak nie jest samodzielnym dowodem naruszenia 2.4.1, jeśli mechanizm pomijania bloków już działa.
+
+### 14.2. Skip link do elfa i częstotliwość wygranych
+
+- **NAV-SKIP-03 — pomoc techniczna z elfem:** trzeci skip link na początku formularza, po linkach do treści i worka.
+- Etykiety: „Przejdź do pomocy technicznej z elfem” / „Skip to elf technical support”.
+- Cel: nagłówek „Dyżurny elf techniczny” (`#chat-title`). Aktywacja przenosi fokus na nagłówek i przewija go do widocznego miejsca; nagłówek otrzymuje `tabindex="-1"`. Czat zachowuje osobny przycisk rozwijania.
+- Link jest widoczny po uzyskaniu fokusu. Działa na WEB i MOBILE, w obu językach i wariantach demonstracji.
+- Na ekranie sukcesu jest ukryty razem z niedostępną sekcją pomocy; po powrocie do formularza ponownie działa.
+- Odbiór: kolejność trzech skip linków, fokus po Enter, dalsza nawigacja klawiaturą, brak zasłonięcia celu na telefonie oraz ukrycie linku na sukcesie.
+
+
+- **LOTTERY-05 — częstsze wygrane:** co 5. udział w loterii, zamiast co 25. Zmiana obejmuje klienta, licznik lokalny, funkcję serwerową i testy mechanizmu.
+- Numeracja nadal dotyczy udziałów w loterii; listy bez udziału nie przesuwają numeru wygranej. Interwał pozostaje niewidoczny w interfejsie.
+- Odbiór: wygrane przy 5, 10 i 15; brak wygranej przy 4, 6, 9 i 11; zachowana deduplikacja oraz obsługa listów bez udziału.
+
+**Weryfikacja wydania:** `npm test` przechodzi, w tym 9 testów licznika i loterii, 500 równoczesnych udziałów oraz granice wygranej przy 5, 10 i 15. W przeglądarce sprawdzono trzeci skip link, fokus na `#chat-title`, kolejny Tab na przycisku czatu, tłumaczenie EN i ukrycie linku na sukcesie wraz z jego przywróceniem. W ramce 390 px potwierdzono fokus, położenie celu w widoku i dalszą nawigację do czatu. To kontrola przeglądarki; odczyt rzeczywistym czytnikiem pozostaje osobnym odbiorem.
 
 ## 15. Kod i uruchomienie
 
