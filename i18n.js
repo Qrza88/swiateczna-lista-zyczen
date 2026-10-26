@@ -38,6 +38,7 @@ const englishUi = {
 "Język strony":"Page language",
 "Przejdź do treści":"Skip to content",
 "Przejdź do worka z prezentami":"Skip to gift sack",
+"Przejdź do pomocy technicznej z elfem":"Skip to elf technical support",
 "Poczta Północna":"North Pole Post",
 "BIURO OBSŁUGI ŻYCZEŃ · OD 1931":"WISH FULFILMENT OFFICE · SINCE 1931",
 "Panel prowadzącej":"Presenter controls",
