@@ -78,6 +78,10 @@ Mobilna kolejność dokumentu: O mnie → katalog → zachowanie → pełny wore
 | Formularz | Świąteczna lista życzeń | Christmas wish list |
 | Sukces | List wysłany &#124; Świąteczna lista życzeń | Letter sent &#124; Christmas wish list |
 
+- Tytuły formularza i sukcesu są odczytywane jako pełne nagłówki `h1`. Wymuszone znaczniki `br` nie dzielą ich treści; zawijanie wizualne wynika z dostępnego miejsca. W każdym widoku tylko jego aktualny `h1` jest dostępny dla czytnika.
+- Na początku formularza występują dwa skip linki w kolejności klawiaturowej: „Przejdź do treści” i „Przejdź do worka z prezentami”. Drugi prowadzi do `#bag-title`, przenosi fokus na nagłówek „Twój worek” i przewija go do widocznego miejsca. Działa na WEB i MOBILE, w obu wariantach oraz językach.
+- Skip link do worka jest ukryty na ekranie sukcesu, gdy cały worek jest niedostępny, i wraca po powrocie do formularza. Link do treści wskazuje aktualny widok.
+
 ### 3.1. Polski i English
 
 - Natywny wybór języka znajduje się w nagłówku i ma powiązaną etykietę. Dokument ma odpowiednio `lang="pl"` albo `lang="en"`.
@@ -261,7 +265,10 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 - Po upływie odliczania Grinch opróżnia worek, a elfy zachowują kopię pozycji i ich ilości w pamięci karty. Imię, wiadomość, pozostałe pola i licznik wysłanych listów pozostają zachowane. Pusty worek otrzymuje osobny, zgodny ze stanem komunikat.
 - Główny przycisk w oknie po psikusie ma tekst „Odzyskaj prezenty”. Drugi przycisk o tej samej nazwie jest przy pełnym worku, pod jego zawartością, razem z krótkim komunikatem o zachowanej kopii. Pozostaje dostępny po zamknięciu okna.
 - Odzyskanie przywraca wszystkie zabrane sztuki i zachowuje prezenty dodane później. Nie powiela sztuk przy kolejnym kliknięciu. Komunikat i przycisk przy worku znikają po odzyskaniu; fokus z tego przycisku przechodzi do nagłówka worka. Pełny reset usuwa także kopię.
-- W poprawnym wariancie opis dialogu po zakończeniu odliczania wskazuje aktualny wynik psikusa. Jedno ogłoszenie `polite` informuje o opróżnieniu i możliwości odzyskania.
+- W poprawnym wariancie opis dialogu po zakończeniu odliczania wskazuje aktualny wynik psikusa. W obu wariantach jedno automatyczne ogłoszenie `polite` informuje, że czas minął, podaje rzeczywisty wynik psikusa i możliwość odzyskania, jeśli istnieje kopia prezentów.
+- Regiony ostrzeżenia i wyniku znajdują się wewnątrz aktywnego okna Grincha, poza obszarem tła wyłączanym przez `inert` i poza zegarem z `aria-live="off"`. Są puste przed zdarzeniem i pozostają dostępne przez cały czas otwarcia okna. Komunikat wyniku następuje po aktualizacji treści oraz ewentualnego fokusu; zamknięcie, reset i nowa próba anulują oczekującą zapowiedź.
+- Przy zabranych prezentach komunikat brzmi: „Czas minął. Grinch opróżnił worek. Elfy zachowały kopię. Możesz odzyskać prezenty”. Przy pustym worku: „Czas minął. Grinch zajrzał do worka, ale był pusty. Tym razem nie miał czego zabrać”. Wersja angielska przekazuje ten sam stan i te same możliwości.
+- Zmiana `h2` ani wyświetlenie `00:00` nie zastępują automatycznego ogłoszenia. Fokus nie przeskakuje do komunikatu. Kolejne sekundy nie są ogłaszane.
 - Po upływie czasu ostrzeżenie o przyszłym opróżnieniu jest ukryte. Okno pokazuje aktualny wynik psikusa; kolejne otwarcie przywraca ostrzeżenie.
 - Po psikusie tytuł `h2` zmienia się na „Grinch wyjął Twoje prezenty z worka” / „The Grinch took your gifts out of the sack”. Jeśli worek był pusty, brzmi „Grinch nie miał czego zabrać” / „There was nothing for the Grinch to take”. Nazwa poprawnego dialogu nadal pochodzi z tego nagłówka. Ponowne ręczne otwarcie przywraca początkowy tytuł „Grinch przejął sesję”.
 - Automatyczny Grinch nie otwiera się na ekranie sukcesu wysyłki.
@@ -372,6 +379,37 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 - Typografia: pełne teksty i widoczny fokus po powiększeniu do 200%, reflow przy 320 px CSS oraz po ustawieniu interlinii 1,5, odstępu po akapicie 2 em, między literami 0,12 em i słowami 0,16 em.
 - Podgląd roboczy w oknie przeglądarki: możliwość przejęcia kontroli oraz przełączenia szerokości między komputerem i telefonem.
 
+### 14.1. Poprawki i odbiór panelu demonstracyjnego
+
+**Zgłoszenie:** 26 października 2026 r.  
+**Priorytet komunikatów Grincha:** wysoki, przed nagraniem.  
+**Stan implementacji:** bieżąca wersja kodu zawiera regiony komunikatów wewnątrz okna Grincha, pełne tytuły H1 i drugi skip link do worka. Rzeczywisty odczyt czytnikiem pozostaje do potwierdzenia. Sam wynik testu DOM, obecność atrybutu ARIA lub widoczność tekstu nie zamyka zgłoszenia.
+
+| ID | Obserwacja lub potrzeba | Oczekiwany efekt | Status odbioru |
+| --- | --- | --- | --- |
+| GRINCH-SR-01 | Czytnik nie ogłosił automatycznie ostrzeżenia o pozostałych 20 sekundach. | Jedna samoczynna zapowiedź pozostałego czasu oraz akcji „Przedłuż sesję”, bez szukania komunikatu i bez przenoszenia na niego fokusu. | Do sprawdzenia czytnikiem. |
+| GRINCH-SR-02 | Czytnik nie ogłosił automatycznie końca odliczania. | Jedna zapowiedź „Czas minął”, rzeczywistego wyniku psikusa i możliwości odzyskania, gdy prezenty zostały zabrane. Osobny komunikat przy pustym worku. | Do sprawdzenia czytnikiem. |
+| H1-SR-01 | Tytuł podzielony wymuszonym przełamaniem był odczytywany fragmentami, z powtarzanym oznaczeniem nagłówka. | „Świąteczna lista życzeń” jako jeden pełny H1. Ta sama zasada dla pełnego tytułu sukcesu i obu języków. | Pełne nazwy sprawdzone w drzewie dostępności; odczyt do potwierdzenia czytnikiem. |
+| NAV-SKIP-02 | Potrzebny bezpośredni skrót klawiaturowy do worka. | Drugi skip link „Przejdź do worka z prezentami”, z faktycznym przeniesieniem fokusu do `#bag-title`. | Fokus sprawdzony na WEB i MOBILE 390 px. Obsługa sukcesu sprawdzona lokalnie; odczyt do potwierdzenia czytnikiem. |
+
+**Ustalenie z przeglądu kodu:** we wcześniejszej wersji `grinch-time-status` i `app-status` znajdowały się w `page-root`. Otwarcie Grincha ustawia `page-root.inert = true`. Oba kanały ogłaszania trafiają więc do tła wyłączanego na czas okna. To prawdopodobna wspólna przyczyna obu brakujących zapowiedzi, wymagająca potwierdzenia odczytem po poprawce. Bieżąca wersja umieszcza ostrzeżenie w oknie i korzysta z osobnego regionu wyniku w tym samym oknie.
+
+**Weryfikacja lokalna przed wydaniem:** testy logiki projektu i dodatkowy test komunikatu wyniku przeszły. W przeglądarce Chrome sprawdzono pełne nazwy H1 formularza i sukcesu w PL/EN, kolejność skip linków i fokus na worku na WEB oraz w ramce o szerokości 390 px. Przy ręcznym odliczaniu z prezentem w worku ostrzeżenie i wynik pojawiły się wewnątrz aktywnego okna w drzewie dostępności; ich regiony nie miały nieaktywnego przodka. Sprawdzono odzyskanie prezentu. To weryfikacja struktury, zachowania i udostępnienia komunikatów, bez potwierdzenia automatycznej zapowiedzi w NVDA, VoiceOver lub TalkBack.
+
+**Odbiór z czytnikiem:**
+
+- WEB: NVDA z przeglądarką używaną do nagrania; zapisana wersja czytnika, przeglądarki i systemu. Środowisko pierwotnego zgłoszenia pozostaje do uzupełnienia.
+- MOBILE: VoiceOver z Safari oraz TalkBack z Chrome; ostrzeżenie i koniec bez konieczności dotykania zmienionego tekstu.
+- Oba warianty WCAG, PL/EN, otwarcie automatyczne i ręczne, profile 2 i 7 minut. Brak roli i nazwy okna pozostaje celowym przykładem wyłącznie w wariancie z błędami; nie wyłącza wymaganych zapowiedzi czasu i wyniku.
+- Ostrzeżenie przy 20 sekundach z fokusem na „Przedłuż sesję” oraz na innym przycisku okna. Jest odczytane raz, również gdy czytnik wcześniej czytał treść okna. Sprawdzić, czy nie przerywa go druga zapowiedź.
+- Koniec odliczania z pełnym oraz pustym workiem. Aktualny komunikat jest odczytany bez przejścia do tytułu, zegara lub zawartości worka. Zmiana nazwy przycisku nie zastępuje komunikatu.
+- Pauza i wznowienie, zatrzymanie przed końcem, zamknięcie przed 20 sekundami i po ostrzeżeniu, reset oraz kolejna próba. Brak podwójnych, spóźnionych lub nieaktualnych komunikatów.
+- Odzyskanie prezentów i powrót do listy po upływie czasu; poprawna zawartość worka, dostępny przycisk odzyskania i logiczny fokus.
+- H1: nawigacja po nagłówkach i odczyt ciągły, formularz i sukces, PL/EN, wąski ekran oraz powiększenie. Pełna nazwa bez dwukrotnej zapowiedzi H1 dla tego samego tytułu.
+- Skip linki: pierwsze dwa naciśnięcia Tab pokazują kolejno oba linki; Enter na drugim ustawia fokus na nagłówku worka. Następny Tab kontynuuje obsługę w tym obszarze. Fokus nie jest zasłonięty przez mobilny mini worek. Po sukcesie link nie prowadzi do ukrytego celu.
+
+**Powiązanie z WCAG:** ostrzeżenie i możliwość reakcji sprawdzamy w kontekście 2.2.1. Samo przypomnienie „20 sekund” nie potwierdza spełnienia całego kryterium. Automatyczne przekazanie wyniku bez zmiany kontekstu weryfikujemy także w kontekście 4.1.3. Drugi skip link rozszerza nawigację; jego brak nie jest samodzielnym dowodem naruszenia 2.4.1, jeśli mechanizm pomijania bloków już działa.
+
 ## 15. Kod i uruchomienie
 
 - `dist/index.html` zawiera kompletną stronę ze stylami, grafikami i skryptami. Lokalnie działa bez instalowania zależności i połączenia z serwerem.
@@ -400,6 +438,7 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 - [WCAG 1.4.10: Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
 - [WCAG 1.4.12: Text Spacing](https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html)
 - [WCAG 2.4.11: Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)
+- [WAI-ARIA APG: Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 - [WCAG 4.1.3: Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
 - [WCAG 1.4.11: Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
 - [WAI-ARIA APG: Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
