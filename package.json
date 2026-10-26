@@ -5,7 +5,7 @@
   "description": "Demonstracja WCAG na Kalendarz Programisty",
   "type": "module",
   "scripts": {
-    "test": "node --test qa/counter.test.mjs && node qa/elf-replies.cjs && node qa/timing.cjs && node qa/i18n.cjs && node qa/grinch-prank.cjs"
+    "test": "node --test qa/counter.test.mjs && node qa/elf-replies.cjs && node qa/timing.cjs && node qa/i18n.cjs && node qa/grinch-prank.cjs && node qa/grinch-feedback.cjs"
   },
   "engines": {
     "node": ">=22"
