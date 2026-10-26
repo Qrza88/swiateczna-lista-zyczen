@@ -48,7 +48,7 @@ Mobilna kolejność dokumentu: O mnie → katalog → zachowanie → pełny wore
 - Dopiski z gwiazdką i teksty drobnego druku mogą mieć 0,875 rem, domyślnie 14 px. Informacje wymagane do wypełnienia formularza pozostają wyraźnie czytelne.
 - Opis pod przyciskiem wysyłki ma 0,875 rem i pełny kontrast tekstu.
 - „Loteria z dreszczykiem” ma prosty krój, rozmiar 1 rem i grubość 700. Liczby sztuk przy prezentach mają prosty krój 1 rem i grubość 600, suma 1,5 rem i grubość 700, a cyfra w nagłówku worka co najmniej 1,125 rem i grubość 700. Te same zasady obowiązują na WEB i MOBILE.
-- Pieczątka „Przyjęto warunkowo · Elf nr 404” i oznaczenia „NADANO”, „TRYB: ŚWIĄTECZNY” oraz „ODBIORCA: ŚWIĘTY MIKOŁAJ” mają wyraźny krój Georgia, grubość 700 i rozmiar 1,125 rem (domyślnie 18 px). Oznaczenia mają jasne, jednolite tło, obramowanie 2 px i wysokość co najmniej 48 px. Tekst zawija się na telefonie bez obcinania.
+- Pieczątka „Przyjęto warunkowo · Elf nr 200” i oznaczenia „NADANO”, „TRYB: ŚWIĄTECZNY” oraz „ODBIORCA: ŚWIĘTY MIKOŁAJ” mają wyraźny krój Georgia, grubość 700 i rozmiar 1,125 rem (domyślnie 18 px). Oznaczenia mają jasne, jednolite tło, obramowanie 2 px i wysokość co najmniej 48 px. Tekst zawija się na telefonie bez obcinania.
 - „Biegun Północny” na ekranie sukcesu ma 1,5 rem. „Wydział spraw pilnych” ma 1 rem, wyraźny krój i jest widoczny również na telefonie. Obie linie znajdują się nad ilustracją.
 - Tekst ma kontrast co najmniej 4,5:1. Istotne nietekstowe granice, ikony i stany kontrolek mają kontrast co najmniej 3:1.
 - Rozmiary względne respektują ustawienia użytkownika. Powiększenie tekstu do 200% oraz zmiana odstępów zgodnie z 1.4.12 nie powodują utraty treści ani obsługi.
@@ -322,7 +322,7 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 - „Wróć do listu” ma wyraźną strzałkę w lewo o wymiarach około 26 × 26 px, ukrytą przed czytnikiem. Kształt strzałki nie zależy od czcionki; nazwa przycisku wynika z widocznego tekstu.
 - Animacja koperty trwa około 2–3 sekund. Ograniczenie ruchu ma spokojny odpowiednik bez przelotu.
 - „Biegun Północny” i „Wydział spraw pilnych” znajdują się nad ilustracją, bez nakładania na drogowskaz i rysunek.
-- Pieczątka „Przyjęto warunkowo · Elf nr 404” znajduje się wyłącznie na sukcesie i ma własne jasne tło. Oznaczenia nadania są wyraźne również na telefonie.
+- Pieczątka „Przyjęto warunkowo · Elf nr 200” znajduje się wyłącznie na sukcesie i ma własne jasne tło. Oznaczenia nadania są wyraźne również na telefonie.
 - Wynik opcjonalnej loterii jest częścią sukcesu. Licznik nie nalicza listu ponownie po odświeżeniu i ponowieniu.
 
 ## 12. Mapa celowych błędów
@@ -425,6 +425,13 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 - Odbiór: wygrane przy 5, 10 i 15; brak wygranej przy 4, 6, 9 i 11; zachowana deduplikacja oraz obsługa listów bez udziału.
 
 **Weryfikacja wydania:** `npm test` przechodzi, w tym 9 testów licznika i loterii, 500 równoczesnych udziałów oraz granice wygranej przy 5, 10 i 15. W przeglądarce sprawdzono trzeci skip link, fokus na `#chat-title`, kolejny Tab na przycisku czatu, tłumaczenie EN i ukrycie linku na sukcesie wraz z jego przywróceniem. W ramce 390 px potwierdzono fokus, położenie celu w widoku i dalszą nawigację do czatu. To kontrola przeglądarki; odczyt rzeczywistym czytnikiem pozostaje osobnym odbiorem.
+
+### 14.3. Pieczątka na stronie sukcesu
+
+- Polski podpis: „Przyjęto warunkowo · Elf nr 200”.
+- Angielski podpis: „Provisionally accepted · Elf no. 200”.
+- Pieczątka występuje na ekranie sukcesu, w obu wariantach demonstracji oraz na WEB i MOBILE.
+- Dyżurny elf w czacie zachowuje numer 404.
 
 ## 15. Kod i uruchomienie
 

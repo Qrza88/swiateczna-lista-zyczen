@@ -148,6 +148,7 @@ const englishUi = {
 "Wydział spraw pilnych":"Urgent Requests Department",
 "Przyjęto warunkowo":"Provisionally accepted",
 "Elf nr 404":"Elf no. 404",
+"Elf nr 200":"Elf no. 200",
 "NADANO":"SENT",
 "TRYB: ŚWIĄTECZNY":"MODE: CHRISTMAS",
 "ODBIORCA: ŚWIĘTY MIKOŁAJ":"TO: SANTA CLAUS",
