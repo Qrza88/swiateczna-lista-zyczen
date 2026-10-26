@@ -98,7 +98,7 @@ Mobilna kolejność dokumentu: O mnie → katalog → zachowanie → pełny wore
 
 Karty prezentów nie zawierają dekoracyjnych kodów ani numerów katalogowych, takich jak „PP/01”. Ta sama zasada obowiązuje w obu językach, wariantach WCAG oraz układach WEB i MOBILE.
 
-Trzy kategorie: „Dla mnie”, „Dla zespołu”, „Dla świętego spokoju”. Ich opisy są widoczne nad kartami i powiązane programowo z panelem w poprawnym wariancie. Niewybrany panel jest ukryty z odczytu i kolejności fokusu.
+Trzy kategorie: „Dla mnie”, „Dla zespołu”, „Dla świętego spokoju”. Ich opisy są widoczne nad kartami. W poprawnym wariancie opisy „Dla mnie” i „Dla świętego spokoju” są powiązane programowo z panelem. Opis „Dla zespołu” pozostaje treścią panelu bez dodatkowego `aria-describedby`, aby ograniczyć powtórzenia przy wybieraniu liczby sztuk. Niewybrany panel jest ukryty z odczytu i kolejności fokusu.
 
 ### 4.1. Dla mnie
 
@@ -133,6 +133,9 @@ Każdy prezent w tej zakładce ma wybór liczby sztuk:
 - zakres: 1–99 sztuk, liczby całkowite;
 - pole pozwala wpisać liczbę bezpośrednio; obok są osobne przyciski „−” i „+”, każdy 44 × 44 px;
 - etykieta oraz nazwa dostępna jednoznacznie wskazują liczbę sztuk i właściwy prezent;
+- pole i przyciski mają własne nazwy z nazwą prezentu; otaczający je kontener nie otrzymuje dodatkowej roli `group` ani powielonej nazwy;
+- karta w „Dla zespołu” zachowuje natywny `article` i widoczny nagłówek `h3`, bez ponownego nazywania całego artykułu przez ten sam nagłówek;
+- opis kategorii „Dla zespołu” pozostaje widoczną treścią panelu i jest dostępny w zwykłej nawigacji czytnika. Nie jest dodatkowo dołączony jako `aria-describedby` do panelu ani kontrolek liczby sztuk;
 - kontrolka jest natywnym polem liczbowym, obsługiwanym klawiaturą oraz NVDA; nie wprowadzamy w niej dodatkowego celowego błędu;
 - aktywacja „Dodaj do worka” dodaje wybraną liczbę sztuk danego prezentu;
 - ilości pozostają zachowane przy zmianie zakładki oraz wariantu dostępności; pełny reset przywraca 1;
@@ -432,6 +435,17 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 - Angielski podpis: „Provisionally accepted · Elf no. 200”.
 - Pieczątka występuje na ekranie sukcesu, w obu wariantach demonstracji oraz na WEB i MOBILE.
 - Dyżurny elf w czacie zachowuje numer 404.
+
+### 14.4. Powtórzenia przy liczbie sztuk w „Dla zespołu”
+
+- Zgłoszenie: opis kategorii i kontekst prezentu tworzą zbyt długie zapowiedzi przy grupie, przyciskach oraz polu liczby sztuk.
+- Zakres poprawki: opis panelu „Dla zespołu”, powielona nazwa artykułu oraz dodatkowa nazwana grupa kontrolek liczby sztuk. Pozostałe kategorie zachowują dotychczasowe powiązania.
+- Przykładowe nazwy po poprawce: „Zmniejsz liczbę sztuk: Fotel masujący do biura”, „Liczba sztuk: Fotel masujący do biura”, „Zwiększ liczbę sztuk: Fotel masujący do biura”. Rola i wartość pola pozostają natywne.
+- Opis żartobliwy jest dostępny jako tekst; nie jest automatycznie dodawany do zapowiedzi każdej kontrolki. Komunikat walidacyjny pozostaje powiązany z niepoprawnym polem.
+- Obsługa −/+, wpisywanie liczby, zakres 1–99, `aria-disabled`, widoczny fokus i zachowanie ilości pozostają dostępne w obu wariantach, językach i układach.
+- Weryfikacja lokalna: nazwy i brak powielonych opisów w drzewie dostępności Chrome na WEB oraz w ramce 390 px; zwiększenie 1 → 2, zatrzymanie przy 99, błąd przy 0 z `aria-invalid`, powiązanym opisem i fokusem na polu, korekta błędu oraz zachowanie wartości po zmianie wariantu i języka. Test tłumaczeń i składnia skryptów przechodzą.
+- Źródła: [APG — Quantity Spin Button Example](https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/examples/quantity-spinbutton/), [APG — Providing Accessible Names and Descriptions](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/).
+- Status implementacji: powtórzone powiązania usunięte. Odbiór rzeczywistym czytnikiem pozostaje otwarty.
 
 ## 15. Kod i uruchomienie
 
