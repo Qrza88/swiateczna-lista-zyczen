@@ -2,6 +2,8 @@
 // Hand-written English copy. The Polish source is retained per text node;
 // language changes never rewrite form values or the user's chat messages.
 const englishUi = {
+"Mikołaj w okularach siedzi przy laptopie. W dymku: „Na wczoraj? Oczywiście.”":"Santa in glasses sits at a laptop. His speech bubble reads: “Needed yesterday? Of course.”",
+"List z czerwoną pieczęcią frunie ze skrzynki pocztowej na Biegun Północny, do Wydziału Spraw Pilnych.":"A letter sealed with red wax flies from a postbox to the North Pole’s Urgent Requests Department.",
 "Pozostało 20 sekund. Wybierz „Przedłuż sesję”, aby zatrzymać Grincha.":"20 seconds left. Choose “Extend session” to stop the Grinch.",
 "Pozostało mniej niż 20 sekund. Wybierz „Przedłuż sesję”, aby zatrzymać Grincha.":"Less than 20 seconds left. Choose “Extend session” to stop the Grinch.",
 "Grinch wyjął Twoje prezenty z worka":"The Grinch took your gifts out of the sack",
