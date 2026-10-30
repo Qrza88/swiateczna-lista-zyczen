@@ -75,6 +75,5 @@ document.addEventListener('focusin',()=>{
 $('reset-show').addEventListener('click',()=>{stopGiftFlight();syncMiniBag();});
 $('letter-form').addEventListener('submit',()=>{stopGiftFlight();queueMiniSync();});
 $('edit-letter').addEventListener('click',queueMiniSync);
-$('page-language').addEventListener('change',()=>{stopGiftFlight();queueMiniSync();});
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(queueMiniSync).observe($('catalog-section'));
 // BAG_FEEDBACK_END

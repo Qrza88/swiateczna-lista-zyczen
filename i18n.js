@@ -2,6 +2,14 @@
 // Hand-written English copy. The Polish source is retained per text node;
 // language changes never rewrite form values or the user's chat messages.
 const englishUi = {
+"Wygrana! Milion tokenów jest Twój!":"You won! A million tokens are yours!",
+"I co teraz? Zapytaj AI, co zrobić z milionem tokenów. Tylko pilnuj, żeby nie zużyła wszystkich na odpowiedź.":"What now? Ask AI what to do with a million tokens. Just make sure it does not spend them all on the answer.",
+"Pilnuj swoich tokenów. Grinch już pisze: „Mam tylko jedno krótkie pytanie…”.":"Keep an eye on your tokens. The Grinch is already typing: “Just one quick question…”",
+"Wreszcie możesz dopisać „proszę” i „dziękuję” bez sprawdzania salda.":"At last, you can add “please” and “thank you” without checking your balance.",
+"Powinno wystarczyć na jeden projekt i wszystkie jego „jeszcze tylko drobne poprawki”.":"That should cover one project and all its “just one tiny change” requests.",
+"Elfy zalecają rozsądne gospodarowanie. Znamy kogoś, kto wydał wszystko na wybór nazwy zmiennej.":"The elves recommend spending wisely. We know someone who used the lot choosing a variable name.",
+"Możesz już wygenerować odpowiedź na maila „OK, dzięki”. W siedmiu wersjach. Z analizą tonu.":"You can now generate a reply to “OK, thanks”. In seven versions. With a tone analysis.",
+
 "Mikołaj w okularach siedzi przy laptopie. W dymku: „Na wczoraj? Oczywiście.”":"Santa in glasses sits at a laptop. His speech bubble reads: “Needed yesterday? Of course.”",
 "List z czerwoną pieczęcią frunie ze skrzynki pocztowej na Biegun Północny, do Wydziału Spraw Pilnych.":"A letter sealed with red wax flies from a postbox to the North Pole’s Urgent Requests Department.",
 "Pozostało 20 sekund. Wybierz „Przedłuż sesję”, aby zatrzymać Grincha.":"20 seconds left. Choose “Extend session” to stop the Grinch.",
@@ -9,7 +17,7 @@ const englishUi = {
 "Grinch wyjął Twoje prezenty z worka":"The Grinch took your gifts out of the sack",
 "Grinch nie miał czego zabrać":"There was nothing for the Grinch to take",
 "Nieoczekiwany gość":"Unexpected guest",
-"Za 60 sekund opróżnię Twój worek z prezentami. Tyle planowania, a wystarczy jeden Grinch. Pozdrawiam bez świątecznej serdeczności.":"In 60 seconds, I’ll empty your gift sack. All that careful planning, undone by one Grinch. With absolutely no festive cheer.",
+"Za 30 sekund opróżnię Twój worek z prezentami. Tyle planowania, a wystarczy jeden Grinch. Pozdrawiam bez świątecznej serdeczności.":"In 30 seconds, I’ll empty your gift sack. All that careful planning, undone by one Grinch. With absolutely no festive cheer.",
 "Elfy zachowują kopię prezentów. Po psikusie możesz je odzyskać.":"The elves keep a copy of your gifts. You can restore them after the prank.",
 "Czas minął. Grinch opróżnił worek. Elfy zachowały kopię. Możesz odzyskać prezenty.":"Time’s up. The Grinch has emptied your sack. The elves kept a copy. You can restore your gifts.",
 "Czas minął. Grinch zajrzał do worka, ale był pusty. Tym razem nie miał czego zabrać.":"Time is up. The Grinch checked your sack, but it was empty. Nothing to steal this time.",
@@ -19,7 +27,7 @@ const englishUi = {
 "Wracasz do listy życzeń. Grinch opróżnił worek. Przycisk „Odzyskaj prezenty” znajdziesz przy worku.":"Back to your wish list. The Grinch emptied your sack. Use “Restore gifts” next to your sack to get them back.",
 "Elfy odzyskały prezenty. Wszystkie sztuki wróciły do worka.":"The elves recovered your gifts. Every item is back in your sack.",
 "Wracasz do listy życzeń.":"Back to your wish list.",
-"Zegar rusza po otwarciu strony. Grinch daje Ci 60 sekund, a potem opróżnia worek. „Przedłuż sesję” lub zamknięcie okna przed końcem odliczania powstrzymuje psikus. Po psikusie użyj „Odzyskaj prezenty” w oknie albo przy worku. Czas ataku i pauzę znajdziesz w panelu prowadzącej.":"The clock starts when you open the page. The Grinch gives you 60 seconds, then empties your sack. “Extend session” or closing the window before time runs out prevents the prank. Afterwards, use “Restore gifts” in the window or next to your sack. Check Presenter controls for the timing and pause button.",
+"Zegar rusza po otwarciu strony. Grinch daje Ci 30 sekund, a potem opróżnia worek. „Przedłuż sesję” lub zamknięcie okna przed końcem odliczania powstrzymuje psikus. Po psikusie użyj „Odzyskaj prezenty” w oknie albo przy worku. Czas ataku i pauzę znajdziesz w panelu prowadzącej.":"The clock starts when you open the page. The Grinch gives you 30 seconds, then empties your sack. “Extend session” or closing the window before time runs out prevents the prank. Afterwards, use “Restore gifts” in the window or next to your sack. Check Presenter controls for the timing and pause button.",
 "Usunięto prezent.":"Gift removed.",
 "Przejdź do worka.":"View your sack.",
 "Podsumowanie worka":"Gift sack summary",
@@ -44,6 +52,18 @@ const englishUi = {
 "Poczta Północna":"North Pole Post",
 "BIURO OBSŁUGI ŻYCZEŃ · OD 1931":"WISH FULFILMENT OFFICE · SINCE 1931",
 "Panel prowadzącej":"Presenter controls",
+"Jak korzystać ze strony":"How to use this page",
+"Najpierw włącz czytnik ekranu.":"Turn on a screen reader first.",
+"To z nim usłyszysz różnice między wersjami.":"Use it to hear the differences between the two versions.",
+"To świąteczna zabawa i demonstracja dostępności. Wersja z błędami i wersja poprawiona wyglądają podobnie, ale różnią się tym, jakie nazwy, role, stany i wartości elementów przekazują czytnikowi ekranu.":"This is a festive game and an accessibility demo. The version with errors and the corrected version look similar, but they provide different names, roles, states and values to screen readers.",
+"Włącz czytnik ekranu":"Turn on a screen reader",
+", np. NVDA, VoiceOver lub TalkBack, i wybierz wersję demonstracji. Możesz ją zmieniać w trakcie zabawy (wpisane dane i prezenty zostają).":", such as NVDA, VoiceOver or TalkBack, and choose a demo version. You can switch while you explore (your entries and gifts will stay).",
+"Wpisz imię, wybierz kategorię i dodaj przynajmniej jeden prezent do worka. W kategorii „Dla zespołu” możesz ustawić liczbę sztuk.":"Enter your name, choose a category and add at least one gift to your sack. In “For the team”, you can choose how many of each gift to add.",
+"Sprawdź zawartość worka, oceń swoją grzeczność i wybierz sposób dostawy.":"Check your sack, rate how good you have been and choose a delivery method.",
+"Zaakceptuj zasady realizacji życzeń i wyślij list. Udział w loterii jest opcjonalny; wynik zobaczysz po wysłaniu.":"Accept the wish fulfilment terms and send your letter. The prize draw is optional; you will see the result after sending.",
+"Wypróbuj też rozmowę z elfem. A jeśli Grinch dobierze się do worka, elfy pomogą odzyskać prezenty.":"Try chatting with the elf, too. And if the Grinch gets into your sack, the elves will help you restore your gifts.",
+"Porównaj obie wersje z czytnikiem ekranu. Na komputerze używaj Tab i Shift+Tab; między zakładkami kategorii przechodź strzałkami w lewo i w prawo, a wybór zatwierdzaj Enterem lub Spacją. Na telefonie kategorię wybierzesz z rozwijanego panelu.":"Compare both versions with a screen reader. On a computer, use Tab and Shift+Tab; move between category tabs with the Left and Right Arrow keys, then press Enter or Space to select one. On a phone, choose a category from the expandable panel.",
+"Wysyłka listu i nagrody są symboliczne.":"Sending the letter and the prizes are pretend.",
 "Czas pokazu":"Presentation time",
 "Zegar rusza po otwarciu strony. Grinch pojawi się raz, przy":"The clock starts when you open this page. The Grinch appears once, at",
 ". Pauza zatrzymuje też odliczanie sesji. Po resecie rozpocznij nowy pokaz ręcznie.":". Pause also stops the session countdown. After a reset, start the next presentation manually.",
@@ -149,6 +169,7 @@ const englishUi = {
 "Biegun Północny":"North Pole",
 "Wydział spraw pilnych":"Urgent Requests Department",
 "Przyjęto warunkowo":"Provisionally accepted",
+"Przyjęto warunkowo, Elf nr 200":"Provisionally accepted, Elf\u00a0no.\u00a0200",
 "Elf nr 404":"Elf no. 404",
 "Elf nr 200":"Elf no. 200",
 "NADANO":"SENT",
@@ -171,7 +192,7 @@ const englishUi = {
 "Wybieram dalej":"Keep choosing",
 "session_manager.exe · nieoczekiwany gość":"session_manager.exe · unexpected guest",
 "przejął sesję":"has hijacked your session",
-"Za 60 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.":"Your letter-writing session expires in 60 seconds. I hope you don’t get your letter sent in time. With absolutely no festive cheer, the Grinch.",
+"Za 30 sekund Twoja sesja tworzenia listu wygaśnie. Mam nadzieję, że nie zdążysz wysłać listu. Pozdrawiam bez świątecznej serdeczności, Grinch.":"Your letter-writing session expires in 30 seconds. I hope you don’t get your letter sent in time. With absolutely no festive cheer, the Grinch.",
 "Do końca tej złośliwości":"Time left for the Grinch’s mischief",
 "Pozostały czas sesji":"Session time remaining",
 "Czas minął. List i prezenty są zachowane. Możesz wznowić sesję.":"Time’s up. Your letter and gifts are still here. You can resume your session.",
@@ -309,7 +330,7 @@ const englishUi = {
 };
 let uiLocale = (()=>{try{const requested=new URLSearchParams(location.search).get('lang');const saved=localStorage.getItem('pp-language');return requested==='en'||requested!=='pl'&&saved==='en'?'en':'pl';}catch{return new URLSearchParams(location.search).get('lang')==='en'?'en':'pl';}})();
 const uiTextSource=new WeakMap(),uiAttributeSource=new WeakMap();
-const uiAttributeNames=['aria-label','aria-valuetext','title','placeholder'];
+const uiAttributeNames=['alt','aria-label','aria-valuetext','title','placeholder'];
 const uiWordPattern=new RegExp(Object.keys(englishUi).sort((a,b)=>b.length-a.length).map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'gu');
 function translateUi(value){const original=String(value??'');if(uiLocale==='pl')return original;const core=original.trim().replace(/\s+/g,' '),leading=original.match(/^\s*/)[0],trailing=original.match(/\s*$/)[0];if(Object.hasOwn(englishUi,core))return leading+englishUi[core]+trailing;
  const receipt=core.match(/^(.*), w Twoim worku: (\d+) szt\. prezentów\. Oby renifery miały wolny termin\.$/);if(receipt)return receipt[1]+', your sack contains '+receipt[2]+' gift'+(receipt[2]==='1'?'':'s')+'. Let us hope the reindeer have a free slot.';
@@ -323,6 +344,6 @@ function writeUiAttribute(element,name,value){let record=uiAttributeSource.get(e
 function writeUiTitle(value){document.title=translateUi(value);const node=document.querySelector('title')?.firstChild;if(node)uiTextSource.set(node,value);}
 function newUiText(value){const node=document.createTextNode(translateUi(value));uiTextSource.set(node,String(value));return node;}
 function translateUiTree(){const walker=document.createTreeWalker(document.documentElement,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(!node.parentElement||node.parentElement.closest('script,style,textarea,[translate="no"]'))continue;let original=uiTextSource.get(node);if(original===undefined){original=node.data;uiTextSource.set(node,original);}const translated=translateUi(original);if(node.data!==translated)node.data=translated;}
- for(const element of document.querySelectorAll('[aria-label],[aria-valuetext],[title],[placeholder],meta[name="description"]')){let record=uiAttributeSource.get(element);if(!record){record={};uiAttributeSource.set(element,record);}const names=element.matches('meta[name="description"]')?[...uiAttributeNames,'content']:uiAttributeNames;for(const name of names){if(!element.hasAttribute(name))continue;if(record[name]===undefined)record[name]=element.getAttribute(name);element.setAttribute(name,translateUi(record[name]));}}}
-function setUiLanguage(language,persist=false){uiLocale=language==='en'?'en':'pl';document.documentElement.lang=uiLocale;document.getElementById('page-language').value=uiLocale;translateUiTree();if(persist){try{localStorage.setItem('pp-language',uiLocale);}catch{}try{const url=new URL(location.href);url.searchParams.set('lang',uiLocale);history.replaceState(null,'',url);}catch{}}}
+ for(const element of document.querySelectorAll('[alt],[aria-label],[aria-valuetext],[title],[placeholder],meta[name="description"]')){let record=uiAttributeSource.get(element);if(!record){record={};uiAttributeSource.set(element,record);}const names=element.matches('meta[name="description"]')?[...uiAttributeNames,'content']:uiAttributeNames;for(const name of names){if(!element.hasAttribute(name))continue;if(record[name]===undefined)record[name]=element.getAttribute(name);element.setAttribute(name,translateUi(record[name]));}}}
+function setUiLanguage(language,persist=false){uiLocale=language==='en'?'en':'pl';document.documentElement.lang=uiLocale;translateUiTree();if(typeof syncLanguagePicker==='function')syncLanguagePicker();if(persist){try{localStorage.setItem('pp-language',uiLocale);}catch{}try{const url=new URL(location.href);url.searchParams.set('lang',uiLocale);history.replaceState(null,'',url);}catch{}}}
 // UI_I18N_END

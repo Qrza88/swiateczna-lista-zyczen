@@ -20,7 +20,7 @@ Strona jest żartobliwym listem do Mikołaja oraz demonstracją WCAG 2.5.3 „Et
 - Checkboxy mają białe tło i zielony znak zaznaczenia.
 - Odręczne dopiski są krótkimi akcentami. Teksty potrzebne do obsługi formularza mają prosty, czytelny krój.
 - Dymek ilustracji zawiera dwie wyśrodkowane linie: „Na wczoraj?” i „Oczywiście.”. Tekst jest HTML, bez kursywy; mieści się w obrysie dymka. Mobilna ilustracja ma szerokość do 280 px, ograniczoną szerokością dostępnego miejsca.
-- Ilustracja Mikołaja i scena lotu listu mają teksty alternatywne, które przekazują świąteczny żart. Pozostałe dekoracyjne rysunki i ikony są ukryte przed czytnikiem. Pieczątka „Przyjęto warunkowo · Elf nr 200” jest tekstem dostępnym do odczytu na ekranie sukcesu; jej wygląd nie wymaga osobnego opisu grafiki.
+- Ilustracja Mikołaja i scena lotu listu mają teksty alternatywne, które przekazują świąteczny żart. Pozostałe dekoracyjne rysunki i ikony są ukryte przed czytnikiem. Pieczątka „Przyjęto warunkowo, Elf nr 200” jest tekstem dostępnym do odczytu na ekranie sukcesu; jej wygląd nie wymaga osobnego opisu grafiki.
 
 ## 2. Układ WEB i MOBILE
 
@@ -29,6 +29,8 @@ WEB oznacza szerokości powyżej 760 px CSS, MOBILE — do 760 px CSS.
 | Obszar | WEB | MOBILE |
 | --- | --- | --- |
 | Panel prowadzącej | Na samej górze kartki, przed nagłówkiem Biura Obsługi Życzeń. | Ta sama pozycja. |
+| Instrukcja dla odwiedzających | Osobny, początkowo zwinięty panel „Jak korzystać ze strony”, bezpośrednio pod panelem prowadzącej, przed nagłówkiem Biura Obsługi Życzeń. | Ta sama pozycja; panele jeden pod drugim, pełna dostępna szerokość. Zakres wydania 2026-10-30: punkt 14.14. |
+| Wybór języka | W nagłówku: nazwany przycisk z bieżącym językiem, rozwijający wybór Polski / English. Stan rozwinięcia dostępny wyłącznie w wariancie poprawionym. | Ten sam mechanizm, obsługiwany także dotykiem i czytnikiem. Zakres wydania 2026-10-30: punkt 14.15. |
 | Wybór wariantu WCAG | Dwa równe pola z pełnym tłem wybranego wariantu. | Ta sama zasada; tekst może się zawijać bez wyjścia poza tło i obszar kliknięcia. |
 | Kategorie | Zakładki obok siebie. | Rozwijany przycisk wyboru kategorii. |
 | Tło katalogu | Jedna biała powierzchnia obejmuje zakładki, opis kategorii, karty prezentów i dopisek „Ceny umowne. Potrzeby autentyczne. Realizacja zależy od reniferów”. | Ta sama powierzchnia obejmuje rozwijany wybór kategorii, opis, prezenty i dopisek o cenach. |
@@ -48,7 +50,7 @@ Kolejność dokumentu i nawigacji klawiaturą na WEB i MOBILE: O mnie (01) → k
 - Dopiski z gwiazdką i teksty drobnego druku mogą mieć 0,875 rem, domyślnie 14 px. Informacje wymagane do wypełnienia formularza pozostają wyraźnie czytelne.
 - Opis pod przyciskiem wysyłki ma 0,875 rem i pełny kontrast tekstu.
 - „Loteria z dreszczykiem” ma prosty krój, rozmiar 1 rem i grubość 700. Liczby sztuk przy prezentach mają prosty krój 1 rem i grubość 600, suma 1,5 rem i grubość 700, a cyfra w nagłówku worka co najmniej 1,125 rem i grubość 700. Te same zasady obowiązują na WEB i MOBILE.
-- Pieczątka „Przyjęto warunkowo · Elf nr 200” i oznaczenia „NADANO”, „TRYB: ŚWIĄTECZNY” oraz „ODBIORCA: ŚWIĘTY MIKOŁAJ” mają wyraźny krój Georgia, grubość 700 i rozmiar 1,125 rem (domyślnie 18 px). Oznaczenia mają jasne, jednolite tło, obramowanie 2 px i wysokość co najmniej 48 px. Tekst zawija się na telefonie bez obcinania.
+- Pieczątka „Przyjęto warunkowo, Elf nr 200” i oznaczenia „NADANO”, „TRYB: ŚWIĄTECZNY” oraz „ODBIORCA: ŚWIĘTY MIKOŁAJ” mają wyraźny krój Georgia, grubość 700 i rozmiar 1,125 rem (domyślnie 18 px). Oznaczenia mają jasne, jednolite tło, obramowanie 2 px i wysokość co najmniej 48 px. Tekst zawija się na telefonie bez obcinania.
 - „Biegun Północny” na ekranie sukcesu ma 1,5 rem. „Wydział spraw pilnych” ma 1 rem, wyraźny krój i jest widoczny również na telefonie. Obie linie znajdują się nad ilustracją.
 - Tekst ma kontrast co najmniej 4,5:1. Istotne nietekstowe granice, ikony i stany kontrolek mają kontrast co najmniej 3:1.
 - Rozmiary względne respektują ustawienia użytkownika. Powiększenie tekstu do 200% oraz zmiana odstępów zgodnie z 1.4.12 nie powodują utraty treści ani obsługi.
@@ -84,7 +86,7 @@ Kolejność dokumentu i nawigacji klawiaturą na WEB i MOBILE: O mnie (01) → k
 
 ### 3.1. Polski i English
 
-- Natywny wybór języka znajduje się w nagłówku i ma powiązaną etykietę. Dokument ma odpowiednio `lang="pl"` albo `lang="en"`.
+- Wybór języka znajduje się w nagłówku i ma widoczną, powiązaną nazwę oraz informację o bieżącym języku. Wybór jest przyciskiem rozwijającym dwie opcje języka; w poprawnym wariancie ma aktualne `aria-expanded`, a w wariancie z błędami ten atrybut jest pominięty (punkt 14.15). Dokument ma odpowiednio `lang="pl"` albo `lang="en"` w obu wariantach.
 - Pierwsza wizyta domyślnie po polsku. Jawny `?lang=pl` lub `?lang=en` ma pierwszeństwo przed zapamiętaną preferencją `pp-language`.
 - Zmiana języka działa bez przeładowania i utraty danych, rozmowy, czasu lub wyniku. Reset zachowuje język i wariant WCAG.
 - Tłumaczenie obejmuje treść interfejsu, nazwy i opisy dostępne, błędy, zegary, suwak, okna, czat, loterię i oba tytuły dokumentu.
@@ -189,6 +191,7 @@ Po poprawieniu danych błąd i stan niepoprawności znikają. Opcjonalne checkbo
 - Worek pokazuje nazwy, ilości i sumę sztuk. Pusty worek zawiera tekst „Tu jest jeszcze miejsce. Na życzenia. I na dodatkową parę rąk”.
 - Potwierdzenie występuje wyłącznie przy worku. Pod kartami prezentów nie pojawiają się dodatkowe komunikaty ani bloki tekstu.
 - Dodanie ogłasza pełny kontekst przez jeden kanał `role="status"`, np. „Dodano: Podgrzewacz do herbaty USB · 2 szt. W worku: 5 szt.”. Fokus pozostaje na użytej akcji, poza otwarciem upomnienia po trzeciej sztuce.
+- Poprawka fokusu po dodaniu prezentu obejmuje wyłącznie MOBILE w wariancie z błędami. Linki w tym układzie wskazują własną kontrolkę, a aktywacja zachowuje miejsce wywołania. WEB w obu wariantach i MOBILE w wariancie poprawionym zachowują dotychczasową obsługę dodawania. Celowo błędna rola pozostaje zachowana. Szczegóły: punkt 14.17.
 - Ikonowy przycisk usuwa całą pozycję. Fokus przechodzi do kolejnej odpowiedniej akcji, a po usunięciu ostatniej pozycji — do nagłówka worka. Zmiana jest ogłaszana.
 - Opis „Święty widzi, na co masz chrapkę” występuje w ostrzegającym oknie, bez powtórzenia w worku.
 
@@ -238,11 +241,13 @@ Na stronie występują dwa okna modalne. Jednocześnie widoczne jest jedno. Każ
 | `presentation` | 7:00 aktywnego czasu pokazu | Lokalne nagranie prezentacji. |
 | `public` | 2:00 aktywnego czasu pokazu | Publiczna strona do samodzielnej zabawy. |
 
-Panel prowadzącej jest na samej górze kartki. Zawiera czas, start nowej próby, pauzę/wznowienie, ręczny test Grincha, reset oraz skróty do przykładów. Instrukcja i mapa celowych błędów występują wyłącznie w dokumentacji.
+Panel prowadzącej jest na samej górze kartki. Zawiera czas, start nowej próby, pauzę/wznowienie, ręczny test Grincha, reset oraz skróty do przykładów. Pod nim znajduje się osobny panel „Jak korzystać ze strony”, z krótkim wyjaśnieniem celu i obsługi demonstracji (punkt 14.14). Szczegółowa instrukcja prowadzenia prezentacji i techniczna mapa celowych błędów występują wyłącznie w dokumentacji.
 
 Zegar startuje po otwarciu strony. Pauza zachowuje upływ czasu i zatrzymuje również trwającą sesję Grincha. Pełny reset ustawia 0:00 i wymaga ręcznego uruchomienia następnej próby. Zwinięcie panelu nie zatrzymuje zegara.
 
 Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS jest uzupełnione równoważnym tekstem, np. „1 minuta, 2 sekundy”. Kolejne sekundy nie są ogłaszane automatycznie. Generyczny kontener bez odpowiedniej roli nie otrzymuje nazwy przez `aria-label`.
+
+Zegar pokazu znajduje się poza kontrolką rozwijającą panel prowadzącej, jako osobny timer. Nie należy do `summary` ani innego przycisku; jego obszar nie nakłada się na aktywny obszar wyzwalacza. Ikona plusa/minusa wyzwalacza jest dekoracyjna i ukryta przed czytnikiem. Szczegóły poprawki: punkt 14.16.
 
 ### 8.1. Upomnienie Mikołaja
 
@@ -255,16 +260,17 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 ### 8.2. Grinch
 
 - Pasek tytułowy: „Nieoczekiwany gość” / „Unexpected guest”, bez technicznego prefiksu. Tytuł `h2`: „Grinch przejął sesję”.
-- Opis: „Za 60 sekund opróżnię Twój worek z prezentami. Tyle planowania, a wystarczy jeden Grinch. Pozdrawiam bez świątecznej serdeczności.”
+- Odliczanie do psikusa trwa 30 sekund od otwarcia okna. Zakres i odbiór opisuje punkt 14.11.
+- Opis: „Za 30 sekund opróżnię Twój worek z prezentami. Tyle planowania, a wystarczy jeden Grinch. Pozdrawiam bez świątecznej serdeczności.”
 - Automatyczne otwarcie raz przy progu odpowiedniego profilu. Ręczny test korzysta z tego samego okna i zużywa automatyczny atak do resetu.
 - Przy 20 sekundach pozostałego odliczania pojawia się widoczne ostrzeżenie: „Pozostało 20 sekund. Wybierz »Przedłuż sesję«, aby zatrzymać Grincha”. Osobny, pusty od początku `role="alert"` z `aria-atomic="true"` ogłasza ten sam komunikat. Ostrzeżenie jest jednorazowe w obu wariantach WCAG i obu językach; pauza i wznowienie go nie powtarzają. Kolejne ręczne otwarcie rozpoczyna nową próbę.
 - Przy opóźnionym wywołaniu progu komunikat mówi „Pozostało mniej niż 20 sekund”, zamiast podawać nieaktualny czas. Ostrzeżenie jest usuwane przy zakończeniu odliczania, zamknięciu i resecie.
-- Jeśli podczas progu otwarte jest upomnienie Mikołaja, Grinch czeka na jego zamknięcie. Jego osobne 60 sekund rozpoczyna się dopiero po otwarciu.
+- Jeśli podczas progu otwarte jest upomnienie Mikołaja, Grinch czeka na jego zamknięcie. Jego osobne 30 sekund rozpoczyna się dopiero po otwarciu.
 - Poprawny kontener ma `role="alertdialog"`, `aria-modal="true"`, `aria-labelledby="grinch-kicker grinch-title"` i `aria-describedby="grinch-description"`. Nazwa obejmuje nadtytuł „Nieoczekiwany gość” i aktualny nagłówek `h2`. Tytuł i opis mają unikalne identyfikatory oraz aktualną treść w języku strony.
 - Semantyka i widoczność są ustawione przed przekazaniem fokusu na „Przedłuż sesję”. Otwarcie udostępnia czytnikowi rolę, nazwę i ostrzeżenie; osobny region `alert` nie powiela całego okna.
 - Tło jest nieaktywne. Tab i Shift+Tab pozostają w oknie, Escape i „X” zamykają je, a fokus wraca do poprzedniego miejsca.
 - „Wróć do listy życzeń” / „Back to the wish list” zamyka okno; komunikat odpowiada stanowi przed psikusem lub po nim. Okno posługuje się językiem tworzenia listu życzeń, bez określeń zakupów i zamówienia.
-- Przedłużenie i zatrzymanie odliczania są dostępne. Zamknięcie okna przed końcem 60 sekund kończy atak bez opróżniania worka.
+- „Przedłuż sesję” i zamknięcie okna przed końcem 30 sekund kończą atak bez opróżniania worka. Okno nie zawiera osobnego przycisku „Zatrzymaj odliczanie” ani „Wznów odliczanie” (punkt 14.13). Pauza i wznowienie pozostają w panelu prowadzącej.
 - Po upływie odliczania Grinch opróżnia worek, a elfy zachowują kopię pozycji i ich ilości w pamięci karty. Imię, wiadomość, pozostałe pola i licznik wysłanych listów pozostają zachowane. Pusty worek otrzymuje osobny, zgodny ze stanem komunikat.
 - Główny przycisk w oknie po psikusie ma tekst „Odzyskaj prezenty”. Drugi przycisk o tej samej nazwie jest przy pełnym worku, pod jego zawartością, razem z krótkim komunikatem o zachowanej kopii. Pozostaje dostępny po zamknięciu okna.
 - Odzyskanie przywraca wszystkie zabrane sztuki i zachowuje prezenty dodane później. Nie powiela sztuk przy kolejnym kliknięciu. Komunikat i przycisk przy worku znikają po odzyskaniu; fokus z tego przycisku przechodzi do nagłówka worka. Pełny reset usuwa także kopię.
@@ -303,6 +309,7 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 - Opis: „Wynik poznasz po wysłaniu listu.” Opcjonalność jest oznaczona przy checkboxie, bez powtórzenia w opisie. Panel nie zawiera częstotliwości wygranej ani przykładów numerów wygrywających udziałów.
 - Dopisek: „*Wygrana symboliczna.” Wyjaśnienie braku rzeczywistych tokenów i kredytów usług AI znajduje się przy wyniku.
 - Komunikat wygranej podaje numer udziału i informację o symbolicznej nagrodzie, bez objaśniania algorytmu.
+- Wygrana ma nagłówek „Wygrana! Milion tokenów jest Twój!” i jeden losowany komentarz z punktu 14.12. Numer udziału i dotychczasowe wyjaśnienie symbolicznej nagrody pozostają przy wyniku.
 - Przegrana korzysta z kilku żartobliwych odpowiedzi o reniferze, dodatkowym spotkaniu i cierpliwości. Wynik nie otwiera kolejnego modalu.
 
 ### 10.2. Mechanizm loterii
@@ -330,7 +337,7 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 - Animacja koperty trwa około 2–3 sekund. Ograniczenie ruchu ma spokojny odpowiednik bez przelotu.
 - Scena lotu listu jest pojedynczą grafiką z tekstem alternatywnym opisującym kopertę z czerwoną pieczęcią, skrzynkę i cel: Biegun Północny, Wydział Spraw Pilnych. Opis pozostaje stały podczas ruchu i przy jego ograniczeniu, bez `aria-live` i bez ogłaszania poszczególnych klatek.
 - „Biegun Północny” i „Wydział spraw pilnych” znajdują się nad ilustracją, bez nakładania na drogowskaz i rysunek.
-- Pieczątka „Przyjęto warunkowo · Elf nr 200” znajduje się wyłącznie na sukcesie i ma własne jasne tło. Oznaczenia nadania są wyraźne również na telefonie.
+- Pieczątka „Przyjęto warunkowo, Elf nr 200” znajduje się wyłącznie na sukcesie i ma własne jasne tło. Oznaczenia nadania są wyraźne również na telefonie.
 - Tekst pieczątki jest zwykłym akapitem w kolejności czytania, poza grafiką lotu listu. Nie ma `aria-hidden`, dodatkowej roli obrazu, `tabindex` ani osobnego komunikatu na żywo. Jest dostępny w obu wariantach i językach na WEB oraz MOBILE.
 - Oznaczenia „NADANO”, „TRYB: ŚWIĄTECZNY” i „ODBIORCA: ŚWIĘTY MIKOŁAJ” tworzą listę `ul` z trzema elementami `li`, poza grafiką lotu listu. `role="list"` zachowuje semantykę listy także w konfiguracjach Safari/VoiceOver, które pomijają ją przy `list-style:none`. Każdy wpis pozostaje samodzielnie dostępny podczas czytania treści. Bez dodatkowych przystanków Tab i bez dołączania całej listy do nazwy przycisku powrotu.
 - Wynik opcjonalnej loterii jest częścią sukcesu. Licznik nie nalicza listu ponownie po odświeżeniu i ponowieniu.
@@ -345,6 +352,7 @@ Zegary mają `role="timer"`, stałą nazwę i `aria-live="off"`. Wizualne MM:SS 
 | WEB + MOBILE | Dodawanie · 4.1.2 | Akcje jako linki; przy drukarce fokusowalny `span` bez interaktywnej roli. | Wszystkie akcje to natywne przyciski z nazwą „Dodaj do worka: [prezent]”. |
 | WEB + MOBILE | Usunięcie / czat · 4.1.2 | Ikonowe przyciski bez nazwy. | „Usuń z worka: [prezent]” / „Porozmawiaj z elfem”. |
 | WEB + MOBILE | Rozwijanie czatu · 4.1.2 | Przycisk bez `aria-expanded` niezależnie od widoczności panelu. | `aria-expanded="false"` przy zwinięciu i `"true"` przy rozwinięciu. |
+| WEB + MOBILE | Rozwijanie wyboru języka · 4.1.2 | Nazwany przycisk bez `aria-expanded` w obu stanach. | Nazwany przycisk z `aria-expanded="false"` albo `"true"`, zgodnie z widocznością opcji. |
 | WEB + MOBILE | Dostawa · 4.1.2 | Własne elementy bez roli radio i dostępnego zaznaczenia. | Natywne radio, `fieldset`/`legend`, etykiety i aktualne `checked`. |
 | WEB + MOBILE | Suwak · 4.1.2 | Wygląd się zmienia, dostępna wartość i tekst pozostają 50%. | Natywny suwak z bieżącą wartością, opisem i kontekstem skali. |
 | WEB + MOBILE | Oświadczenie o zasługiwaniu · rezerwa 4.1.2 | Własny checkbox stale przekazuje `aria-checked="false"`. | Natywny checkbox z aktualnym zaznaczeniem. |
@@ -439,8 +447,8 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 
 ### 14.3. Pieczątka na stronie sukcesu
 
-- Polski podpis: „Przyjęto warunkowo · Elf nr 200”.
-- Angielski podpis: „Provisionally accepted · Elf no. 200”.
+- Polski podpis: „Przyjęto warunkowo, Elf nr 200”.
+- Angielski podpis: „Provisionally accepted, Elf no. 200”.
 - Pieczątka występuje na ekranie sukcesu, w obu wariantach demonstracji oraz na WEB i MOBILE.
 - Dyżurny elf w czacie zachowuje numer 404.
 
@@ -502,7 +510,7 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 
 ### 14.8. Tekst pieczątki i oznaczenia nadania na ekranie sukcesu
 
-- Zgłoszenie użytkowniczki: VoiceOver na telefonie nie dociera do tekstu „Przyjęto warunkowo · Elf nr 200”.
+- Zgłoszenie użytkowniczki: VoiceOver na telefonie nie dociera do tekstu „Przyjęto warunkowo, Elf nr 200”.
 - Dodatkowe zgłoszenie: NVDA nie odczytuje tekstu pieczątki ani oznaczeń „NADANO”, „TRYB: ŚWIĄTECZNY” i „ODBIORCA: ŚWIĘTY MIKOŁAJ”.
 - Przyczyna w kodzie: kontener pieczątki miał `aria-hidden="true"`, mimo że zawiera zwykły tekst HTML, a nie obraz.
 - Poprawka: akapit `#success-stamp` bez `aria-hidden`, z dotychczasowym wyglądem i położeniem. Tekst pieczątki jest niezależny od opisu grafiki lotu listu. Jest dostępny podczas nawigacji po treści i odczytu ciągłego; Tab przechodzi wyłącznie po kontrolkach.
@@ -523,13 +531,186 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 | Lot listu | PL | List z czerwoną pieczęcią frunie ze skrzynki pocztowej na Biegun Północny, do Wydziału Spraw Pilnych. |
 | Lot listu | EN | A letter sealed with red wax flies from a postbox to the North Pole’s Urgent Requests Department. |
 
-- Każda scena jest udostępniona jako jedna grafika: `#santa-illustration` i `#letter-flight` mają `role="img"` z nazwą przez `aria-label`. Nie dodajemy niepoprawnego atrybutu `alt` do elementów `div` lub SVG. Składowe rysunku, dymek i napisy nad sceną są ukryte przed osobnym odczytem; ich istotna treść znajduje się w opisie całej grafiki.
+- Główne grafiki `#santa-illustration` i `#letter-flight` są natywnymi elementami `img` z tekstem alternatywnym w `alt`. Zewnętrzne pliki SVG zawierają rysunki, a elementy `div` służą wyłącznie do układu. Dymek i napisy przy scenie są uwzględnione w opisach głównych grafik i nie są odczytywane ponownie. Tło trasy listu ma pusty `alt`, ponieważ opis całej sceny jest przypisany do lecącej koperty.
 - Grafiki nie mają `tabindex` ani regionów na żywo. Są dostępne w zwykłym odczycie i nawigacji po grafikach. Opis animacji nie zmienia się przy kolejnych klatkach; ograniczenie ruchu zachowuje ten sam opis.
 - W widoku formularza dostępna jest ilustracja Mikołaja; na sukcesie dostępna jest scena lotu listu. Przełączanie widoków nie pozostawia w odczycie grafiki ukrytego ekranu. Pieczątka i oznaczenia nadania pozostają osobnym tekstem oraz listą.
-- Źródła: [WAI — Informative Images](https://www.w3.org/WAI/tutorials/images/informative/), [ARIA6 — Using aria-label to provide labels for objects](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA6).
+- Źródło: [WAI — Informative Images](https://www.w3.org/WAI/tutorials/images/informative/).
 - Odbiór z czytnikiem: NVDA i VoiceOver — odnaleźć obie grafiki w odpowiednich widokach i potwierdzić pełne opisy bez powtórnego odczytu dymka lub napisów sceny. Rzeczywisty odczyt pozostaje do potwierdzenia na urządzeniach użytkowniczki.
 - Weryfikacja lokalna: Chrome na WEB w obu wariantach i językach oraz podgląd 390 px (PL z błędami i EN poprawiony) — każda scena jest jedną nazwaną grafiką; dostępna jest wyłącznie grafika aktualnego widoku. Fokus sukcesu pozostaje na h1, następny Tab prowadzi do przycisku powrotu. Pieczątka i trzy oznaczenia nadania są nadal osobno dostępne. Test i18n potwierdza zgodność źródła tłumaczeń z blokiem HTML; `npm test` przechodzi. Odczyt rzeczywistym czytnikiem pozostaje do odbioru.
-- Status: kod wydania z 28 października 2026 r.; testy lokalne przeszły, odbiór rzeczywistymi czytnikami pozostaje otwarty.
+- Status: teksty opisów zachowane; natywne osadzenie grafik jest częścią lokalnej poprawki z punktu 14.10.
+
+### 14.10. Natywne obrazki z atrybutem alt
+
+- Mikołaj: `img#santa-illustration`, plik `assets/santa.svg`, pełny opis w `alt` z tekstem dymka.
+- Lot listu: `img#letter-flight`, plik `assets/letter-envelope.svg`, pełny opis w `alt` z kierunkiem lotu i Wydziałem Spraw Pilnych. Tło `assets/letter-route.svg` ma pusty `alt`.
+- Kontenery układu nie mają roli obrazu ani nazwy przez ARIA. Nie używamy elementu `title` jako źródła opisów tych obrazków. Nazwa dostępna wynika z natywnego `alt`.
+- Opisy PL/EN pozostają identyczne z opisami z punktu 14.9. Przełącznik języka tłumaczy atrybut `alt`, w tym przy otwartym ekranie sukcesu.
+- Koperta zachowuje animację CSS: lot po dotychczasowej trasie, czas 2,8 sekundy i spokojny wariant przy ograniczeniu ruchu. Przelot skaluje się razem z ilustracją. Ponowne wysłanie listu uruchamia animację od początku.
+- Obrazki nie przejmują fokusu i nie tworzą dodatkowych przystanków Tab. Ukryty widok nie udostępnia swoich grafik. Pieczątka i oznaczenia nadania pozostają osobno dostępne.
+- Zakres: obie wersje demonstracji, PL/EN, WEB i MOBILE. Do publicznego HTML należą trzy pliki SVG w `dist/assets`; podgląd i wdrożenie obejmują cały katalog `dist`.
+- Weryfikacja lokalna: `npm test` przechodzi. Chrome na WEB: PL/EN w obu wariantach — główne obrazy są elementami `IMG`, nazwy wynikają z `alt`, bez jawnej roli i `aria-label`; dostępna jest jedna główna grafika aktualnego widoku. MOBILE: 390 px PL z błędami i 320 px EN poprawiony — poprawne nazwy oraz brak poziomego przewijania. Fokus po wysłaniu pozostaje na h1, następny Tab prowadzi do przycisku powrotu. Koperta zmienia położenie podczas przelotu, osiąga dotychczasowy punkt końcowy i startuje ponownie po ponownym wysłaniu. Wizualna próba 320 px potwierdza zachowany rysunek i układ. Ograniczenie ruchu zachowuje regułę CSS wyłączającą animację; rzeczywisty odczyt NVDA/VoiceOver pozostaje do potwierdzenia.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.11. Odliczanie Grincha — 30 sekund
+
+- Odliczanie od otwarcia okna do psikusa trwa 30 sekund. Po upływie czasu Grinch realizuje psikus, a okno pokazuje jego wynik i możliwość odzyskania prezentów. Okno nie zamyka się automatycznie po 30 sekundach.
+- Ostrzeżenie o pozostałych 20 sekundach zachowuje dotychczasową treść, próg i sposób ogłaszania. Przy nieprzerwanym odliczaniu pojawia się po 10 sekundach od otwarcia okna.
+- Opis początkowy i licznik wskazują 30 sekund, również po ponownym ręcznym uruchomieniu. Polski i angielski opis podają ten sam czas.
+- Pauza i wznowienie w panelu prowadzącej, akcja „Przedłuż sesję”, zamykanie okna, ogłoszenie wyniku oraz odzyskiwanie prezentów zachowują dotychczasowe działanie. Ostrzeżenie przy 20 sekundach pozostaje jednorazowe w danej próbie. Osobny przycisk pauzy wewnątrz okna zostaje usunięty zgodnie z punktem 14.13.
+- Automatyczne otwarcie pozostaje po 2 minutach w profilu publicznym i po 7 minutach w profilu prezentacyjnym. Te progi są niezależne od 30-sekundowego odliczania w otwartym oknie.
+- Zakres: oba warianty demonstracji, PL/EN, WEB i MOBILE.
+- Weryfikacja lokalna: testy zegara obejmują 30 sekund, ostrzeżenie po 10 sekundach, pauzę, wznowienie i jednorazowe wygaśnięcie. Chrome WEB potwierdza ostrzeżenie w aktywnym oknie, opróżnienie worka przy 00:00 i odzyskanie pozycji.
+- Odbiór: początkowe 00:30, ostrzeżenie przy 00:20, wynik przy 00:00; sprawdzić także pauzę, wznowienie i nową próbę. Automatyczny odczyt ostrzeżenia oraz wyniku wymaga potwierdzenia rzeczywistym czytnikiem ekranu.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.12. Żartobliwe komentarze do wygranej
+
+- Nagłówek wyniku: „Wygrana! Milion tokenów jest Twój!”.
+- Pod nagłówkiem pojawia się jeden losowany komentarz z poniższej puli. Komentarz jest wybierany dla danego zwycięskiego udziału; ponowne wyświetlenie tego samego wyniku, zmiana języka lub wariantu demonstracji zachowuje wybraną odpowiedź.
+
+1. I co teraz? Zapytaj AI, co zrobić z milionem tokenów. Tylko pilnuj, żeby nie zużyła wszystkich na odpowiedź.
+2. Pilnuj swoich tokenów. Grinch już pisze: „Mam tylko jedno krótkie pytanie…”.
+3. Wreszcie możesz dopisać „proszę” i „dziękuję” bez sprawdzania salda.
+4. Powinno wystarczyć na jeden projekt i wszystkie jego „jeszcze tylko drobne poprawki”.
+5. Elfy zalecają rozsądne gospodarowanie. Znamy kogoś, kto wydał wszystko na wybór nazwy zmiennej.
+6. Możesz już wygenerować odpowiedź na maila „OK, dzięki”. W siedmiu wersjach. Z analizą tonu.
+
+- Każdy komentarz otrzymuje naturalny odpowiednik angielski, z zachowaniem tego samego żartu. Zmiana języka tłumaczy nagłówek i wybrany komentarz.
+- Komentarz jest zwykłym tekstem w wyniku loterii na ekranie sukcesu. Pozostaje dostępny do odczytu czytnikiem; bez osobnego modalu, zmiany fokusu i dodatkowej, powielającej zapowiedzi.
+- Losowanie komentarza nie zmienia wyniku loterii, numeracji udziałów ani częstotliwości wygranej co 5. udział. Udział pozostaje opcjonalny, a wynik jest dostępny po prawidłowym wysłaniu listu. Informacja o symbolicznej nagrodzie i braku rzeczywistych tokenów lub kredytów usług AI pozostaje przy wyniku.
+- Zakres: oba warianty demonstracji, PL/EN, WEB i MOBILE.
+- Odbiór: jedna odpowiedź przy wygranej, brak komentarza wygranej przy przegranej lub bez udziału, pełna pula sześciu odpowiedzi, zachowany komentarz dla tego samego wyniku oraz spójne tłumaczenia. Sprawdzić czytelność dłuższych odpowiedzi na telefonie i dostępność do odczytu czytnikiem.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+- Weryfikacja lokalna: sześć komentarzy ma tłumaczenia EN; testy potwierdzają jeden wybór na udział, brak ponownego losowania oraz stany wyniku. Próba pięciu lokalnych udziałów w Chrome daje wygraną przy piątym; zmiana PL → EN → PL i wariantu zachowuje ten sam komentarz. Licznik produkcyjny nie był używany.
+
+### 14.13. Akcje w oknie Grincha
+
+- Okno Grincha nie zawiera przycisku „Zatrzymaj odliczanie” ani jego stanu „Wznów odliczanie”. Usunięcie dotyczy kontrolki `#pause-session` oraz jej obsługi i odwołań w kodzie okna.
+- Podczas odliczania w obszarze akcji są dokładnie dwa przyciski: „Przedłuż sesję” i „Wróć do listy życzeń”. Obie akcje zamykają okno i przed upływem czasu powstrzymują psikus. Brak reakcji przez 30 sekund pozwala Grinchowi zrealizować psikus.
+- Po opróżnieniu worka przycisk „Przedłuż sesję” zmienia się w „Odzyskaj prezenty”, który przywraca zabrane prezenty i zamyka okno. Drugi przycisk nadal brzmi „Wróć do listy życzeń”: zamyka okno bez przywracania prezentów. Odzyskanie pozostaje wtedy dostępne przy pełnym obszarze worka. W obszarze akcji nadal są dokładnie dwa przyciski.
+- Gdy Grinch nie miał czego zabrać i nie ma kopii prezentów do odzyskania, po upływie czasu w obszarze akcji pozostaje jeden przycisk „Wróć do listy życzeń”, bez dwóch identycznych akcji powrotu i bez przycisku odzyskiwania.
+- „X” w pasku tytułowym i klawisz Escape pozostają dostępne w każdym stanie. Po psikusie zamykają okno bez odzyskiwania; wcześniej powstrzymują psikus. Okno nie wymaga czekania do końca odliczania, aby je zamknąć.
+- Pauza w panelu prowadzącej nadal zatrzymuje czas pokazu i odliczanie Grincha; wznowienie kontynuuje oba zegary. Okno zachowuje informację o wstrzymanym pokazie bez osobnego przycisku pauzy.
+- Ostrzeżenie o pozostałych 20 sekundach zachowuje treść i sposób ogłaszania, w tym wskazanie akcji „Przedłuż sesję”. Początkowy fokus pozostaje na tym przycisku; po usunięciu kontrolki pauzy Tab i Shift+Tab obejmują tylko istniejące, dostępne akcje.
+- Zakres: oba warianty demonstracji, PL/EN, WEB i MOBILE.
+- Odbiór: brak kontrolki pauzy w oknie i błędów wynikających z usuniętych odwołań; 30-sekundowy psikus bez reakcji, ostrzeżenie przy 20 sekundach, powstrzymanie psikusa pozostałymi akcjami, odzyskanie prezentów oraz pauza i wznowienie z panelu prowadzącej. Zachowane zamykanie, powrót fokusu i nawigacja klawiaturą.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+- Weryfikacja lokalna: po psikusie z prezentem dostępne są odzyskanie i powrót; odzyskanie przywraca ilość oraz fokus do wyzwalacza. MOBILE EN z pustym workiem ma pojedynczy powrót, właściwy wynik i pomija ukrytą akcję w Tab/Shift+Tab. Escape zamyka okno. Kontrola PL i EN potwierdza 00:30, rolę `alertdialog` w poprawnym i `group` w błędnym wariancie.
+
+### 14.14. Panel „Jak korzystać ze strony”
+
+- Osobny panel dla odwiedzających, bezpośrednio pod panelem prowadzącej i przed nagłówkiem Biura Obsługi Życzeń. Panele nie są zagnieżdżone i rozwijają się niezależnie. Początkowo oba mogą pozostać zwinięte zgodnie z dotychczasowym stanem panelu prowadzącej.
+- Wygląd spójny z panelem prowadzącej: jasne tło, ciemnozielony tekst, czytelny znak rozwijania, wyraźny fokus i cały wiersz tytułowy jako obszar aktywacji. Na MOBILE panele układają się jeden pod drugim; tekst zawija się bez przewijania poziomego.
+- Tytuł PL: „Jak korzystać ze strony”. Tytuł EN: „How to use this page”.
+- Najważniejsza wskazówka jest widoczna przy panelu również po zwinięciu instrukcji, jako wyróżniony zwykły tekst. PL: „Najpierw włącz czytnik ekranu. To z nim usłyszysz różnice między wersjami.” EN: „Turn on a screen reader first. Use it to hear the differences between the two versions.” To pierwszy krok udziału w demonstracji; wybór wariantu i wypełnianie listu następują po uruchomieniu czytnika.
+- Natywne `details#visitor-instructions` i `summary#visitor-instructions-toggle`, z aktualnym stanem rozwinięcia udostępnianym przez przeglądarkę w obu wariantach demonstracji. Instrukcja zawsze poprawnie przekazuje „zwinięte/rozwinięte”, również w wersji z błędami. Bez dublowania ról i bez ręcznego `aria-expanded` na natywnym `summary`. Obsługa myszą, dotykiem, Enterem i Spacją. Fokus pozostaje na wyzwalaczu po rozwinięciu i zwinięciu; zwinięta treść jest poza odczytem i tabulatorem.
+- Panel działa poprawnie w obu wariantach demonstracji. Wybór wariantu i języka nie zwija panelu ani nie usuwa danych formularza. Otwarcie instrukcji nie zatrzymuje ani nie resetuje zegara pokazu.
+- Treść składa się z akapitów i rzeczywistej listy numerowanej. Nie dodaje dodatkowego h1 ani nagłówków przed głównym tytułem strony. Instrukcja objaśnia cel i zadania użytkownika; szczegółowa mapa błędów i instrukcja prowadzenia prezentacji pozostają w dokumentacji. Dotychczasowa krótka informacja o demonstracji z celowymi błędami pozostaje widoczna przy wyborze wariantu.
+
+**Treść PL**
+
+To świąteczna zabawa i demonstracja dostępności. Wersja z błędami i wersja poprawiona wyglądają podobnie, ale różnią się tym, jakie nazwy, role, stany i wartości elementów przekazują czytnikowi ekranu.
+
+1. **Włącz czytnik ekranu**, np. NVDA, VoiceOver lub TalkBack, i wybierz wersję demonstracji. Możesz ją zmieniać w trakcie zabawy (wpisane dane i prezenty zostają).
+2. Wpisz imię, wybierz kategorię i dodaj przynajmniej jeden prezent do worka. W kategorii „Dla zespołu” możesz ustawić liczbę sztuk.
+3. Sprawdź zawartość worka, oceń swoją grzeczność i wybierz sposób dostawy.
+4. Zaakceptuj zasady realizacji życzeń i wyślij list. Udział w loterii jest opcjonalny; wynik zobaczysz po wysłaniu.
+
+Wypróbuj też rozmowę z elfem. A jeśli Grinch dobierze się do worka, elfy pomogą odzyskać prezenty.
+
+Porównaj obie wersje z czytnikiem ekranu. Na komputerze używaj Tab i Shift+Tab; między zakładkami kategorii przechodź strzałkami w lewo i w prawo, a wybór zatwierdzaj Enterem lub Spacją. Na telefonie kategorię wybierzesz z rozwijanego panelu.
+
+Wysyłka listu i nagrody są symboliczne.
+
+**Treść EN**
+
+This is a festive game and an accessibility demo. The version with errors and the corrected version look similar, but they provide different names, roles, states and values to screen readers.
+
+1. **Turn on a screen reader**, such as NVDA, VoiceOver or TalkBack, and choose a demo version. You can switch while you explore (your entries and gifts will stay).
+2. Enter your name, choose a category and add at least one gift to your sack. In “For the team”, you can choose how many of each gift to add.
+3. Check your sack, rate how good you have been and choose a delivery method.
+4. Accept the wish fulfilment terms and send your letter. The prize draw is optional; you will see the result after sending.
+
+Try chatting with the elf, too. And if the Grinch gets into your sack, the elves will help you restore your gifts.
+
+Compare both versions with a screen reader. On a computer, use Tab and Shift+Tab; move between category tabs with the Left and Right Arrow keys, then press Enter or Space to select one. On a phone, choose a category from the expandable panel.
+
+Sending the letter and the prizes are pretend.
+
+- Zakres: oba warianty demonstracji, PL/EN, WEB i MOBILE.
+- Odbiór: niezależne rozwijanie obu paneli, poprawna zapowiedź nazwy i stanu, odczyt akapitów i kroków listy, obsługa klawiaturą i gestami, zachowany fokus i dane po zmianie wariantu lub języka. Sprawdzić reflow przy 320 px i powiększeniu tekstu; instrukcja ma zachować dotychczasowe wymagania kontrastu i rozmiaru celu dotykowego. Rzeczywisty odczyt VoiceOver, NVDA i TalkBack pozostaje do potwierdzenia.
+- Weryfikacja lokalna: `npm test` przechodzi. Chrome na WEB: oba stany w każdej z czterech kombinacji wariant × język mają prawidłową nazwę oraz stan `collapsed` / `expanded` w drzewie dostępności. Enter rozwija, Spacja zwija; fokus pozostaje na `summary`. Zmiana wariantu i języka zachowuje otwarty panel i wpisane imię. Instrukcja ma cztery elementy listy, pełne tłumaczenie i widoczną wskazówkę przy zwinięciu. Próby w ramkach o szerokości 390 px PL i 320 px EN w obu wariantach potwierdzają stan, czytelność i brak poziomego przepełnienia; aktywny wiersz ma około 53 px wysokości. To kontrola przeglądarki, bez potwierdzenia rzeczywistej mowy czytników.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.15. Stan rozwinięcia wyboru języka
+
+- W wariancie z błędami wyzwalacz wyboru języka nie udostępnia stanu zwinięcia ani rozwinięcia. W wariancie poprawionym przekazuje aktualny stan przez `aria-expanded="false"` przy ukrytych opcjach i `aria-expanded="true"` przy widocznych.
+- Obie wersje korzystają z tego samego natywnego przycisku rozwijającego opcje; różni je wyłącznie obecność i aktualizowanie `aria-expanded`. Kontrolka nie jest elementem `select`, który udostępniałby stan natywnie również w wariancie z błędami.
+- Wyzwalacz jest natywnym `button type="button"`. Jego nazwa w obu wariantach obejmuje widoczną etykietę „Język strony” / „Page language” i aktualny język „Polski” albo „English”. `aria-controls` wskazuje panel z wyborem. Rysunek strzałki jest ukryty przed czytnikiem i wizualnie odpowiada otwarciu.
+- Opcje „Polski” i „English” są nazwanymi, natywnymi przyciskami w zwykłej liście. Bieżący język jest widoczny na wyzwalaczu i pozostaje dostępny czytnikowi. Nazwy własne języków zachowują odpowiednie atrybuty `lang` i nie są tłumaczone. Panel nie jest dialogiem, menu ARIA ani listą `listbox`; wyzwalacz nie otrzymuje `aria-haspopup`.
+- Enter, Spacja i aktywacja dotykiem rozwijają lub zwijają opcje. Fokus po rozwinięciu pozostaje na wyzwalaczu; Tab i Shift+Tab umożliwiają przejście do opcji i dalej po stronie. Escape zamyka otwarty panel i przywraca fokus na wyzwalacz. Po wybraniu języka panel się zamyka, teksty są tłumaczone, a fokus wraca do wyzwalacza z nową nazwą. Ukryte opcje są poza odczytem i tabulatorem. Wybór języka nie wymaga myszy.
+- Zmiana wariantu przy otwartym lub zamkniętym wyborze języka aktualizuje semantykę bez zmiany jego widoczności. W wariancie z błędami `aria-expanded` jest nieobecne także po rozwijaniu, zwijaniu, wyborze języka i resecie. W poprawnym zawsze odpowiada rzeczywistej widoczności opcji.
+- Wybór PL/EN zachowuje dotychczasowe tłumaczenia, `html lang`, obsługę `?lang=pl` / `?lang=en`, zapamiętaną preferencję, komunikat o zmianie języka i wszystkie dane listu. Obowiązują dotychczasowe wymagania kontrastu, widoczności fokusu i rozmiaru obszaru aktywacji.
+- Zakres: oba warianty demonstracji, PL/EN, WEB i MOBILE. Panel prowadzącej i instrukcja nadal poprawnie udostępniają swój stan w obu wariantach.
+- Odbiór: nazwa i bieżący język dostępne zawsze; stan rozwinięcia obecny wyłącznie w wersji poprawionej; wybór, zamknięcie, Tab, Shift+Tab, Enter, Spacja, Escape i zmiana wariantu przy otwartym panelu. Sprawdzić rzeczywiste zapowiedzi NVDA, VoiceOver i TalkBack w obu stanach oraz brak utraty danych i błędów starych odwołań do `select` w tłumaczeniach i obsłudze mini worka. Testy i18n muszą nadal potwierdzać zgodność helpera z blokiem w HTML.
+- Źródło wzorca poprawnego: [WAI-ARIA APG — Disclosure](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/).
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+- Weryfikacja lokalna: Chrome WEB oraz ramki 390 px PL i 320 px EN, oba warianty. Wersja poprawiona ma aktualne `true`/`false`, błędna nie ma atrybutu w obu stanach. Enter/Spacja rozwijają, Escape zamyka i przywraca fokus; zmiana wariantu zachowuje otwarcie. Wpisane dane, worek i otwarta instrukcja zostają po zmianie języka. Brak poziomego przepełnienia; przycisk i opcje mają minimum 44 px wysokości.
+
+### 14.16. Panel prowadzącej i osobny timer
+
+- Zgłoszenia MOBILE: czytnik odczytuje osobno plus i etykietę panelu; przy wskazaniu zegara ogłasza przycisk ze stanem zwinięcia.
+- Plus i minus nie są tekstem generowanym przez CSS. Wyzwalacz zawiera dekoracyjne SVG z `aria-hidden="true"` i `focusable="false"`; pionowa kreska znika po rozwinięciu. Ta sama zasada obowiązuje dla ikony instrukcji.
+- `summary#presenter-toggle` ma nazwę z widocznego tekstu `#presenter-label` przez `aria-labelledby`. Nazwa to „Panel prowadzącej” / „Presenter controls”, bez znaku plusa, minusa i zegara. Stan zwinięcia/rozwinięcia wynika z natywnego `details` w obu wariantach.
+- `#show-clock` znajduje się poza `details` i `summary`, we wspólnym kontenerze układu. Zachowuje `role="timer"`, nazwę „Czas pokazu” / „Presentation time”, `aria-live="off"`, wizualne cyfry i równoważny tekst czasu. Nie otrzymuje `tabindex` ani roli przycisku. Dotknięcie obszaru zegara nie rozwija panelu.
+- Zegar pozostaje wizualnie po prawej stronie wiersza. Rzeczywisty obszar kontrolki rozwijania kończy się przed zegarem; samo dodanie odstępu wewnątrz kontrolki nie zastępuje rozdzielenia obszarów.
+- Zakres: oba warianty, PL/EN, WEB i MOBILE.
+- Weryfikacja lokalna: w ramkach 390 px PL i 320 px EN, w obu wariantach, drzewo dostępności pokazuje przycisk z samą nazwą panelu i właściwym stanem. Timer jest poza przodkiem `summary` / `button` i poza `details`. Ikona jest ukryta, nie ma nakładania obszarów ani poziomego przepełnienia. Wyzwalacz ma około 48 px wysokości. Enter/Spacja rozwijają i zwijają, fokus zostaje na wyzwalaczu; kliknięcie zegara nie otwiera panelu. `npm test` przechodzi.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.17. Fokus po dodaniu prezentu na MOBILE w wariancie z błędami
+
+- Zgłoszenie MOBILE w wariancie z błędami: po dodaniu prezentu fokus dostępności przechodzi na „Twój worek”, zamiast pozostać na akcji dodania.
+- Zakres poprawki: wyłącznie wariant z błędami przy szerokości do 760 px, PL/EN. WEB w obu wariantach oraz MOBILE w wariancie poprawionym zachowują dotychczasową obsługę dodawania, bez dodatkowego ustawiania fokusu.
+- Tylko w objętym poprawką układzie przed wykonaniem akcji użyta kontrolka otrzymuje fokus z `preventScroll`, o ile już go nie ma. W tym układzie odnośniki wskazują własne identyfikatory zamiast `#bag-title`. Po przejściu do WEB zachowują dotychczasowy cel `#bag-title`; istniejąca obsługa aktywacji nadal zatrzymuje nawigację. Zmiana szerokości aktualizuje cele linków bez przebudowy kontrolek i bez przenoszenia fokusu.
+- Wskazanie nagłówka worka przez poprzedni `href` jest możliwym źródłem skoku czytnika, bez potwierdzenia jako jedynej przyczyny na iPhonie. Dodawanie i potwierdzenie pozostawiają tę samą kontrolkę w DOM.
+- Błędna ilość zachowuje dotychczasowe przejście do pola liczby sztuk z komunikatem. Otwarcie upomnienia Mikołaja po trzeciej sztuce przenosi fokus do okna, a zamknięcie wraca do użytej akcji dodania. Mini worek, animacja i region potwierdzenia nie przejmują fokusu.
+- Rzeczywiste odnośniki „Przejdź do worka”, w tym skip link i mini worek, nadal przenoszą fokus do nagłówka worka po świadomej aktywacji. Celowe role linków i brak roli przy drukarce pozostają częścią demonstracji.
+- Weryfikacja lokalna sprzed zawężenia zakresu: ramki 390 px PL i 320 px EN, oba warianty. Dodanie pierwszej i drugiej sztuki oraz czwartej po zamknięciu upomnienia pozostawiało fokus na `#add-headphones`; trzecia sztuka otwierała upomnienie, a zamknięcie wracało na dodawanie. Ilość 0 przy fotelu przenosiła fokus na `#qty-chair`, oznaczała błąd i nie zwiększała worka. Próby obejmowały Enter i kliknięcie, bez rzeczywistego kursora VoiceOver.
+- Weryfikacja zawężenia: `npm test` przechodzi. Kontrola czterech kombinacji WEB/MOBILE i wariantu potwierdza dodatkowe ustawienie fokusu wyłącznie dla MOBILE z błędami oraz aktualizację celów linków po zmianie szerokości. Podgląd Chrome: 390 px i 1100 px, oba warianty; dodawanie kliknięciem i Enterem zwiększa worek, a fokus DOM pozostaje na użytej kontrolce. MOBILE z błędami ma link do własnej kontrolki, WEB z błędami zachowuje `#bag-title`, a wersja poprawiona zachowuje natywny przycisk. Rzeczywisty fokus dostępności na iPhonie pozostaje do potwierdzenia.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.18. Gesty suwaka grzeczności z VoiceOver
+
+- Zgłoszenie: VoiceOver na iPhonie w Chrome, wariant poprawiony; gesty w górę i w dół nie zmieniają poziomu grzeczności. Wersje iOS i Chrome pozostają do ustalenia.
+- Oczekiwane działanie: po ustawieniu fokusu na suwaku gest jednego palca w górę zwiększa, a w dół zmniejsza wartość. Zakres 0–100%, krok 10. Wartość suwaka, wizualny procent i tekst dostępny pozostają zgodne, bez przenoszenia fokusu.
+- Poprawiony wariant zachowuje natywne `input type="range"`. Synchronizacja obsługuje `input` i `change`; powtórne zdarzenie z tą samą wartością nie aktualizuje ponownie stanu. Kod nie wpisuje ponownie tej samej natywnej wartości podczas jej obsługi. To poprawka synchronizacji, a nie potwierdzona diagnoza przyczyny nieskutecznego gestu.
+- Celowy błąd w drugim wariancie pozostaje: wizualny procent może się zmieniać, a dostępne `aria-valuenow` i `aria-valuetext` pozostają na 50%. Nie rozszerzamy tego przykładu o zamierzoną niedostępność obsługi.
+- Weryfikacja lokalna: ArrowUp zmienia poprawny suwak z 50 na 60, a ArrowDown z powrotem na 50; natywna wartość, widoczny procent i `aria-valuetext` są zgodne. W błędnym wariancie widoczna wartość rośnie do 60%, a dostępny tekst pozostaje 50%. Ramki 390 px PL i 320 px EN, oba warianty; `npm test` przechodzi. Klawiatura nie zastępuje testu gestów VoiceOver.
+- Odbiór na iPhonie w Chrome: zapisać wersje iOS i Chrome, pełną zapowiedź suwaka, zmianę po gestach w obu kierunkach oraz równocześnie widoczny procent. Sprawdzić końce skali, utrzymanie fokusu i przełączenie wariantu. Przyczyna zgłoszenia i skuteczność gestów pozostają do ustalenia na rzeczywistym urządzeniu.
+- Źródła: [Apple — gesty VoiceOver na iPhonie](https://support.apple.com/guide/iphone/iph3e2e2281/ios), [WAI-ARIA APG — Slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
+- Status: poprawka synchronizacji w wydaniu 2026-10-30. Zgłoszenie gestów VoiceOver w Chrome na iPhonie pozostaje otwarte; przyczyna i skuteczność gestów niepotwierdzone.
+
+### 14.19. Pieczątka sukcesu jako jeden fragment tekstu
+
+- Zgłoszenie MOBILE: odczyt „Przyjęto warunkowo” i numeru elfa wymaga dwóch gestów.
+- Pieczątka jest jednym akapitem z jednym węzłem tekstowym: „Przyjęto warunkowo, Elf nr 200” / „Provisionally accepted, Elf no. 200”. Bez `br`, osobnych wierszy HTML, ukrytego tekstu zastępczego, roli obrazu i nazwy przez ARIA.
+- Zawijanie wizualne wynika z szerokości i CSS. Spacje nierozdzielające utrzymują razem określenie i numer elfa; nie dzielą tekstu na kolejne elementy. Zmiana języka tłumaczy cały tekst.
+- Pieczątka pozostaje zwykłą treścią, bez dodatkowego przystanku Tab i bez osobnego komunikatu live. Fokus po wysłaniu nadal trafia na h1. Trzy oznaczenia nadania pozostają osobną listą.
+- Zakres: oba warianty, PL/EN, WEB i MOBILE.
+- Weryfikacja lokalna: przy sukcesie w ramkach 390 px PL i 320 px EN w obu wariantach pieczątka ma jeden węzeł tekstowy, nie ma `br` i nie powoduje przepełnienia w poziomie. Drzewo dostępności pokazuje pojedynczy tekst całej pieczątki w każdym języku. Fokus pozostaje na `#confirmation-title`. Próby wysyłki były lokalne, bez udziału w loterii i bez zmiany licznika produkcyjnego.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.20. Dekoracyjna czerwona kreska przy nazwie biura
+
+- Przy tekście „Biuro Obsługi Życzeń · termin realizacji: 24 grudnia” nie ma czerwonej kreski. Jej bliskość do paneli rozwijanych sugerowała wskaźnik rozwinięcia.
+- Usunięta dekoracja pochodziła z pseudoelementu `.eyebrow:before`. Nazwa biura i termin realizacji pozostają zwykłym tekstem. Funkcjonalne ikony panelu prowadzącej i instrukcji zachowują dotychczasowe działanie.
+- Zakres: WEB i MOBILE, oba warianty, PL/EN.
+- Weryfikacja lokalna: podgląd Chrome w szerokościach 390 px i 1100 px potwierdza brak pseudoelementu i czerwonego obramowania przy nazwie biura; tekst oraz przyciski paneli pozostają dostępne.
+- Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
 
 ## 15. Kod i uruchomienie
 
@@ -574,7 +755,7 @@ Zegar nagrania działa w profilu 7 minut. Pauza służy przygotowaniu kadru; po 
 
 ### Dostosowanie czasu — 2.2.1
 
-- Ostrzeżenie w oknie jest dostępne od początku 60-sekundowego odliczania. Dodatkowy komunikat przy 20 sekundach przypomina o możliwości reakcji.
-- Zatrzymanie odliczania nie ma ograniczenia czasu; zamknięcie okna lub „Przedłuż sesję” przed upływem czasu kończy atak. Pauza w panelu prowadzącej zatrzymuje także czas do automatycznego ataku.
+- Ostrzeżenie w oknie jest dostępne od początku odliczania, 30-sekundowego (punkt 14.11). Dodatkowy komunikat przy 20 sekundach przypomina o możliwości reakcji.
+- Zamknięcie okna lub „Przedłuż sesję” przed upływem czasu kończy atak. Pauza w panelu prowadzącej nie ma ograniczenia czasu i zatrzymuje także czas do automatycznego ataku. Osobny przycisk zatrzymania odliczania w oknie jest usunięty (punkt 14.13).
 - Sam komunikat „20 sekund” nie jest pełną realizacją 2.2.1. W ścieżce zgodności przez przedłużanie kryterium wymaga co najmniej 20 sekund na prostą reakcję oraz co najmniej dziesięciu przedłużeń. Wyłączenie lub odpowiednie dostosowanie limitu to alternatywne ścieżki.
 - Źródło: https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html .

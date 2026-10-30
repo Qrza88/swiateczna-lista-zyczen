@@ -6,13 +6,13 @@ Strona demonstracji: [Polski](https://swiateczna-lista-zyczen.netlify.app/?lang=
 
 ## Lokalnie
 
-Otwórz `dist/index.html` w przeglądarce. Wszystkie style, grafiki i skrypty strony są w tym pliku. Bez instalowania zależności i bez internetu. Licznik w tej wersji jest lokalny, co opisuje jego etykieta.
+Otwórz `dist/index.html` w przeglądarce. Style i skrypty są w tym pliku; natywne obrazki SVG znajdują się w `dist/assets`. Zachowaj ten katalog obok HTML. Bez instalowania zależności i bez internetu. Licznik w tej wersji jest lokalny, co opisuje jego etykieta.
 
-Panel prowadzącej na samej górze kartki, przed nagłówkiem Biura Obsługi Życzeń, pozwala uruchomić, zatrzymać i zresetować pokaz oraz ręcznie wywołać Grincha. Zegar startuje automatycznie po otwarciu strony; w tym publicznym wariancie Grinch pojawia się przy 2:00 odliczania. Pauza zatrzymuje czas, a po pełnym resecie nową próbę uruchamia się ręcznie. Upomnienie Mikołaja otwiera się po osiągnięciu 3 sztuk w worku, raz do resetu. Instrukcja i mapa przykładów są w `WYMAGANIA.md`, poza stroną.
+Panel prowadzącej na samej górze kartki, przed nagłówkiem Biura Obsługi Życzeń, pozwala uruchomić, zatrzymać i zresetować pokaz oraz ręcznie wywołać Grincha. Zegar startuje automatycznie po otwarciu strony; w tym publicznym wariancie Grinch pojawia się przy 2:00 odliczania. Pauza zatrzymuje czas, a po pełnym resecie nową próbę uruchamia się ręcznie. Upomnienie Mikołaja otwiera się po osiągnięciu 3 sztuk w worku, raz do resetu. Pod panelem prowadzącej jest osobny panel „Jak korzystać ze strony”. Pierwszy krok to włączenie czytnika ekranu; stan rozwinięcia instrukcji działa poprawnie w obu wariantach. Techniczna mapa błędów i scenariusz prowadzenia pozostają wyłącznie w `WYMAGANIA.md`. Zegar pokazu jest osobnym elementem, poza przyciskiem rozwijania panelu; ikony plus/minus są dekoracyjne.
 
 ## Język i wybór ilości
 
-Przełącznik Polski / English tłumaczy formularz, opisy i nazwy dostępne, błędy, czat, okna oraz ekran sukcesu. Aktualizuje `lang` i tytuł dokumentu bez utraty wpisanych danych. Parametr `?lang=en` lub `?lang=pl` wybiera wersję z linku; preferencja jest zapamiętywana jako `pp-language`. Własne wiadomości i imię pozostają bez zmian. Czat rozpoznaje przygotowane tematy w obu językach i odpowiada w języku interfejsu, bez usługi AI.
+Przycisk wyboru Polski / English ma bieżący język w nazwie, rozwija dwie opcje i obsługuje klawiaturę oraz Escape. Wariant poprawiony przekazuje aktualne `aria-expanded`; w wariancie z błędami brak stanu jest celowym przykładem. Zmiana wariantu przy otwartych opcjach zachowuje ich widoczność. Wybór języka tłumaczy formularz, opisy i nazwy dostępne, błędy, czat, okna oraz ekran sukcesu. Aktualizuje `lang` i tytuł dokumentu bez utraty wpisanych danych. Parametr `?lang=en` lub `?lang=pl` wybiera wersję z linku; preferencja jest zapamiętywana jako `pp-language`. Własne wiadomości i imię pozostają bez zmian. Czat rozpoznaje przygotowane tematy w obu językach i odpowiada w języku interfejsu, bez usługi AI.
 
 W „Dla zespołu” ilość można wpisać albo zmienić przyciskami −/+, w zakresie 1–99. Przyciski mają nazwy z nazwą prezentu, stan graniczny i komunikat o zmianie bez utraty fokusu. Licznik wysłanych listów jest dyskretnie umieszczony w prawym dolnym rogu stopki.
 
@@ -30,7 +30,7 @@ W poprawnym wariancie Grinch ma rolę `alertdialog`, nazwę z tytułu `h2` i opi
 
 Przy 20 sekundach pozostałego czasu pojawia się jednorazowe, widoczne ostrzeżenie. Osobny, istniejący od początku `role="alert"` ogłasza je czytnikowi w obu wariantach. Pauza i wznowienie nie powtarzają komunikatu, a ponowne ręczne otwarcie rozpoczyna nową próbę. Opóźniona obsługa progu informuje o mniej niż 20 sekundach; po upływie czasu ostrzeżenie znika.
 
-Po upływie 60 sekund Grinch opróżnia worek. Nagłówek zmienia się na „Grinch wyjął Twoje prezenty z worka”; dla pustego worka brzmi „Grinch nie miał czego zabrać”. Kolejne ręczne otwarcie przywraca tytuł „Grinch przejął sesję”. Elfy zachowują kopię pozycji i ilości w pamięci karty. „Odzyskaj prezenty” jest dostępne w oknie Grincha oraz przy pełnym worku po jego zamknięciu. Odzyskanie dodaje zabrane sztuki do aktualnego worka, bez utraty nowych wyborów i bez podwójnego przywrócenia. Imię i wiadomość pozostają zachowane, a pełny reset usuwa także kopię. Zamknięcie okna przed upływem czasu zapobiega psikusowi. Automatyczny atak nie przerywa ekranu sukcesu. Pasek okna brzmi „Nieoczekiwany gość”.
+Po upływie 30 sekund od otwarcia okna Grinch opróżnia worek. W oknie nie ma przycisku pauzy. Przed psikusem dostępne są „Przedłuż sesję” i „Wróć do listy życzeń”; obie akcje powstrzymują Grincha. Po psikusie dostępne są „Odzyskaj prezenty” i „Wróć do listy życzeń”; przy pustym worku pozostaje jeden przycisk powrotu. X i Escape działają we wszystkich stanach. Pauza w panelu prowadzącej nadal zatrzymuje oba zegary. Nagłówek zmienia się na „Grinch wyjął Twoje prezenty z worka”; dla pustego worka brzmi „Grinch nie miał czego zabrać”. Kolejne ręczne otwarcie przywraca tytuł „Grinch przejął sesję”. Elfy zachowują kopię pozycji i ilości w pamięci karty. „Odzyskaj prezenty” jest dostępne w oknie Grincha oraz przy pełnym worku po jego zamknięciu. Odzyskanie dodaje zabrane sztuki do aktualnego worka, bez utraty nowych wyborów i bez podwójnego przywrócenia. Imię i wiadomość pozostają zachowane, a pełny reset usuwa także kopię. Zamknięcie okna przed upływem czasu zapobiega psikusowi. Automatyczny atak nie przerywa ekranu sukcesu. Pasek okna brzmi „Nieoczekiwany gość”.
 
 Nagłówek loterii oraz ilości w worku mają prosty, grubszy krój w obu układach. Suma sztuk ma 1,5 rem, a licznik w nagłówku worka 1,125 rem. Procent na skali grzeczności ma 1,25 rem, pogrubienie i jasne tło z ramką; pełny opis wartości zawija się na telefonie.
 
@@ -60,13 +60,23 @@ Udziały mają własną numerację, więc listy bez udziału nie przesuwają wyg
 
 Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 19 angielskich scenariuszy czatu, naturalne zdania i liczbę pojedynczą/mnogą, ochronę treści użytkownika podczas tłumaczenia, pierwszeństwo języka z URL, tytuły stron, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami i wygranymi co 5 udziałów. Nie wymagają zależności Netlify.
 
-Dodatkowa weryfikacja pełnego HTML obejmuje walidację imienia, pustego worka i wymaganej zgody, powiązania błędów i fokus w ośmiu kombinacjach WEB/MOBILE, PL/EN i obu wariantów WCAG. Osobno obejmuje dialogi, przełączanie języka, ilości, mini worek, reset, animację, ograniczenie ruchu oraz wynik 25. udziału. Testy DOM i logiki nie potwierdzają syntezy mowy. Próby z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie wymagają docelowego sprzętu i czytnika.
+Dodatkowa weryfikacja pełnego HTML obejmuje walidację imienia, pustego worka i wymaganej zgody, powiązania błędów i fokus w ośmiu kombinacjach WEB/MOBILE, PL/EN i obu wariantów WCAG. Osobno obejmuje dialogi, przełączanie języka, ilości, mini worek, reset, animację, ograniczenie ruchu oraz wygraną co piąty udział. Nowy wynik ma nagłówek „Wygrana! Milion tokenów jest Twój!” i jeden z sześciu komentarzy; ten sam udział zachowuje komentarz po zmianie języka i wariantu. Testy DOM i logiki nie potwierdzają syntezy mowy. Próby z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie wymagają docelowego sprzętu i czytnika.
 
 Próba w Chrome obejmuje PL i EN przy szerokościach ramki 320 px, 390 px oraz na komputerze, bez poziomego przewijania dokumentu. Obejmuje też nazwaną rolę `alertdialog` Grincha, fokus i jego zawijanie w oknie, zamknięcie przez Escape, fokus na błędnym polu z `aria-invalid`, aktualizację statusu odpowiedzi elfa, rozmiary przycisków ilości, dialog po trzecim prezencie i ekran sukcesu z osobnym tytułem. To test przeglądarki, nie fizycznego telefonu ani odczytu przez czytnik.
+
+## Zakres wydania 2026-10-30
+
+Mikołaj i lecąca koperta są natywnymi `img` z opisami w `alt`; ich kontenery układu nie mają roli obrazu. Pieczątka „Przyjęto warunkowo, Elf nr 200” jest jednym tekstem. Czerwona kreska przy nazwie biura jest usunięta.
+
+Dodatkowe zachowanie fokusu po dodaniu prezentu obejmuje wyłącznie MOBILE w wariancie z błędami (do 760 px). WEB w obu wariantach i MOBILE poprawiony zachowują dotychczasową obsługę. Otwarcie upomnienia Mikołaja i błędy ilości nadal mają własne zarządzanie fokusem.
+
+Poprawiony suwak synchronizuje natywną wartość po `input` i `change`. Klawiatura i wartości wizualne/dostępne zostały sprawdzone lokalnie. Zgłoszenie gestów VoiceOver na iPhonie w Chrome pozostaje otwarte, bez potwierdzonej przyczyny i wyniku próby na urządzeniu. Pozostałe rzeczywiste zapowiedzi czytników i odczyt pieczątki jednym gestem również wymagają odbioru na urządzeniach.
 
 ## Pliki
 
 - `dist/index.html` — kompletna strona; główny plik do edycji i uruchomienia.
+- `dist/assets/` — natywne obrazki Mikołaja, tła trasy i lecącej koperty.
+- `winner-comments.js` — stały dla danego udziału wybór jednego z sześciu komentarzy wygranej, osadzony też w HTML.
 - `counter-client.js` — źródło testowanej logiki licznika, włączone również w HTML pomiędzy znacznikami `LETTER_COUNTER_START/END`.
 - `elf-engine.js` — źródło logiki odpowiedzi, włączone w HTML między `ELF_REPLY_ENGINE_START/END`.
 - `i18n.js` — teksty i mechanizm wersji językowych, włączone w HTML między `UI_I18N_START/END`.
