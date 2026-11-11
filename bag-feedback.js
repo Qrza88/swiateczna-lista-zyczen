@@ -73,7 +73,7 @@ document.addEventListener('focusin',()=>{
  requestAnimationFrame(()=>{const el=document.activeElement;if(!el||el===document.body)return;const r=el.getBoundingClientRect(),bar=$('mini-bag').getBoundingClientRect();if(bar.height>0&&r.bottom>bar.top&&r.top<bar.bottom&&r.right>bar.left&&r.left<bar.right)el.scrollIntoView({block:'center',behavior:'auto'});});
 });
 $('reset-show').addEventListener('click',()=>{stopGiftFlight();syncMiniBag();});
-$('letter-form').addEventListener('submit',()=>{stopGiftFlight();queueMiniSync();});
+$('send-letter').addEventListener('click',()=>{stopGiftFlight();queueMiniSync();});
 $('edit-letter').addEventListener('click',queueMiniSync);
 if(typeof ResizeObserver!=='undefined')new ResizeObserver(queueMiniSync).observe($('catalog-section'));
 // BAG_FEEDBACK_END

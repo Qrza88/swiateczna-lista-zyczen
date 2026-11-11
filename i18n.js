@@ -179,6 +179,8 @@ const englishUi = {
 "To zabawa demonstracyjna z symboliczną nagrodą. Nie przyznajemy rzeczywistych tokenów ani kredytów usług AI.":"This is a demo with a symbolic prize. No real tokens or AI service credits are awarded.",
 "Wróć do listu":"Back to the letter",
 "Wysyłka demonstracyjna. Twoje życzenia zostają w tej karcie przeglądarki.":"Demo submission. Your wishes stay in this browser tab.",
+"Kontakt:":"Contact:",
+"Arleta Kurkiewicz na LinkedInie":"Arleta Kurkiewicz on LinkedIn",
 "POCZTA PÓŁNOCNA · DEMONSTRACJA NA KALENDARZ PROGRAMISTY":"NORTH POLE POST · A DEMO FOR KALENDARZ PROGRAMISTY",
 "List zostaje w tej karcie przeglądarki. Wysyłka jest umowna.":"Your letter stays in this browser tab. No real letter is sent.",
 "Oby Ci się skompilowało.":"May your build succeed.",

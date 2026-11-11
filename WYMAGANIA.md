@@ -690,9 +690,12 @@ Sending the letter and the prizes are pretend.
 - Poprawiony wariant zachowuje natywne `input type="range"`. Synchronizacja obsługuje `input` i `change`; powtórne zdarzenie z tą samą wartością nie aktualizuje ponownie stanu. Kod nie wpisuje ponownie tej samej natywnej wartości podczas jej obsługi. To poprawka synchronizacji, a nie potwierdzona diagnoza przyczyny nieskutecznego gestu.
 - Celowy błąd w drugim wariancie pozostaje: wizualny procent może się zmieniać, a dostępne `aria-valuenow` i `aria-valuetext` pozostają na 50%. Nie rozszerzamy tego przykładu o zamierzoną niedostępność obsługi.
 - Weryfikacja lokalna: ArrowUp zmienia poprawny suwak z 50 na 60, a ArrowDown z powrotem na 50; natywna wartość, widoczny procent i `aria-valuetext` są zgodne. W błędnym wariancie widoczna wartość rośnie do 60%, a dostępny tekst pozostaje 50%. Ramki 390 px PL i 320 px EN, oba warianty; `npm test` przechodzi. Klawiatura nie zastępuje testu gestów VoiceOver.
-- Odbiór na iPhonie w Chrome: zapisać wersje iOS i Chrome, pełną zapowiedź suwaka, zmianę po gestach w obu kierunkach oraz równocześnie widoczny procent. Sprawdzić końce skali, utrzymanie fokusu i przełączenie wariantu. Przyczyna zgłoszenia i skuteczność gestów pozostają do ustalenia na rzeczywistym urządzeniu.
+- Odbiór na iPhonie w Chrome: zapisać wersje iOS i Chrome, pełną zapowiedź suwaka, zmianę po gestach w obu kierunkach oraz równocześnie widoczny procent. Sprawdzić końce skali, utrzymanie fokusu i przełączenie wariantu.
 - Źródła: [Apple — gesty VoiceOver na iPhonie](https://support.apple.com/guide/iphone/iph3e2e2281/ios), [WAI-ARIA APG — Slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
-- Status: poprawka synchronizacji w wydaniu 2026-10-30. Zgłoszenie gestów VoiceOver w Chrome na iPhonie pozostaje otwarte; przyczyna i skuteczność gestów niepotwierdzone.
+- Odbiór użytkowniczki 2026-10-30: VoiceOver w Chrome na iPhonie, wariant poprawiony. Po wybraniu w pokrętle opcji „Zmiana wartości” gesty jednym palcem w górę i w dół zmieniają wartość suwaka. To wynik próby w tej konfiguracji; nie uogólniamy wymaganego ustawienia pokrętła na wszystkie wersje iOS i czytniki.
+- Wskazówka do powtórzenia próby: ustaw fokus na suwaku, wybierz w pokrętle VoiceOver „Zmiana wartości”, następnie użyj gestu w górę lub w dół. Zapisz wersje iOS i Chrome przy kolejnym odbiorze.
+- Dodatkowy odbiór użytkowniczki 2026-10-30: suwak działa również na Androidzie z TalkBack. Nie podano wersji systemu, wersji TalkBack ani przeglądarki; wynik dotyczy sprawdzonej konfiguracji.
+- Status: zgłoszenie nieskutecznych gestów zamknięte na podstawie testu użytkowniczki z ustawieniem „Zmiana wartości”. Kod produkcyjny pozostaje bez zmian; dodatkowe przyciski zmiany wartości nie wchodzą do zakresu kolejnego wydania.
 
 ### 14.19. Pieczątka sukcesu jako jeden fragment tekstu
 
@@ -711,6 +714,36 @@ Sending the letter and the prizes are pretend.
 - Zakres: WEB i MOBILE, oba warianty, PL/EN.
 - Weryfikacja lokalna: podgląd Chrome w szerokościach 390 px i 1100 px potwierdza brak pseudoelementu i czerwonego obramowania przy nazwie biura; tekst oraz przyciski paneli pozostają dostępne.
 - Status: zakres wydania 2026-10-30; rzeczywisty odczyt czytnikiem pozostaje do odbioru na urządzeniu.
+
+### 14.21. Wysyłka po świadomym użyciu przycisku
+
+- Wysyłkę uruchamia wyłącznie „Wyślij list” / „Send letter”: kliknięcie, Enter lub Spacja na przycisku albo aktywacja przez czytnik. Zakres: WEB i MOBILE, PL/EN, oba warianty demonstracji.
+- Zaznaczenie lub odznaczenie loterii nie wysyła listu, nie pokazuje wyniku i nie zwiększa licznika. Loteria jest opcjonalna.
+- Zaznaczenie wymaganej akceptacji zasad realizacji życzeń nie wysyła listu. Enter na tym checkboxie, na loterii i w polu imienia nie wywołuje wysyłki ani przedwczesnej walidacji. Spacja zachowuje natywną obsługę checkboxów.
+- Brak wymaganej zgody blokuje wysłanie. Po użyciu przycisku błąd znajduje się pod checkboxem, jest powiązany z nim przez `aria-describedby`, a pole ma `aria-invalid="true"`. Fokus trafia do pierwszego błędnego pola. Przy poprawnym imieniu i co najmniej jednym prezencie jest nim checkbox zgody. Natywne `required` i powiązanie z opisem zasad pozostają.
+- Zaznaczenie zgody po błędzie usuwa jej komunikat i `aria-invalid`, zachowując opis zasad oraz fokus na checkboxie. Odznaczenie zgody ponownie blokuje wysłanie. Dane i prezenty pozostają zachowane.
+- `#send-letter` jest natywnym przyciskiem `type="button"`. Jego akcja `submitLetter` uruchamia dotychczasową walidację i ekran sukcesu. Zdarzenie `submit` formularza jest anulowane bez zmiany widoku i fokusu. Działanie nie zależy od wartości `submitter`, rodzaju wskaźnika ani sposobu generowania kliknięcia przez czytnik. Obsługa pozostałych klawiszy i czatu pozostaje natywna lub zgodna z dotychczasową funkcją kontrolki.
+- Porządkowanie animacji i mini worka po wysłaniu jest powiązane z przyciskiem. Blok `BAG_FEEDBACK` w HTML oraz `bag-feedback.js` pozostają identyczne.
+- Naliczanie listu i udziału oraz wynik loterii następują po udanej akcji wysyłki. Błąd wymaganej zgody i same zmiany checkboxów nie zwiększają licznika. Fokus po sukcesie trafia na `#confirmation-title`.
+- Weryfikacja lokalna 2026-11-03: `npm test`, w tym nowy test `qa/form-submission.cjs`, oraz osiem kombinacji WEB/MOBILE, PL/EN i obu wariantów w Chrome. Próby obejmują Enter w imieniu i na obu checkboxach, Spację, brak zgody, powiązanie błędu, zachowanie fokusu, odznaczenie zgody i świadomą aktywację przycisku. Ramki MOBILE: 390 px PL i 320 px EN. Lokalny licznik rośnie o jeden dopiero po udanej akcji przycisku. Próby nie korzystają z licznika produkcyjnego.
+- Status: poprawka lokalna do najbliższego uzgodnionego wydania. Rzeczywiste zapowiedzi NVDA, VoiceOver i TalkBack pozostają do próby z czytnikiem.
+- Źródła: [HTML — implicit submission](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#implicit-submission), [MDN — submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event).
+
+### 14.22. Skalowanie tekstu na Androidzie
+
+- Obserwacja użytkowniczki: zwiększenie czcionki systemowej Androida nie zwiększyło tekstu strony. Dodatkowa próba potwierdza powiększanie gestem szczypania. Przeglądarka i wersja systemu nie zostały podane.
+- Kontrola kodu: viewport ma `width=device-width,initial-scale=1`; brak `user-scalable=no`, ograniczenia `maximum-scale` i reguł `text-size-adjust` blokujących skalowanie. Ta kontrola potwierdza konfigurację strony, nie zastępuje próby na Androidzie.
+- Typografia łączy `px` z `rem`; rozmiar bazowy `body` wynosi 16 px. Jednostki w CSS i powiększenie gestem nie potwierdzają same w sobie obsługi systemowej skali tekstu.
+- Powiększenie całej strony i systemowa wielkość czcionki są osobnymi mechanizmami. Chrome na Androidzie ma własne ustawienia powiększenia strony. W dokumentacji Chrome dostępny jest też opt-in `meta name="text-scale" content="scale"` dla obsługujących go przeglądarek; nie wdrażamy go bez ustalenia wsparcia w testowanej wersji i kontroli układu.
+- Odbiór: powiększenie do 200% bez utraty treści i funkcji, obcinania etykiet, błędów i treści okien. Oddzielnie sprawdzić systemowy rozmiar tekstu na urządzeniu, powiększenie przeglądarki i gest szczypania. Zapisać Androida, przeglądarkę, ich wersje oraz wybrane ustawienie.
+- Brak reakcji na samo ustawienie systemowe pozostaje obserwacją do weryfikacji w konkretnej konfiguracji; nie oznaczamy automatycznie naruszenia WCAG 1.4.4. Odbiór dotyczy obu wariantów i PL/EN.
+- Status: obserwacja udokumentowana; brak zmian w kodzie. Rzeczywisty test 200% na Androidzie pozostaje do odbioru.
+- Źródła: [Google Chrome, powiększenie na Androidzie](https://support.google.com/chrome/answer/96810?co=GENIE.Platform%3DAndroid), [Chrome, obsługa systemowej skali tekstu](https://developer.chrome.com/docs/modern-web-guidance/guides/accessibility/respect-os-text-scale).
+
+### 14.23. Kontakt w stopce
+
+- Stopka zawiera zwykłe łącze do profilu Arlety Kurkiewicz na LinkedInie. Tekst łącza jest dostępny w polskiej i angielskiej wersji.
+- Łącze ma podkreślenie, pozostaje w kolejności nawigacji klawiszem Tab i korzysta z widocznego wskaźnika fokusu strony.
 
 ## 15. Kod i uruchomienie
 

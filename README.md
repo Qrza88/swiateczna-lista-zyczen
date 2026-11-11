@@ -56,9 +56,19 @@ Opcjonalny checkbox zapisuje wybór udziału. Wynik pojawia się po wysłaniu. C
 
 Udziały mają własną numerację, więc listy bez udziału nie przesuwają wygranej. Jeden list otrzymuje jeden numer udziału; po powrocie można dopisać udział do tego samego listu bez ponownego naliczenia listu. Nie przyznajemy rzeczywistych tokenów ani kredytów AI. Lokalna próba ma oddzielną numerację. Wynik jest na ekranie sukcesu, bez dodatkowego okna. Zmiana interwału nie zeruje istniejących danych.
 
+## Wysyłka listu
+
+Wysyłkę uruchamia wyłącznie świadome użycie „Wyślij list” / „Send letter”: kliknięcie, Enter lub Spacja na tym przycisku albo aktywacja przez czytnik. Przycisk ma `type="button"` i własną akcję `submitLetter`. Domyślne zdarzenie `submit` formularza jest anulowane bez walidacji i zmiany ekranu. Enter w polu imienia, na checkboxie loterii ani na wymaganej zgodzie nie wysyła listu. Natywne checkboxy zachowują obsługę Spacją.
+
+Akceptacja zasad realizacji życzeń pozostaje wymagana. Próba wysłania bez zgody pokazuje błąd pod checkboxem, wiąże go przez `aria-describedby`, ustawia `aria-invalid="true"` i przenosi fokus do zgody, gdy pozostałe wymagania są spełnione. Zaznaczenie zgody usuwa jej błąd bez wysyłania i przenoszenia fokusu. Odznaczenie ponownie blokuje wysłanie. Loteria pozostaje opcjonalna. Wynik oraz naliczenie listu następują po udanej akcji wysyłki.
+
+Zakres: WEB i MOBILE, PL/EN, oba warianty demonstracji. Poprawka jest przygotowana lokalnie do najbliższego wydania.
+
 ## Sprawdzenie
 
 Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 19 angielskich scenariuszy czatu, naturalne zdania i liczbę pojedynczą/mnogą, ochronę treści użytkownika podczas tłumaczenia, pierwszeństwo języka z URL, tytuły stron, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami i wygranymi co 5 udziałów. Nie wymagają zależności Netlify.
+
+`qa/form-submission.cjs` sprawdza faktyczną obsługę wysyłki osadzoną w HTML: anulowanie niejawnego `submit`, aktywację przycisku, blokowanie niepoprawnych danych oraz walidację wymaganej zgody z błędem i fokusem. Próba Chrome z 2026-11-03 obejmuje osiem kombinacji WEB/MOBILE, PL/EN i obu wariantów. Ramki mobilne mają 390 px dla PL oraz 320 px dla EN. Enter w imieniu i na obu checkboxach nie pokazuje błędów, nie wysyła i nie zmienia licznika. Brak wymaganej zgody blokuje wysłanie, a błąd jest powiązany z polem. Zaznaczenie i odznaczenie zgody pozostawia fokus na niej. Enter, Spacja i kliknięcie przycisku otwierają sukces, przenoszą fokus do jego h1 i dopiero wtedy zwiększają lokalny licznik. To próba klawiaturą w Chrome, bez NVDA, VoiceOver ani TalkBack i bez zgłoszeń do licznika produkcyjnego.
 
 Dodatkowa weryfikacja pełnego HTML obejmuje walidację imienia, pustego worka i wymaganej zgody, powiązania błędów i fokus w ośmiu kombinacjach WEB/MOBILE, PL/EN i obu wariantów WCAG. Osobno obejmuje dialogi, przełączanie języka, ilości, mini worek, reset, animację, ograniczenie ruchu oraz wygraną co piąty udział. Nowy wynik ma nagłówek „Wygrana! Milion tokenów jest Twój!” i jeden z sześciu komentarzy; ten sam udział zachowuje komentarz po zmianie języka i wariantu. Testy DOM i logiki nie potwierdzają syntezy mowy. Próby z NVDA + Chrome na Windows oraz VoiceOver lub TalkBack na rzeczywistym telefonie wymagają docelowego sprzętu i czytnika.
 
@@ -70,7 +80,7 @@ Mikołaj i lecąca koperta są natywnymi `img` z opisami w `alt`; ich kontenery 
 
 Dodatkowe zachowanie fokusu po dodaniu prezentu obejmuje wyłącznie MOBILE w wariancie z błędami (do 760 px). WEB w obu wariantach i MOBILE poprawiony zachowują dotychczasową obsługę. Otwarcie upomnienia Mikołaja i błędy ilości nadal mają własne zarządzanie fokusem.
 
-Poprawiony suwak synchronizuje natywną wartość po `input` i `change`. Klawiatura i wartości wizualne/dostępne zostały sprawdzone lokalnie. Zgłoszenie gestów VoiceOver na iPhonie w Chrome pozostaje otwarte, bez potwierdzonej przyczyny i wyniku próby na urządzeniu. Pozostałe rzeczywiste zapowiedzi czytników i odczyt pieczątki jednym gestem również wymagają odbioru na urządzeniach.
+Poprawiony suwak synchronizuje natywną wartość po `input` i `change`. Klawiatura i wartości wizualne/dostępne zostały sprawdzone lokalnie. W teście użytkowniczki z 2026-10-30 gesty VoiceOver na iPhonie w Chrome działają po wybraniu w pokrętle opcji „Zmiana wartości”. Zgłoszenie nieskutecznego gestu jest zamknięte z tym wynikiem; nie oznacza to wymagania takiego ustawienia dla wszystkich konfiguracji VoiceOver. Użytkowniczka potwierdziła również działanie suwaka na Androidzie z TalkBack (2026-10-30; wersje i przeglądarka niepodane). Pozostałe rzeczywiste zapowiedzi czytników i odczyt pieczątki jednym gestem również wymagają odbioru na urządzeniach.
 
 ## Pliki
 
@@ -87,3 +97,7 @@ Poprawiony suwak synchronizuje natywną wartość po `input` i `change`. Klawiat
 - `WYMAGANIA.md` — wymagania, instrukcja pokazu i mapa celowych błędów.
 
 Zmieniając pliki logiki pomocniczej, zaktualizuj również odpowiadający blok w HTML i uruchom testy. Nie publikujemy żadnych przykładów testowych iframe z podglądu roboczego.
+
+## Kontakt
+
+W stopce demonstracji znajduje się link do profilu Arlety Kurkiewicz na LinkedInie, dostępny w polskiej i angielskiej wersji strony.
