@@ -64,6 +64,8 @@ Akceptacja zasad realizacji życzeń pozostaje wymagana. Próba wysłania bez zg
 
 Zakres: WEB i MOBILE, PL/EN, oba warianty demonstracji. Poprawka jest przygotowana lokalnie do najbliższego wydania.
 
+Na ekranie sukcesu znikają panel prowadzącej z zegarem, instrukcja, opis i przełącznik wariantu. Zmiana języka nadal tłumaczy potwierdzenie i wynik loterii. Powrót do listu przywraca cały blok z poprzednio wybranym wariantem.
+
 ## Sprawdzenie
 
 Node.js 22 lub nowszy: `npm test`. Testy sprawdzają 22 polskie i 19 angielskich scenariuszy czatu, naturalne zdania i liczbę pojedynczą/mnogą, ochronę treści użytkownika podczas tłumaczenia, pierwszeństwo języka z URL, tytuły stron, logikę zegara, deduplikację, ponowienia oraz 500 równoległych zgłoszeń z unikalnymi numerami i wygranymi co 5 udziałów. Nie wymagają zależności Netlify.

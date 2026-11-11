@@ -745,6 +745,16 @@ Sending the letter and the prizes are pretend.
 - Stopka zawiera zwykłe łącze do profilu Arlety Kurkiewicz na LinkedInie. Tekst łącza jest dostępny w polskiej i angielskiej wersji.
 - Łącze ma podkreślenie, pozostaje w kolejności nawigacji klawiszem Tab i korzysta z widocznego wskaźnika fokusu strony.
 
+### 14.24. Blok demonstracji tylko przy edycji listu
+
+- Panel prowadzącej z zegarem, instrukcja korzystania, opis demonstracji i przełącznik wariantu są widoczne tylko podczas edycji. Na ekranie sukcesu nie zajmują miejsca i nie należą do kolejności nawigacji ani drzewa dostępności.
+- Potwierdzenie i wynik loterii są wspólne dla obu wariantów. Przełącznik języka pozostaje dostępny i udostępnia stan rozwinięcia w obu wariantach sukcesu.
+- Powrót do listu przywraca blok z zachowaniem wybranego wariantu i danych. Fokus pozostaje na dotychczasowych celach: nagłówku sukcesu po wysłaniu i przycisku wysyłki po powrocie.
+
+### 14.25. Czytelny dopisek w oknie Grincha
+
+- Informacja o zachowaniu kopii prezentów jest wyróżniona większym pismem bezszeryfowym o wadze 600, ciemnym tekstem i jasnym zielonym tłem. Zmiana dotyczy tego dopisku w obu językach.
+
 ## 15. Kod i uruchomienie
 
 - Poprawki są zbierane w paczki, przygotowywane i sprawdzane lokalnie, a następnie publikowane jednym uzgodnionym wdrożeniem.
