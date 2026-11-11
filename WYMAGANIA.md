@@ -742,7 +742,8 @@ Sending the letter and the prizes are pretend.
 
 ### 14.23. Kontakt w stopce
 
-- Stopka zawiera zwykłe łącze do profilu Arlety Kurkiewicz na LinkedInie. Tekst łącza jest dostępny w polskiej i angielskiej wersji.
+- Łącze do profilu w stopce ma widoczny tekst „Arleta Kurkiewicz LinkedIn” (EN: „Arleta Kurkiewicz on LinkedIn”).
+- Łącze otwiera profil w nowej karcie (`target="_blank"`, `rel="noopener"`). W nazwie dostępnej po widocznym tekście występuje „(otwiera się w nowej karcie)” (EN: „(opens in a new tab)”). Dopisek jest ukryty wizualnie. Dotyczy obu wersji demonstracji i ekranu potwierdzenia.
 - Łącze ma podkreślenie, pozostaje w kolejności nawigacji klawiszem Tab i korzysta z widocznego wskaźnika fokusu strony.
 
 ### 14.24. Blok demonstracji tylko przy edycji listu

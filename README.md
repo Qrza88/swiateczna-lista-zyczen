@@ -102,4 +102,4 @@ Zmieniając pliki logiki pomocniczej, zaktualizuj również odpowiadający blok 
 
 ## Kontakt
 
-W stopce demonstracji znajduje się link do profilu Arlety Kurkiewicz na LinkedInie, dostępny w polskiej i angielskiej wersji strony.
+Łącze „Arleta Kurkiewicz LinkedIn” w stopce otwiera profil w nowej karcie. Nazwa dostępna łącza zawiera informację o nowej karcie w obu językach.
