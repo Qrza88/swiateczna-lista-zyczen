@@ -1,11 +1,11 @@
 {
   "name": "swiateczna-lista-zyczen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Demonstracja WCAG na Kalendarz Programisty",
   "type": "module",
   "scripts": {
-    "test": "node qa/form-submission.cjs && node --test qa/counter.test.mjs && node qa/elf-replies.cjs && node qa/timing.cjs && node qa/i18n.cjs && node qa/grinch-prank.cjs && node qa/grinch-feedback.cjs && node qa/release.cjs"
+    "test": "node qa/form-submission.cjs && node --test qa/counter.test.mjs && node qa/elf-replies.cjs && node qa/timing.cjs && node qa/i18n.cjs && node qa/grinch-prank.cjs && node qa/grinch-feedback.cjs && node qa/release.cjs && node --test qa/private-statistics.test.mjs"
   },
   "engines": {
     "node": ">=22"

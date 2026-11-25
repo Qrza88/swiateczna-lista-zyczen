@@ -435,7 +435,7 @@ button,.add-button,.catalog-tab,input[type=text],input[type=number],textarea,
 </section>
 
 </main>
-<footer class="footer"><span>POCZTA PÓŁNOCNA · DEMONSTRACJA NA KALENDARZ PROGRAMISTY<br>List zostaje w tej karcie przeglądarki. Wysyłka jest umowna.</span><span class="hand">Oby Ci się skompilowało.</span><p class="footer-contact">Kontakt: <a href="https://www.linkedin.com/in/arleta-kurkiewicz/" target="_blank" rel="noopener">Arleta Kurkiewicz LinkedIn <span class="sr-only">(otwiera się w nowej karcie)</span></a></p><div class="bottomline"><span>© BIURO OBSŁUGI ŻYCZEŃ · WERSJA 0.2</span><span>STATUS: NA PRODUKCJI, WIĘC DZIAŁA</span></div><p class="letter-counter" id="letter-counter" role="status" aria-atomic="true"><span id="counter-label">Wysłane listy — licznik lokalny:</span> <strong id="counter-value">0</strong></p></footer>
+<footer class="footer"><span>POCZTA PÓŁNOCNA · DEMONSTRACJA NA KALENDARZ PROGRAMISTY<br>List zostaje w tej karcie przeglądarki. Wysyłka jest umowna.</span><span class="hand">Oby Ci się skompilowało.</span><p class="footer-contact">Kontakt: <a href="https://www.linkedin.com/in/arleta-kurkiewicz/" target="_blank" rel="noopener">Arleta Kurkiewicz LinkedIn <span class="sr-only">(otwiera się w nowej karcie)</span></a></p><div class="bottomline"><span>© BIURO OBSŁUGI ŻYCZEŃ · WERSJA 0.2</span><span>STATUS: NA PRODUKCJI, WIĘC DZIAŁA</span></div><p class="letter-counter" id="letter-counter" hidden role="status" aria-atomic="true"><span id="counter-label">Wysłane listy — licznik lokalny:</span> <strong id="counter-value">0</strong></p></footer>
 </div>
 <div class="sr-only" id="app-status" role="status" aria-atomic="true"></div>
 <div class="sr-only" id="elf-status" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -1074,7 +1074,7 @@ function createWinnerComments(random=Math.random){
 // WINNER_COMMENTS_END
 const winnerCommentFor=createWinnerComments();
 const letterCounter=createLetterCounter({storage:counterStorage,session:counterSession,makeId:makeLetterId,fetchFn:(...args)=>fetch(...args),server:counterServer,onChange:({total,lotteryOrdinal,winningInterval,server,error})=>{writeUiText($('counter-label'),server?'Wysłane listy w demonstracji:':'Wysłane listy — licznik lokalny:');writeUiText($('counter-value'),error?'chwilowo niedostępny':total===null?'sprawdzam…':String(total));if(!$('confirmation').hidden&&$('join-lottery').checked){$('lottery-result').hidden=false;const won=lotteryOrdinal!==null&&lotteryOrdinal>0&&lotteryOrdinal%winningInterval===0;$('lottery-result').classList.toggle('winner',won);writeUiText($('lottery-result-title'),won?'Wygrana! Milion tokenów jest Twój!':'Wynik loterii');const losses=['Tym razem tokeny zjadł renifer. Reklamację przyjmuje wyłącznie na sianie.','Niestety, elf wylosował dodatkowe spotkanie zamiast tokenów. Spróbuj zachować świąteczny spokój.','Tym razem bez wygranej. Mikołaj dołącza za to szacunek do Twojej cierpliwości.'];writeUiText($('lottery-result-text'),error?'Wynik chwilowo niedostępny. Możesz wrócić do listu i ponowić wysłanie; zachowamy ten sam numer zgłoszenia.':lotteryOrdinal===null?'Sprawdzamy numer udziału…':won?'Twój udział ma numer '+lotteryOrdinal+'. '+winnerCommentFor(lotteryOrdinal):('Twój udział ma numer '+lotteryOrdinal+'. '+losses[(lotteryOrdinal-1)%losses.length]));if(!error&&lotteryOrdinal!==null&&!server)writeUiText($('lottery-result-text'),' To wynik lokalnej próby.',true);}}});
-void letterCounter.load();
+// Private statistics: no initial counter read.
 
 // BAG_FEEDBACK_START
 // Potwierdzenie przy worku i opcjonalna animacja korzystają ze wspólnego stanu formularza.
@@ -1167,5 +1167,6 @@ document.addEventListener('click',e=>{if(!$('language-options').hidden&&!$('lang
 renderCards();renderBag();syncTabs();renderRange();renderOath();renderDelivery();syncGrinchSemantics();tick();setUiLanguage(uiLocale);syncMiniBag();setInterval(tick,200);
 })();
 </script>
+<script src="visits.js"></script>
 </body>
 </html>
