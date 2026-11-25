@@ -22,7 +22,7 @@ Dane zachowują się między wydaniami i odnowieniami kredytów. Zmiana miesiąc
 
 ## Budżet
 
-Po wydaniu krzyżówki v0.3.0 saldo potwierdzone w panelu wynosiło 280,8 kredytu. Planowane dwie publikacje zmian statystyk kosztują łącznie 30 kredytów; orientacyjnie pozostaje 250,8 przed dalszym użyciem. Rezerwujemy co najmniej 60 kredytów na poprawki i rozbieżności zużycia. Nie wykonujemy dodatkowych produkcyjnych wydań dla samej dokumentacji.
+Dwie publikacje zmian statystyk kosztują łącznie 30 kredytów. Bieżące saldo i zużycie konta są prywatne i należy sprawdzać je w zalogowanym panelu Netlify. Rezerwujemy zapas na poprawki i rozbieżności zużycia. Nie wykonujemy dodatkowych produkcyjnych wydań dla samej dokumentacji.
 
 Nowe wizyty nie budzą bazy PostgreSQL i nie naliczają pięciominutowych okresów jej aktywności. Nadal naliczane są żądania, transfer i rzeczywisty czas funkcji. Nie deklarujemy zerowego kosztu ani gwarancji dowolnej frekwencji. Pierwszy cykl trwa do 24 grudnia, od 25 grudnia odnawia się 300 kredytów. Przedpremierowe testy i późniejszy ruch obu stron korzystają ze wspólnej puli zespołu.
 
@@ -36,7 +36,7 @@ Dotychczasowy magazyn `pp-letter-receipts` i obiekt `counter-v1` zachowują wszy
 
 W podglądach także dotychczasowy mechanizm loterii używa getDeployStore, aby próby nie zmieniały numerów produkcyjnych. To zmiana izolacji podglądów, bez zmiany formatu danych produkcyjnych i reguł wygranej.
 
-Wersja przygotowywana: 0.2.1. Wyniki przeglądarkowe i identyfikator publikacji zostaną dopisane po weryfikacji.
+Wersja opublikowana: 0.2.1; wyniki publikacji poniżej.
 
 ## Nowe otwarcie listu
 
@@ -52,8 +52,18 @@ Logi Netlify potwierdziły status 204 dla wizyt i 200 dla ukończeń. W małej p
 
 Konserwatywny model jednej wizyty z ukończeniem: 0,5 MB transferu, 12 żądań HTTP łącznie oraz 2 funkcje po 2 sekundy przy 1 GB. Przy stawkach 20 kredytów/GB, 2/10 000 żądań i 10/GB-godzinę daje to około 23,6 kredytu na 1000 wizyt; 5000 wizyt łącznie na obu stronach to około 118 kredytów. Samych dwóch funkcji w tym modelu jest około 56 kredytów przy 5000 ukończonych wizyt, bez wielominutowego utrzymywania bazy. To scenariusz do planowania, nie stały limit osób: odświeżenia, ponowienia, boty i reszta ruchu zespołu zmieniają rachunek.
 
-Przy saldzie 280,8, dwóch publikacjach za 30 i takim scenariuszu 5000 wizyt pozostałoby około 133 kredytów przed innymi wydatkami, w tym założona rezerwa 60. Kalkulacja dotyczy pierwszego cyklu do 24 grudnia; od 25 grudnia na Free odnawia się 300 kredytów. Zakup Personal zmienia przyjętą pulę i należy wtedy sprawdzić rzeczywiste daty w panelu.
+Model kosztowy należy porównać z aktualnym prywatnym saldem właścicielki. To scenariusz planowania, nie gwarancja frekwencji. Odnowienie kredytów i ewentualną zmianę planu sprawdza się w panelu Netlify.
 
 Opcja miesięczna sprawdzona w dokumentacji: Personal 9 USD/miesiąc z 1000 kredytów, Pro od 20 USD z 3000. Powrót na Free następuje od następnego cyklu. Dokładna kwota z podatkami i termin końca płatnego okresu muszą być sprawdzone przed zakupem. Pozostawić auto recharge wyłączone. Źródła: https://www.netlify.com/pricing/ oraz https://docs.netlify.com/manage/accounts-and-billing/billing/change-your-pricing-plan/ .
 
 Odpowiedź publicznej funkcji listu zawiera wyłącznie numer bieżącego listu, numer jego udziału i interwał loterii. Pola globalne total i lotteryTotal nie są udostępniane; GET pozostaje wyłączony.
+
+## Potwierdzona publikacja — 25 listopada 2026
+
+Lista życzeń 0.2.1 została opublikowana ze statusem ready: commit 1fe06d2803d1b94c3dea363595ef5f3e2a3d2b2c, deploy 6b06ec00ebd5fc190804c981. Krzyżówka 0.3.1: commit 04054ed361d2a5fa4154425c31ba6f652d6b030a, deploy 6b06ec1728cf8d13024980ff. Obie są bieżącymi wersjami produkcyjnymi.
+
+Pełny npm test listy zaliczony, w tym 20 przypadków node:test oraz skrypty formularza, czatu, tłumaczeń, timera i wydania. Po publikacji potwierdzono pusty formularz na nowym wejściu, ukryty publiczny licznik i zachowanie istniejących danych. Nowe prywatne magazyny wizyt działają w obu projektach. Publiczne próby GET obu endpointów statystyk zwracają 405, bez agregatów.
+
+Pełne przejścia listu i loterii wykonano w izolowanych podglądach. Weryfikacja produkcji nie dopisywała sztucznych wysyłek ani ukończeń. Wyniki właścicielki i rozliczenie konta pozostają prywatne. Testy ekranowe wykonano w Chromium; nie wykonano w tej sesji testów NVDA, VoiceOver ani TalkBack na urządzeniach fizycznych.
+
+Zmiana samej dokumentacji ma oznaczenie [skip netlify], aby nie uruchamiać kolejnego płatnego wydania.
