@@ -88,3 +88,14 @@ test('Klient i serwer używają interwału 5, także po powtórzeniu udziału',a
  await counter.record(false);assert.equal(last.lotteryOrdinal,null);assert.equal(last.total,16);
  await counter.record(true);assert.equal(last.lotteryOrdinal,16);assert.equal(last.total,16);
 });
+
+
+test('Nowe wejście tworzy nowy list; odświeżenie zachowuje identyfikator bieżącej próby', async () => {
+ const storage=memory(),session=memory();let serial=0,firstResult,nextResult;
+ const first=factory({storage,session,makeId:()=>id(++serial),restoreDraft:false,onChange:x=>firstResult=x});
+ await first.record();assert.equal(firstResult.ordinal,1);
+ const reloaded=factory({storage,session,makeId:()=>id(++serial),restoreDraft:true,onChange:x=>firstResult=x});
+ await reloaded.record();assert.equal(firstResult.ordinal,1);assert.equal(serial,1);
+ const opened=factory({storage,session,makeId:()=>id(++serial),restoreDraft:false,onChange:x=>nextResult=x});
+ await opened.record();assert.equal(nextResult.ordinal,2);assert.equal(serial,2);
+});

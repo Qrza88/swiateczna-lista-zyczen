@@ -37,3 +37,7 @@ Dotychczasowy magazyn `pp-letter-receipts` i obiekt `counter-v1` zachowują wszy
 W podglądach także dotychczasowy mechanizm loterii używa getDeployStore, aby próby nie zmieniały numerów produkcyjnych. To zmiana izolacji podglądów, bez zmiany formatu danych produkcyjnych i reguł wygranej.
 
 Wersja przygotowywana: 0.2.1. Wyniki przeglądarkowe i identyfikator publikacji zostaną dopisane po weryfikacji.
+
+## Nowe otwarcie listu
+
+Imię, wiadomość, worek i ekran sukcesu istnieją w pamięci aktualnego dokumentu. Nowe wejście otwiera pusty formularz na początku. Od 0.2.1 nowe wejście tworzy także nowy identyfikator listu; odświeżenie zachowuje identyfikator bieżącej próby, aby ponowienie nie dublowało wysyłki. Nie zmieniamy reguł loterii ani historycznych numerów.

@@ -1,9 +1,9 @@
 // LETTER_COUNTER_START
-function createLetterCounter({storage,session,makeId,fetchFn,server=false,endpoint='/.netlify/functions/letter-count',onChange=()=>{}}){
+function createLetterCounter({storage,session,makeId,fetchFn,server=false,restoreDraft=true,endpoint='/.netlify/functions/letter-count',onChange=()=>{}}){
  const read=(where,key)=>{try{return where?.getItem(key);}catch{return null;}};
  const write=(where,key,value)=>{try{where?.setItem(key,value);}catch{}};
  const stored=()=>{try{const current=JSON.parse(read(storage,'pp-letter-receipts-v2')||'null');if(Array.isArray(current))return current.filter(x=>typeof x?.id==='string'&&Number.isSafeInteger(x.ordinal));const old=JSON.parse(read(storage,'pp-counted-letters')||'[]');return Array.isArray(old)?[...new Set(old.filter(x=>typeof x==='string'))].map((id,index)=>({id,ordinal:index+1,lotteryOrdinal:null})):[];}catch{return[];}};
- let receipts=stored(),id=read(session,'pp-letter-draft')||makeId(),total=server?null:receipts.length,ordinal=null,lotteryOrdinal=null,counted=false,inFlight=null,inFlightId=null,inFlightJoin=false,revision=0;
+ let receipts=stored(),id=restoreDraft&&read(session,'pp-letter-draft')||makeId(),total=server?null:receipts.length,ordinal=null,lotteryOrdinal=null,counted=false,inFlight=null,inFlightId=null,inFlightJoin=false,revision=0;
  write(session,'pp-letter-draft',id);
  const emit=error=>onChange({total,ordinal,lotteryOrdinal,winningInterval:5,server,error:Boolean(error)});
  const request=async(method,submissionId,participates)=>{const response=await fetchFn(endpoint,{method,cache:'no-store',headers:method==='POST'?{'Content-Type':'application/json'}:{},...(method==='POST'?{body:JSON.stringify({submissionId,participates})}:{})});if(!response.ok)throw new Error('Counter unavailable');const data=await response.json();if(!Number.isSafeInteger(data?.total)||data.total<0)throw new Error('Invalid counter response');return data;};
