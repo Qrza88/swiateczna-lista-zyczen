@@ -41,3 +41,19 @@ Wersja przygotowywana: 0.2.1. Wyniki przeglądarkowe i identyfikator publikacji 
 ## Nowe otwarcie listu
 
 Imię, wiadomość, worek i ekran sukcesu istnieją w pamięci aktualnego dokumentu. Nowe wejście otwiera pusty formularz na początku. Od 0.2.1 nowe wejście tworzy także nowy identyfikator listu; odświeżenie zachowuje identyfikator bieżącej próby, aby ponowienie nie dublowało wysyłki. Nie zmieniamy reguł loterii ani historycznych numerów.
+
+## Wyniki podglądu i model kosztowy — 25 listopada
+
+Krzyżówka: 47/47 testów lokalnych. Przejścia PL i EN dały ANIOŁEK/PRESENT; oba zapisy dotyczyły jednego potwierdzenia w osobnym magazynie podglądu 6b06e7eab905113a19344da7. Odczyt dziennych wizyt pokazał 3 wpisy i nadal 3 po ponownym odświeżeniu karty. Nowe wejście wróciło do pytania 1 i pustej odpowiedzi; reload zachował pytanie i szkic KON. Axe w nowym stanie początkowym: 0 naruszeń i 0 wyników niejednoznacznych.
+
+Lista: pełny npm test zaliczony. W podglądzie 6b06e9c407ba2f3c5ed0246e nowy link otworzył pusty formularz i worek oraz ukryty sukces. Pierwsza próba miała numer udziału 1, drugie nowe wejście 2; ponowienie po reload nadal 2. Zbiorczy wynik jest ukryty, loteria działa w PL i EN. Zapisy podglądu są odrębne od danych produkcyjnych.
+
+Logi Netlify potwierdziły status 204 dla wizyt i 200 dla ukończeń. W małej próbce rzeczywista operacja funkcji visits trwała około 0,165 s w krzyżówce i 0,737 s w liście, przy 1024 MB pamięci. Nie jest to test obciążeniowy ani gwarancja takiej samej latencji przy dowolnym ruchu.
+
+Konserwatywny model jednej wizyty z ukończeniem: 0,5 MB transferu, 12 żądań HTTP łącznie oraz 2 funkcje po 2 sekundy przy 1 GB. Przy stawkach 20 kredytów/GB, 2/10 000 żądań i 10/GB-godzinę daje to około 23,6 kredytu na 1000 wizyt; 5000 wizyt łącznie na obu stronach to około 118 kredytów. Samych dwóch funkcji w tym modelu jest około 56 kredytów przy 5000 ukończonych wizyt, bez wielominutowego utrzymywania bazy. To scenariusz do planowania, nie stały limit osób: odświeżenia, ponowienia, boty i reszta ruchu zespołu zmieniają rachunek.
+
+Przy saldzie 280,8, dwóch publikacjach za 30 i takim scenariuszu 5000 wizyt pozostałoby około 133 kredytów przed innymi wydatkami, w tym założona rezerwa 60. Kalkulacja dotyczy pierwszego cyklu do 24 grudnia; od 25 grudnia na Free odnawia się 300 kredytów. Zakup Personal zmienia przyjętą pulę i należy wtedy sprawdzić rzeczywiste daty w panelu.
+
+Opcja miesięczna sprawdzona w dokumentacji: Personal 9 USD/miesiąc z 1000 kredytów, Pro od 20 USD z 3000. Powrót na Free następuje od następnego cyklu. Dokładna kwota z podatkami i termin końca płatnego okresu muszą być sprawdzone przed zakupem. Pozostawić auto recharge wyłączone. Źródła: https://www.netlify.com/pricing/ oraz https://docs.netlify.com/manage/accounts-and-billing/billing/change-your-pricing-plan/ .
+
+Odpowiedź publicznej funkcji listu zawiera wyłącznie numer bieżącego listu, numer jego udziału i interwał loterii. Pola globalne total i lotteryTotal nie są udostępniane; GET pozostaje wyłączony.
