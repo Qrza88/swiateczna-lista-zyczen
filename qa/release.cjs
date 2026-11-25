@@ -19,8 +19,8 @@ assert.equal(translations.translate('Wygrana! Milion tokenów jest Twój!'),'You
 // Exercise the actual result renderer with consecutive callbacks.
 const nodes=new Map();const get=id=>{if(!nodes.has(id))nodes.set(id,{hidden:true,checked:false,textContent:'',classList:{toggle(){}}});return nodes.get(id);};
 get('confirmation').hidden=false;get('join-lottery').checked=true;
-let update;const renderer=vm.createContext({$:get,createWinnerComments:context.factory,createLetterCounter(options){update=options.onChange;return {};},counterStorage:{},counterSession:{},makeLetterId(){},counterServer:false,fetch(){},writeUiText(el,value,append=false){el.textContent=(append?el.textContent:'')+value;}});
-vm.runInContext(html.slice(html.indexOf('const winnerCommentFor='),html.indexOf('void letterCounter.load();')),renderer);
+let update;const renderer=vm.createContext({$:get,createWinnerComments:context.factory,createLetterCounter(options){update=options.onChange;return {};},counterStorage:{},counterSession:{},makeLetterId(){},counterServer:false,performance:{getEntriesByType(){return [{type:'navigate'}];}},fetch(){},writeUiText(el,value,append=false){el.textContent=(append?el.textContent:'')+value;}});
+vm.runInContext(html.slice(html.indexOf('const winnerCommentFor='),html.indexOf('// Private statistics: no initial counter read.')),renderer);
 update({total:5,lotteryOrdinal:5,winningInterval:5,server:true,error:false});
 assert.equal(get('lottery-result-title').textContent,'Wygrana! Milion tokenów jest Twój!');
 const first=get('lottery-result-text').textContent;assert(first.startsWith('Twój udział ma numer 5. '));

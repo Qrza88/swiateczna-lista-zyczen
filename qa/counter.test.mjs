@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
-import {createCounterHandler} from '../netlify/lib/letter-count.mjs';
+import {createCounterHandler,createPrivateCounterEndpoint} from '../netlify/lib/letter-count.mjs';
 const source=await readFile(new URL('../counter-client.js',import.meta.url),'utf8');
 const scope=vm.createContext({});vm.runInContext(source+'\nthis.factory=createLetterCounter;',scope);
 const factory=scope.factory;
@@ -87,4 +87,28 @@ test('Klient i serwer używają interwału 5, także po powtórzeniu udziału',a
  await counter.load();assert.equal(last.winningInterval,5);assert.equal(last.total,15);
  await counter.record(false);assert.equal(last.lotteryOrdinal,null);assert.equal(last.total,16);
  await counter.record(true);assert.equal(last.lotteryOrdinal,16);assert.equal(last.total,16);
+});
+
+
+test('Nowe wejście tworzy nowy list; odświeżenie zachowuje identyfikator bieżącej próby', async () => {
+ const storage=memory(),session=memory();let serial=0,firstResult,nextResult;
+ const first=factory({storage,session,makeId:()=>id(++serial),restoreDraft:false,onChange:x=>firstResult=x});
+ await first.record();assert.equal(firstResult.ordinal,1);
+ const reloaded=factory({storage,session,makeId:()=>id(++serial),restoreDraft:true,onChange:x=>firstResult=x});
+ await reloaded.record();assert.equal(firstResult.ordinal,1);assert.equal(serial,1);
+ const opened=factory({storage,session,makeId:()=>id(++serial),restoreDraft:false,onChange:x=>nextResult=x});
+ await opened.record();assert.equal(nextResult.ordinal,2);assert.equal(serial,2);
+});
+
+
+test('Prywatny endpoint zwraca potwierdzenie listu bez zbiorczych statystyk',async()=>{
+ const endpoint=createPrivateCounterEndpoint(()=>atomicStore());
+ assert.equal((await endpoint(new Request(url))).status,405);
+ const response=await post(endpoint,1,true);
+ const receipt=await response.json();
+ assert.deepEqual(Object.keys(receipt).sort(),['lotteryOrdinal','ordinal','winningInterval']);
+ assert.equal(receipt.ordinal,1);assert.equal(receipt.lotteryOrdinal,1);
+ let last;
+ const client=factory({storage:memory(),session:memory(),makeId:()=>id(50),server:true,onChange:x=>last=x,fetchFn:async()=>({ok:true,json:async()=>receipt})});
+ await client.record(true);assert.equal(last.error,false);assert.equal(last.lotteryOrdinal,1);
 });

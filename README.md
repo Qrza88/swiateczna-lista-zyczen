@@ -103,3 +103,7 @@ Zmieniając pliki logiki pomocniczej, zaktualizuj również odpowiadający blok 
 ## Kontakt
 
 Łącze „Arleta Kurkiewicz LinkedIn” w stopce otwiera profil w nowej karcie. Nazwa dostępna łącza zawiera informację o nowej karcie w obu językach.
+
+## Prywatne statystyki od wersji 0.2.1
+
+Dodano oszczędny pomiar odwiedzin, usunięto publiczny odczyt sumy listów przy wejściu i ukryto zbiorczy wynik w stopce. Loteria zachowuje dane. Zasady wizyt, dostęp w panelu Netlify oraz budżet całego grudnia opisuje [STATYSTYKI.md](STATYSTYKI.md). W podglądach używamy odrębnych magazynów.

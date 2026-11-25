@@ -31,3 +31,15 @@ export function createCounterHandler(getStore){
   }catch{return json({error:'Counter unavailable'},503);}
  };
 }
+
+// Return only this letter's receipt; aggregate statistics stay in the owner UI.
+export function createPrivateCounterEndpoint(getStore){
+ const handler=createCounterHandler(getStore);
+ return async request=>{
+  if(request.method==='GET')return new Response('Method not allowed',{status:405,headers:{Allow:'POST','Cache-Control':'no-store'}});
+  const response=await handler(request);
+  if(!response.ok)return response;
+  const {ordinal,lotteryOrdinal,winningInterval}=await response.json();
+  return Response.json({ordinal,lotteryOrdinal,winningInterval},{headers:{'Cache-Control':'no-store'}});
+ };
+}
